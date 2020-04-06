@@ -26,7 +26,11 @@
           <input type="password" class="form-control inputs" name="credentials[password]" placeholder="Password" required>
           <br>
           <input type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Password confirmation" required>
-          <!-- add a checkmark for student vs. teacher -->
+          <!-- radio button for student vs. teacher roles -->
+          <input type="radio" id="teacher" name="role" value="teacher">
+          <label for="teacher">Teacher</label><br>
+          <input type="radio" id="student" name="role" value="student">
+          <label for="student">Student</label><br>
           <button type="submit" class="btn btn-dark">Sign Up</button>
         </div>
       </form>
