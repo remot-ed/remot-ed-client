@@ -31,6 +31,8 @@ const onSignUpFailure = () => {
 const onSignInSuccess = responseData => {
   store.user = responseData.user
   onSuccess('You successfully signed in.')
+  $('.before-auth').hide()
+  $('.after-auth').show()
 }
 
 const onSignInFailure = () => {
@@ -48,6 +50,8 @@ const onChangePasswordFailure = () => {
 const onSignOutSuccess = () => {
   onSuccess('You successfully signed out.')
   store.user = {}
+  $('.before-auth').show()
+  $('.after-auth').hide()
 }
 
 const onSignOutFailure = () => {
