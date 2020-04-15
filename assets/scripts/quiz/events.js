@@ -4,23 +4,32 @@ const api = require('./api')
 // const ui = require('./ui')
 const getFormFields = require('../../../lib/get-form-fields')
 
+// declare empty array of questionIds
+// as we create questions, we push them to questionId
+// when we finish quiz, we update quiz with array of questionIds
+// once quiz has been updated with array, we want to clear array .. maybe in UI?
+const questionId = []
+
+// onCreateQuiz should store the quiz id in quizId
+// when onFinishQuiz runs, we should clear quizId .. maybe in UI?
+// let quizId;
+
 const onCreateQuestion = event => {
   event.preventDefault()
   const form = event.target
   const formData = getFormFields(form)
 
   // need to get question id? this is what we used in project 3?
-  const questionId = $(event.target).data('id')
-  // need to also get quiz id that we're adding question to
-  const quizId = // ?
+  // questionId.push($(event.target).data('id'))
+  // console.log(questionId)
+  // console.log('formData: ', formData)
 
   api.createQuestion(formData)
-    .then(console.log)
+    // .then(res => console.log('res: ', res))
+    .then(res => questionId.push(res.question._id))
+    // .then(res => console.log('id??? ', res.question._id))
     .catch(console.error)
-
-  api.updateQuiz(quizId, questionId)
-    .then(console.log)
-    .catch(console.error)
+  console.log(questionId)
 }
 
 // finishQuiz will have almost same functionality as create question
@@ -30,17 +39,16 @@ const onCreateQuestion = event => {
 
 const onFinishQuiz = event => {
   event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
+  // const form = event.target
+  // const formData = getFormFields(form)
 
-  // need to get question id? this is what we used in project 3?
-  const questionId = $(event.target).data('id')
   // need to also get quiz id that we're adding question to
-  const quizId = // ?
+  // jk don't need this
+  const quizId = $(event.target).data('id')
 
-  api.createQuestion(formData)
-    .then(console.log)
-    .catch(console.error)
+  // api.createQuestion(formData)
+  //   .then(console.log)
+  //   .catch(console.error)
 
   api.updateQuiz(quizId, questionId)
     .then(console.log)
