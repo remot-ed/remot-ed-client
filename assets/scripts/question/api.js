@@ -10,7 +10,16 @@ const createQuestion = formData => {
     headers: {
       Authorization: `Token token=${store.user.token}`
     },
-    data: formData
+    data: {
+      question: {
+        title: formData.question.title,
+        correctAnswer: formData.question.correctAnswer,
+        answerTwo: formData.question.answerTwo,
+        answerThree: formData.question.answerThree,
+        answerFour: formData.question.answerFour,
+        quizOwner: store.quizId
+      }
+    }
   })
 }
 
