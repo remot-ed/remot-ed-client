@@ -1,27 +1,25 @@
 'use strict'
 
 const api = require('./api')
-// const ui = require('./ui')
+const ui = require('./ui')
 const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields')
+
+// TODO:
+// create a function that checks if date is in the past or future
+// if in the future, throw an error message
 
 const onCreateQuiz = event => {
   event.preventDefault()
   const form = event.target
   const formData = getFormFields(form)
 
-  // onCreateQuiz should store the quiz id in quizId
-
+  // onCreateQuiz stores the quiz data in empty quizData in ../store.js
   api.createQuiz(formData)
-    .then(res => store.quizId.push(res.quiz._id))
+    .then(res => store.quizData.push(res.quiz))
+    .then(ui.onCreateQuizSuccess)
     .catch(console.error)
 }
-
-// on the last question, user will be unable to click 'next question', and
-// will click 'finish quiz', and create the final question
-// difference will be UI => finish quiz will take user to quiz created view
-
-// when onFinishQuiz runs, we should clear quizId .. maybe in UI?
 
 const onFinishQuiz = event => {
   event.preventDefault()
