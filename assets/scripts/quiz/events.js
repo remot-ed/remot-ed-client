@@ -10,25 +10,21 @@ const onCreateQuiz = event => {
   const form = event.target
   const formData = getFormFields(form)
 
+  // onCreateQuiz should store the quiz id in quizId
+
   api.createQuiz(formData)
     .then(res => store.quizId.push(res.quiz._id))
     .catch(console.error)
 }
 
+// on the last question, user will be unable to click 'next question', and
+// will click 'finish quiz', and create the final question
+// difference will be UI => finish quiz will take user to quiz created view
+
+// when onFinishQuiz runs, we should clear quizId .. maybe in UI?
+
 const onFinishQuiz = event => {
   event.preventDefault()
-  // const form = event.target
-  // const formData = getFormFields(form)
-
-  // need to also get quiz id that we're adding question to
-  // jk don't need this
-  // const quizId = $(event.target).data('id')
-  console.log('hello')
-  // api.createQuestion(formData)
-  //   .then(console.log)
-  //   .catch(console.error)
-  console.log('quizId: ', store.quizId)
-  // console.log('questionId: ', store.questionId)
 
   api.finishQuiz()
     .then(console.log)
