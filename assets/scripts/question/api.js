@@ -23,6 +23,51 @@ const createQuestion = formData => {
   })
 }
 
+const editQuestion = (questionId, formData) => {
+  return $.ajax({
+    url: config.apiUrl + '/questions/' + questionId,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token = ${store.user.token}`
+    },
+    data: formData
+  })
+}
+
+const deleteQuestion = questionId => {
+  return $.ajax({
+    url: config.apiUrl + '/questions/' + questionId,
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token token = ${store.user.token}`
+    }
+  })
+}
+
+const getOneQuestion = questionId => {
+  return $.ajax({
+    url: config.apiUrl + '/questions/' + questionId,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token = ${store.user.token}`
+    }
+  })
+}
+
+const getAllQuestions = () => {
+  return $.ajax({
+    url: config.apiUrl + '/questions',
+    method: 'GET',
+    headers: {
+      Authorization: `Token token = ${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
-  createQuestion
+  createQuestion,
+  editQuestion,
+  deleteQuestion,
+  getOneQuestion,
+  getAllQuestions
 }

@@ -46,12 +46,53 @@ const onCreateQuestion = event => {
     .catch(console.error)
 }
 
-// for 'Question 2 of 15', add in line somewhere
-// have '15' be variable for numOfQuestions in quiz
-// have '2' start off at 1, and then increment
+const onEditQuestion = event => {
+  event.preventDefault()
+
+  const questionId = $(event.target).data('id')
+
+  const form = event.target
+  const formData = getFormFields(form)
+
+  api.editQuestion(questionId, formData)
+    .then(console.log)
+    .catch(console.error)
+}
+
+const onDeleteQuestion = event => {
+  event.preventDefault()
+
+  const questionId = $(event.target).data('id')
+
+  api.deleteQuestion(questionId)
+    .then(console.log)
+    .catch(console.error)
+}
+
+const onGetAllQuestions = event => {
+  event.preventDefault()
+
+  api.getAllQuestions()
+    .then(console.log)
+    .catch(console.error)
+}
+
+const onGetOneQuestion = event => {
+  event.preventDefault()
+
+  const questionId = $(event.target).data('id')
+
+  api.getOneQuestion(questionId)
+    .then(console.log)
+    .catch(console.error)
+}
 
 const addHandlers = event => {
   $('#create-question').on('submit', onCreateQuestion)
+  $('.edit-question').on('submit', onEditQuestion)
+  $('.delete-question').on('submit', onDeleteQuestion)
+  $('.get-questions').on('submit', onGetAllQuestions)
+  $('.get-question').on('submit', onGetOneQuestion)
 }
 
 module.exports = {
