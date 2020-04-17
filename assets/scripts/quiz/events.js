@@ -29,9 +29,57 @@ const onFinishQuiz = event => {
     .catch(console.error)
 }
 
+const onEditQuiz = event => {
+  event.preventDefault()
+
+  const quizId = $(event.target).data('id')
+
+  const form = event.target
+  const formData = getFormFields(form)
+
+  api.editQuiz(quizId, formData)
+    .then(console.log)
+    .catch(console.error)
+}
+
+// delete quiz is going to have to delete questions as well
+// maybe before deleteQuiz api call, loop through each question in array,
+// and call onDeleteQuestion for each?
+const onDeleteQuiz = event => {
+  event.preventDefault()
+
+  const quizId = $(event.target).data('id')
+
+  api.deleteQuiz(quizId)
+    .then(console.log)
+    .catch(console.error)
+}
+
+const onGetAllQuizzes = event => {
+  event.preventDefault()
+
+  api.getAllQuizzes()
+    .then(console.log)
+    .catch(console.error)
+}
+
+const onGetOneQuiz = event => {
+  event.preventDefault()
+
+  const quizId = $(event.target).data('id')
+
+  api.getOneQuiz(quizId)
+    .then(console.log)
+    .catch(console.error)
+}
+
 const addHandlers = event => {
   $('#create-quiz').on('submit', onCreateQuiz)
   $('.finish-quiz').on('click', onFinishQuiz)
+  $('.edit-quiz').on('submit', onEditQuiz)
+  $('.delete-quiz').on('submit', onDeleteQuiz)
+  $('.get-quizzes').on('submit', onGetAllQuizzes)
+  $('.get-quiz').on('submit', onGetOneQuiz)
 }
 
 module.exports = {

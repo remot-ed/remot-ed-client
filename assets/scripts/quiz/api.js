@@ -29,7 +29,52 @@ const finishQuiz = () => {
   })
 }
 
+const editQuiz = (quizId, formData) => {
+  return $.ajax({
+    url: config.apiUrl + '/quizzes/' + quizId,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token = ${store.user.token}`
+    },
+    data: formData
+  })
+}
+
+const deleteQuiz = quizId => {
+  return $.ajax({
+    url: config.apiUrl + '/quizzes/' + quizId,
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token token = ${store.user.token}`
+    }
+  })
+}
+
+const getOneQuiz = quizId => {
+  return $.ajax({
+    url: config.apiUrl + '/quizzes/' + quizId,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token = ${store.user.token}`
+    }
+  })
+}
+
+const getAllQuizzes = () => {
+  return $.ajax({
+    url: config.apiUrl + '/quizzes',
+    method: 'GET',
+    headers: {
+      Authorization: `Token token = ${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   createQuiz,
-  finishQuiz
+  finishQuiz,
+  editQuiz,
+  deleteQuiz,
+  getOneQuiz,
+  getAllQuizzes
 }
