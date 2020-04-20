@@ -1,22 +1,13 @@
 {{#each classrooms as |class|}}
   {{log class}}
-  <section data-id="{{class.id}}" class ='dream_listing v'>
-    <div class="dream-box">
+  <section data-id="{{class._id}}">
+    <div>
     <h3>
-      {{class.date}}
+      {{class.classname}}
     </h3>
-    <h6>Mood:</h6>
     <h3>
-      {{dream.mood}}
+      {{class.subject}}
     </h3>
-    <h6>Body:</h6>
-    <p>
-    <h3>
-      {{limit dream.body 30}}
-    </h3>
-  </p>
-  <button data-id="{{dream.id}}" class="btn btn-danger read"> Read More </button>
   </div>
   </section>
-
-{{/each}}
+  {{/each}}
