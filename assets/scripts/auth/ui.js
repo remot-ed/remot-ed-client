@@ -1,7 +1,6 @@
 'use strict'
 
 const store = require('../store')
-
 const onSuccess = message => {
   $('#user-message')
     .removeClass('failure')
