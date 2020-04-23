@@ -4,7 +4,6 @@ const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('../../../lib/get-form-fields')
 const store = require('../store')
-// const teacher = require('../teacher-dash/events')
 
 const onSignUp = event => {
   event.preventDefault()
@@ -25,15 +24,7 @@ const onSignIn = event => {
 
   api.signIn(formData)
     .then(ui.onSignInSuccess)
-    .then(onDecideRole)
     .catch(ui.onSignInFailure)
-}
-
-const onDecideRole = event => {
-  if (store.user.role === 'unenrolled') {
-  } else {
-
-  }
 }
 
 const onChangePassword = event => {

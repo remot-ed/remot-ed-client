@@ -4,9 +4,9 @@
 const showClassroomsTemplate = require('../templates/class-listing.handlebars')
 
 const onGetClassesSuccess = (data) => {
-  const showClassesHtml = showClassroomsTemplate({ class: data.class })
-  $('.classroom_table').html(showClassesHtml)
-  $('.classroom_table').show()
+  const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
+  $('#classroom_table').html(showClassesHtml)
+  $('#classroom_table').show()
 }
 
 const onGetClassesFail = () => {
