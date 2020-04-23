@@ -6,7 +6,7 @@ const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields')
 // const quizEvents = require('../quiz/events')
 
-let questionNumber = 1
+// let questionNumber = 1
 //
 // if (store.quizData !== {}) {
 //   $('.question-count').html('Question ' + questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
@@ -14,9 +14,9 @@ let questionNumber = 1
 // }
 
 const addQuestionCount = () => {
-  if (questionNumber <= store.quizData[0].numOfQuestions) {
+  if (store.questionNumber <= store.quizData[0].numOfQuestions) {
     console.log('hiyo')
-    $('.question-count').html('Question ' + questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
+    $('.question-count').html('Question ' + store.questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
   } else {
     console.log('heyo')
     $('.next-question').prop('disabled', true)
@@ -32,7 +32,7 @@ const onCreateQuestion = event => {
   // console.log(store.quizData[0])
 
   // we want to increment questionNumber
-  questionNumber++
+  store.questionNumber++
   console.log('question id: ', store.questionId)
   addQuestionCount()
 
@@ -88,7 +88,7 @@ const onGetOneQuestion = event => {
 }
 
 const addHandlers = event => {
-  $('#create-question').on('submit', onCreateQuestion)
+  $('.create-question').on('submit', '#create-question', onCreateQuestion)
   $('.edit-question').on('submit', onEditQuestion)
   $('.delete-question').on('submit', onDeleteQuestion)
   $('.get-questions').on('submit', onGetAllQuestions)
@@ -96,6 +96,5 @@ const addHandlers = event => {
 }
 
 module.exports = {
-  addHandlers,
-  questionNumber
+  addHandlers
 }

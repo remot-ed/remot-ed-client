@@ -9,12 +9,19 @@ const getFormFields = require('../../../lib/get-form-fields')
 // create a function that checks if date is in the past or future
 // if in the future, throw an error message
 
+const onShowCreateQuiz = event => {
+  event.preventDefault()
+
+  ui.onShowCreateQuizSuccess()
+}
+
 const onCreateQuiz = event => {
   event.preventDefault()
   const form = event.target
   const formData = getFormFields(form)
 
   // onCreateQuiz stores the quiz data in empty quizData in ../store.js
+  console.log('formData is ', formData)
   api.createQuiz(formData)
     .then(res => store.quizData.push(res.quiz))
     .then(ui.onCreateQuizSuccess)
@@ -25,7 +32,7 @@ const onFinishQuiz = event => {
   event.preventDefault()
 
   api.finishQuiz()
-    .then(console.log)
+    .then(ui.onFinishQuizSuccess)
     .catch(console.error)
 }
 
@@ -74,12 +81,13 @@ const onGetOneQuiz = event => {
 }
 
 const addHandlers = event => {
-  $('#create-quiz').on('submit', onCreateQuiz)
-  $('.finish-quiz').on('click', onFinishQuiz)
+  $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
+  $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
   $('.edit-quiz').on('submit', onEditQuiz)
   $('.delete-quiz').on('submit', onDeleteQuiz)
   $('.get-quizzes').on('submit', onGetAllQuizzes)
   $('.get-quiz').on('submit', onGetOneQuiz)
+  $('.create-quiz-button').on('click', onShowCreateQuiz)
 }
 
 module.exports = {

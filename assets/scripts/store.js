@@ -2,7 +2,8 @@
 
 const store = {
   questionId: [],
-  quizData: []
+  quizData: [],
+  questionNumber: 1
 }
 
 module.exports = store

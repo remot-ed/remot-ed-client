@@ -53,7 +53,7 @@
         <!-- Classroom CRUD -->
 
         <!-- Quiz CRUD -->
-        <section class="after-auth create-quiz">
+        <!-- <section class="after-auth create-quiz">
           <form id="create-quiz">
             <input type="text" class="form-control inputs" name="quiz[title]" placeholder="Quiz Title" required>
             <input type="number" class="form-control inputs" name="quiz[numOfQuestions]" placeholder="Number of Questions" required>
@@ -64,14 +64,15 @@
             <input type="radio" id="false" name="quiz[isActive]" value="false">
             <label for="false">No</label>
             <br>
-            <!-- <input type="text" class="form-control inputs" name=quiz[isActive] required> -->
+            <input type="text" class="form-control inputs" name=quiz[isActive] required>
             <button type="submit" class="btn btn-dark">Create Quiz</button>
           </form>
-        </section>
+        </section> -->
+        <button class="btn btn-info after-auth create-quiz-button">Create A Quiz</button>
+        <div class="after-auth create-quiz"></div>
 
         <!-- Create Question -->
-        <section class="after-auth create-question">
-          <div class="question-count"></div>
+        <!--<section class="after-auth create-question">
           <form id="create-question">
             <div class="form-group">
               <input type="text" class="form-control inputs" name="question[title]" placeholder="Question Text" required>
@@ -81,13 +82,15 @@
               <input type="text" class="form-control inputs" name="question[answerThree]" placeholder="Answer Three" required>
               <input type="text" class="form-control inputs" name="question[answerFour]" placeholder="Answer Four" required>
               <br>
-              <!-- <input type="text" class="form-control inputs" name="question[quizOwner]" placeholder="Quiz ID" required> -->
+              <! <input type="text" class="form-control inputs" name="question[quizOwner]" placeholder="Quiz ID" required>
               <button type="submit" class="btn btn-dark next-question">Next Question</button>
             </div>
           </form>
-          <!-- <button type="submit" class="btn btn-dark next-question">Next Question</button> -->
+          <! <button type="submit" class="btn btn-dark next-question">Next Question</button>
           <button type="submit" class="btn btn-dark finish-quiz" disabled>Finish</button>
-        </section>
+        </section> -->
+        <div class="question-count"></div>
+        <div class="after-auth create-question"></div>
 
 
 
