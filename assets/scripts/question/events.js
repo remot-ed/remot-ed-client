@@ -46,6 +46,9 @@ const onCreateQuestion = event => {
     .catch(console.error)
 }
 
+// TO DO:
+// after each edit question, move to next question in questions array for quiz
+// note: quiz owner should not be needed, as is already saved to question
 const onEditQuestion = event => {
   event.preventDefault()
 

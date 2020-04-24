@@ -36,6 +36,7 @@ const onFinishQuiz = event => {
     .catch(console.error)
 }
 
+// onEditQuizSuccess will have to lead directly into editQuestion
 const onEditQuiz = event => {
   event.preventDefault()
 
@@ -44,6 +45,8 @@ const onEditQuiz = event => {
   const form = event.target
   const formData = getFormFields(form)
 
+  // as part of this API call, when editQuiz is successful, we want to call
+  // getOneQuiz, and store the response in store.quizData
   api.editQuiz(quizId, formData)
     .then(console.log)
     .catch(console.error)
@@ -83,9 +86,13 @@ const onGetOneQuiz = event => {
 const addHandlers = event => {
   $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
   $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
+  // need to edit once handlebars is integrated
   $('.edit-quiz').on('submit', onEditQuiz)
-  $('.delete-quiz').on('submit', onDeleteQuiz)
+  // need to create quiz-listing
+  $('.quiz-listing').on('submit', '.delete-quiz', onDeleteQuiz)
+  // need to edit once handlebars is integrated
   $('.get-quizzes').on('submit', onGetAllQuizzes)
+  // need to edit once handlebars is integrated
   $('.get-quiz').on('submit', onGetOneQuiz)
   $('.create-quiz-button').on('click', onShowCreateQuiz)
 }
