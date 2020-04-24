@@ -1,9 +1,9 @@
-  <table class="table table-striped table-bordered table-sm survey-list" cellspacing="0" width="100%">
+  <table class="table table-striped table-bordered survey-list" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th class="th-sm th-title">Title</th>
-        <th class="th-sm th-title">Students</th>
-        <th class="th-sm th-action">Edit</th>
+        <th class="th-sm th-title">Class</th>
+        <th class="th-sm th-title">S-Icon</th>
+        <th class="th-sm th-action">E-Icon</th>
       </tr>
     </thead>
     <tbody>
@@ -11,8 +11,8 @@
   {{#each classrooms as |class|}}
     <section data-id="{{class._id}}">
       <tr>
-          <td class="td-title">{{class.classname}}</td>
-          <td class="td-title">{{class.students.length}} </td>
+          <td class="td-title col-6">{{class.classname}}</td>
+          <td class="td-title col-2">{{class.students.length}} </td>
           <td>
           <button data-id="{{question._id}}" data-toggle="modal" title="see result" class="btn btn-info see-results">
             <svg id="i-clipboard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">

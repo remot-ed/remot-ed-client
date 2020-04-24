@@ -1,6 +1,8 @@
 'use strict'
 
 const store = require('../store')
+const teacher = require('../teacher-dash/events')
+
 const onSuccess = message => {
   $('#user-message')
     .removeClass('failure')
@@ -32,6 +34,7 @@ const onSignInSuccess = responseData => {
   onSuccess('You successfully signed in.')
   $('.before-auth').hide()
   $('.after-auth').show()
+  $(teacher.getClasses)
 }
 
 const onSignInFailure = () => {
