@@ -16,25 +16,3 @@ module.exports = {
   onGetClassesSuccess,
   onGetClassesFail
 }
-
-// <script type="text/x-handlebars-template" id="tableTemplate">
-// <table class="table">
-// <thead>
-// <tr>
-// <th scope="col">Classroom</th>
-// <th scope="col">#Students</th>
-// <th scope="col">Edit</th>
-// </tr>
-// </thead>
-// <tbody>
-//   {{#each classrooms as |class|}}
-//     {{log class}}
-//       <tr class="class_listing">
-//         <th scope="row">{{class.classname}}</th>
-//         <td>{{class.students}}</td>
-//   <td>{{class.subject}}</td>
-//       </tr>
-//   {{/each}}
-// </tbody>
-// </table>
-// </script>
