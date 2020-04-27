@@ -31,3 +31,13 @@ header {
 .after-settings {
   display: none;
 }
+
+.my-custom-scrollbar {
+  max-height: 40vh;
+  overflow: auto;
+  position: relative;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+}
