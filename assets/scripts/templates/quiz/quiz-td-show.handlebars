@@ -1,0 +1,10 @@
+{{#with quiz}}
+  <section data-id="{{quiz._id}}">
+    <p>{{quiz.title}}</p>
+    <!-- section for scheduling quizzes for classrooms should go here -->
+    {{#each questions as |question|}}
+      <section data-id="{{question._id}}">
+        <p>{{question.title}} {{question.correctAnswer}}</p>
+        <button class="btn btn-danger delete-question" data-id="{{question._id}}">Delete</button>
+      </section>
+  </section>
