@@ -1,5 +1,23 @@
-{{#each quizzes as |quiz|}}
-  <section data-id="{{quiz._id}}">
-    <p>{{quiz.title}}</p>
-    <button class="btn btn-danger delete-quiz" data-id="{{quiz._id}}">Delete</button>
-  </section>
+  <table class="table table-striped table-bordered survey-list" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th class="th th-title">Quizzes</th>
+      </tr>
+    </thead>
+    <tbody>
+
+  {{#each quizzes as |quiz|}}
+    <section data-id="{{quiz._id}}">
+      <tr>
+          <td class="td-title col-6">{{quiz.title}}</td>
+          <td class="td-title col-2">
+            <button class="btn btn-danger delete-quiz" data-id="{{quiz._id}}">Delete</button>
+          </td>
+          <td>
+          <button data-id="{{quiz._id}}" data-toggle="modal" title="viewclass" class="btn btn-info btn-sm"></button>
+        </td>
+        </tr>
+    </section>
+  {{/each}}
+  </tbody>
+  </table>

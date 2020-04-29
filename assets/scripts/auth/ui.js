@@ -2,6 +2,7 @@
 
 const store = require('../store')
 const teacher = require('../teacher-dash/events')
+const quiz = require('../quiz/events')
 
 const onSuccess = message => {
   $('#user-message')
@@ -35,6 +36,8 @@ const onSignInSuccess = responseData => {
   $('.before-auth').hide()
   $('.after-auth').show()
   $(teacher.getClasses)
+  // $(quiz.onGetAllQuizzes)
+  quiz.onGetAllQuizzes()
 }
 
 const onSignInFailure = () => {

@@ -66,10 +66,11 @@ const onDeleteQuiz = event => {
 }
 
 const onGetAllQuizzes = event => {
-  event.preventDefault()
+//  event.preventDefault()
+  console.log('hi')
 
   api.getAllQuizzes()
-    .then(console.log)
+    .then(ui.onGetAllQuizzesSuccess)
     .catch(console.error)
 }
 
@@ -91,12 +92,13 @@ const addHandlers = event => {
   // need to create quiz-listing
   $('.quiz-listing').on('submit', '.delete-quiz', onDeleteQuiz)
   // need to edit once handlebars is integrated
-  $('.get-quizzes').on('submit', onGetAllQuizzes)
+  // $('.get-quizzes').on('submit', onGetAllQuizzes)
   // need to edit once handlebars is integrated
   $('.get-quiz').on('submit', onGetOneQuiz)
   $('.create-quiz-button').on('click', onShowCreateQuiz)
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onGetAllQuizzes
 }

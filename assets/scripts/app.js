@@ -12,7 +12,7 @@ const quizEvents = require('./quiz/events')
 
 $(() => {
   authEvents.addHandlers()
-  teacherDashEvents.addHandlers()
+  teacherDashEvents.getClasses()
   questionEvents.addHandlers()
   quizEvents.addHandlers()
 })
