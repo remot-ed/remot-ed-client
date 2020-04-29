@@ -5,6 +5,7 @@ const store = require('../store')
 
 const showCreateQuizTemplate = require('../templates/quiz/quiz-create.handlebars')
 const showCreateQuestionTemplate = require('../templates/quiz/question-create.handlebars')
+const showQuizzesTemplate = require('../templates/quiz/quiz-td-index.handlebars')
 
 // let questionNumber = 1
 
@@ -31,6 +32,12 @@ const onCreateQuizSuccess = () => {
   // $('.question-count').html('Question ' + questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
 }
 
+const onGetAllQuizzesSuccess = () => {
+  const showQuizzesHtml = showQuizzesTemplate()
+  console.log('hi')
+  $('#quiz_table').html(showQuizzesHtml)
+}
+
 // on the last question, user will be unable to click 'next question', and
 // will click 'finish quiz', and create the final question
 // difference will be UI => finish quiz will take user to quiz created view
@@ -49,5 +56,6 @@ const onFinishQuizSuccess = () => {
 module.exports = {
   onCreateQuizSuccess,
   onFinishQuizSuccess,
-  onShowCreateQuizSuccess
+  onShowCreateQuizSuccess,
+  onGetAllQuizzesSuccess
 }
