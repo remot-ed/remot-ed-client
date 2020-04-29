@@ -1,0 +1,5 @@
+{{#each quizzes as |quiz|}}
+  <section data-id="{{quiz._id}}">
+    <p>{{quiz.title}}</p>
+    <button class="btn btn-danger delete-quiz" data-id="{{quiz._id}}">Delete</button>
+  </section>

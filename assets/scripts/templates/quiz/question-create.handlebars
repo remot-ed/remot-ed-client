@@ -1,0 +1,15 @@
+  <form id="create-question">
+    <div class="form-group">
+      <input type="text" class="form-control inputs" name="question[title]" placeholder="Question Text" required>
+      <br>
+      <input type="text" class="form-control inputs" name="question[correctAnswer]" placeholder="Correct Answer" required>
+      <input type="text" class="form-control inputs" name="question[answerTwo]" placeholder="Answer Two" required>
+      <input type="text" class="form-control inputs" name="question[answerThree]" placeholder="Answer Three" required>
+      <input type="text" class="form-control inputs" name="question[answerFour]" placeholder="Answer Four" required>
+      <br>
+      <!-- <input type="text" class="form-control inputs" name="question[quizOwner]" placeholder="Quiz ID" required> -->
+      <button type="submit" class="btn btn-dark next-question">Next Question</button>
+    </div>
+  </form>
+  <!-- <button type="submit" class="btn btn-dark next-question">Next Question</button> -->
+  <button type="submit" class="btn btn-dark finish-quiz" disabled>Finish</button>
