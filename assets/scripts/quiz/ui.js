@@ -10,7 +10,7 @@ const showQuizzesTemplate = require('../templates/quiz/quiz-td-index.handlebars'
 // let questionNumber = 1
 
 const onShowCreateQuizSuccess = (data) => {
-  const showCreateQuizHtml = showCreateQuizTemplate()
+  const showCreateQuizHtml = showCreateQuizTemplate({ quiz: data.quiz })
   $('.create-quiz-button').hide()
   $('.create-quiz').show()
   $('.create-quiz').html(showCreateQuizHtml)
@@ -32,9 +32,9 @@ const onCreateQuizSuccess = () => {
   // $('.question-count').html('Question ' + questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
 }
 
-const onGetAllQuizzesSuccess = () => {
-  const showQuizzesHtml = showQuizzesTemplate()
-  console.log('hi')
+const onGetAllQuizzesSuccess = (data) => {
+  const showQuizzesHtml = showQuizzesTemplate({ quizzes: data.quizzes })
+  console.log('ui called')
   $('#quiz_table').html(showQuizzesHtml)
 }
 

@@ -36,8 +36,7 @@ const onSignInSuccess = responseData => {
   $('.before-auth').hide()
   $('.after-auth').show()
   $(teacher.getClasses)
-  // $(quiz.onGetAllQuizzes)
-  quiz.onGetAllQuizzes()
+  $(quiz.onGetAllQuizzes)
 }
 
 const onSignInFailure = () => {

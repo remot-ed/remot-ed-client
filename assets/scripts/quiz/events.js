@@ -66,9 +66,6 @@ const onDeleteQuiz = event => {
 }
 
 const onGetAllQuizzes = event => {
-//  event.preventDefault()
-  console.log('hi')
-
   api.getAllQuizzes()
     .then(ui.onGetAllQuizzesSuccess)
     .catch(console.error)
