@@ -65,7 +65,7 @@ const getAllQuizzes = () => {
     url: config.apiUrl + '/quizzes',
     method: 'GET',
     headers: {
-      Authorization: `Token token = ${store.user.token}`
+      Authorization: `Token token=${store.user.token}`
     }
   })
 }

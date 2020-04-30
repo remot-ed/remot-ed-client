@@ -13,16 +13,6 @@ const getClasses = () => {
   })
 }
 
-// const getDreams = () => {
-//   return $.ajax({
-//     url: config.apiUrl + `/dreams`,
-//     method: 'GET',
-//     headers: {
-//       Authorization: `Token token=${store.user.token}`
-//     }
-//   })
-// }
-
 module.exports = {
   getClasses
 }
