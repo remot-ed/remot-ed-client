@@ -62,7 +62,7 @@
     </div>
     <div class="col-6 box container">
       <div class="row">
-        <div id="quiz_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar"></div>
+        <div id="quiz_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar quiz-listing"></div>
       </div>
     </div>
   </div>
@@ -70,7 +70,10 @@
   <div class="row">
     <div class="col-6 box"> Class Crud </div>
     <!-- Quiz CRUD -->
-    <div class="col-6 box"> Quiz Crud </div>
+    <div class="col-6 box">
+      <button class="btn btn-info after-auth create-quiz-button">Create A Quiz</button>
+      <div class="after-auth create-quiz"></div>
+    </div>
   </div>
     <button id="settings" class="btn btn-info">Settings</button>
 </div>
@@ -91,8 +94,6 @@
             <button type="submit" class="btn btn-dark">Create Quiz</button>
           </form>
         </section> -->
-        <button class="btn btn-info after-auth create-quiz-button">Create A Quiz</button>
-        <div class="after-auth create-quiz"></div>
 
         <!-- Create Question -->
         <!--<section class="after-auth create-question">
@@ -113,6 +114,7 @@
           <button type="submit" class="btn btn-dark finish-quiz" disabled>Finish</button>
         </section> -->
         <div class="question-count"></div>
+        <br>
         <div class="after-auth create-question"></div>
 
 

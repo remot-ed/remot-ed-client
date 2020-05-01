@@ -34,7 +34,7 @@ const editQuiz = (quizId, formData) => {
     url: config.apiUrl + '/quizzes/' + quizId,
     method: 'PATCH',
     headers: {
-      Authorization: `Token token = ${store.user.token}`
+      Authorization: `Token token=${store.user.token}`
     },
     data: formData
   })
@@ -45,7 +45,7 @@ const deleteQuiz = quizId => {
     url: config.apiUrl + '/quizzes/' + quizId,
     method: 'DELETE',
     headers: {
-      Authorization: `Token token = ${store.user.token}`
+      Authorization: `Token token=${store.user.token}`
     }
   })
 }
@@ -55,7 +55,7 @@ const getOneQuiz = quizId => {
     url: config.apiUrl + '/quizzes/' + quizId,
     method: 'GET',
     headers: {
-      Authorization: `Token token = ${store.user.token}`
+      Authorization: `Token token=${store.user.token}`
     }
   })
 }

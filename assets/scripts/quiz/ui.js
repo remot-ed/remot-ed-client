@@ -34,7 +34,6 @@ const onCreateQuizSuccess = () => {
 
 const onGetAllQuizzesSuccess = (data) => {
   const showQuizzesHtml = showQuizzesTemplate({ quizzes: data.quizzes })
-  console.log('ui called')
   $('#quiz_table').html(showQuizzesHtml)
 }
 
