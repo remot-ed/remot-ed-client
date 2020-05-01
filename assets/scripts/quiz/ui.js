@@ -10,7 +10,7 @@ const showQuizzesTemplate = require('../templates/quiz/quiz-td-index.handlebars'
 // let questionNumber = 1
 
 const onShowCreateQuizSuccess = (data) => {
-  const showCreateQuizHtml = showCreateQuizTemplate({ quiz: data.quiz })
+  const showCreateQuizHtml = showCreateQuizTemplate()
   $('.create-quiz-button').hide()
   $('.create-quiz').show()
   $('.create-quiz').html(showCreateQuizHtml)
