@@ -32,9 +32,8 @@ const onCreateQuizSuccess = () => {
   // $('.question-count').html('Question ' + questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
 }
 
-const onGetAllQuizzesSuccess = () => {
-  const showQuizzesHtml = showQuizzesTemplate()
-  console.log('hi')
+const onGetAllQuizzesSuccess = (data) => {
+  const showQuizzesHtml = showQuizzesTemplate({ quizzes: data.quizzes })
   $('#quiz_table').html(showQuizzesHtml)
 }
 

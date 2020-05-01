@@ -59,6 +59,7 @@ const onDeleteQuiz = event => {
   event.preventDefault()
 
   const quizId = $(event.target).data('id')
+  console.log('hi')
 
   api.deleteQuiz(quizId)
     .then(console.log)
@@ -67,7 +68,6 @@ const onDeleteQuiz = event => {
 
 const onGetAllQuizzes = event => {
 //  event.preventDefault()
-  console.log('hi')
 
   api.getAllQuizzes()
     .then(ui.onGetAllQuizzesSuccess)
@@ -90,7 +90,7 @@ const addHandlers = event => {
   // need to edit once handlebars is integrated
   $('.edit-quiz').on('submit', onEditQuiz)
   // need to create quiz-listing
-  $('.quiz-listing').on('submit', '.delete-quiz', onDeleteQuiz)
+  $('.quiz-listing').on('click', '.delete-quiz', onDeleteQuiz)
   // need to edit once handlebars is integrated
   // $('.get-quizzes').on('submit', onGetAllQuizzes)
   // need to edit once handlebars is integrated
