@@ -36,6 +36,12 @@ const onFinishQuiz = event => {
     .catch(console.error)
 }
 
+const onShowEditQuiz = event => {
+  event.preventDefault()
+  // calls editQuiz ui
+  // ui will hide teacher dash and show edit quiz form
+}
+
 // onEditQuizSuccess will have to lead directly into editQuestion
 const onEditQuiz = event => {
   event.preventDefault()
@@ -88,6 +94,7 @@ const addHandlers = event => {
   $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
   $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
   // need to edit once handlebars is integrated
+  $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
   $('.edit-quiz').on('submit', onEditQuiz)
   // need to create quiz-listing
   $('.quiz-listing').on('click', '.delete-quiz', onDeleteQuiz)
