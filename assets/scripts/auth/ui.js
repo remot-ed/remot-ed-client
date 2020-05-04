@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store')
-const teacher = require('../teacher-dash/events')
+const classroom = require('../classroom/events')
 const quiz = require('../quiz/events')
 
 const onSuccess = message => {
@@ -35,7 +35,7 @@ const onSignInSuccess = responseData => {
   onSuccess('You successfully signed in.')
   $('.before-auth').hide()
   $('.after-auth').show()
-  $(teacher.getClasses)
+  $(classroom.getClasses)
   $(quiz.onGetAllQuizzes)
 }
 
