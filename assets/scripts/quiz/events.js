@@ -33,6 +33,7 @@ const onFinishQuiz = event => {
 
   api.finishQuiz()
     .then(ui.onFinishQuizSuccess)
+    .then(onGetAllQuizzes(event))
     .catch(console.error)
 }
 
