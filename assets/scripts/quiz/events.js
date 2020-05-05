@@ -1,6 +1,7 @@
 'use strict'
 
 const api = require('./api')
+const questionApi = require('../question/api')
 const ui = require('./ui')
 const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields')
@@ -59,22 +60,42 @@ const onEditQuiz = event => {
     .catch(console.error)
 }
 
-// delete quiz is going to have to delete questions as well
-// maybe before deleteQuiz api call, loop through each question in array,
-// and call onDeleteQuestion for each?
+// get one quiz
+// if quiz owner is user id
+// loop through res.questions
+// call delete question on each
+// then delete quiz
 const onDeleteQuiz = event => {
   event.preventDefault()
 
   const quizId = $(event.target).data('id')
-  console.log('hi')
-
-  api.deleteQuiz(quizId)
-    .then(console.log)
-    .catch(console.error)
+  api.getOneQuiz(quizId)
+    .then(res => {
+      if (res.quiz.owner === store.user._id) {
+        const questions = res.quiz.questions
+        for (let i = 0; i < questions.length; i++) {
+          if (!questions[i].questionOwner) {
+            questionApi.deleteQuestion(questions[i])
+          }
+        }
+      } else {
+        console.log('you dont own this')
+      }
+    })
+  api.getOneQuiz(quizId)
+    .then(res => {
+      if (res.quiz.owner === store.user._id) {
+        api.deleteQuiz(quizId)
+          .then(data => {
+            onGetAllQuizzes(event)
+          })
+      }
+    })
 }
 
 const onGetAllQuizzes = event => {
 //  event.preventDefault()
+  // const userId = store.user._id
 
   api.getAllQuizzes()
     .then(ui.onGetAllQuizzesSuccess)
@@ -97,7 +118,6 @@ const addHandlers = event => {
   // need to edit once handlebars is integrated
   $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
   $('.edit-quiz').on('submit', onEditQuiz)
-  // need to create quiz-listing
   $('.quiz-listing').on('click', '.delete-quiz', onDeleteQuiz)
   // need to edit once handlebars is integrated
   // $('.get-quizzes').on('submit', onGetAllQuizzes)
