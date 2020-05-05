@@ -1,6 +1,7 @@
 'use strict'
 
 const api = require('./api')
+const questionApi = require('../question/api')
 const ui = require('./ui')
 const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields')
@@ -61,19 +62,96 @@ const onEditQuiz = event => {
 // delete quiz is going to have to delete questions as well
 // maybe before deleteQuiz api call, loop through each question in array,
 // and call onDeleteQuestion for each?
+// const onDeleteQuiz = event => {
+//   event.preventDefault()
+//
+//   const quizId = $(event.target).data('id')
+//   console.log('hi')
+//
+//   api.deleteQuiz(quizId)
+//     .then(console.log)
+//     .catch(console.error)
+// }
+
+// const onDeleteQuiz = event => {
+//   event.preventDefault()
+//
+//   const quizId = $(event.target).data('id')
+//   api.getOneQuiz(quizId)
+//     .then(res => {
+//       if (res.quiz.owner === store.user._id) {
+//         api.deleteQuiz(quizId)
+//           .then(data => {
+//             onGetAllQuizzes(event)
+//           })
+//           .then(() => {
+//             questionApi.getAllQuestions()
+//               .then(res => {
+//                 const question = res.questions
+//                 for (let i = 0; i < question.length; i++) {
+//                   if (!question[i].questionOwner) {
+//                     questionApi.deleteQuestion(question[i]._id)
+//                   }
+//                 }
+//               })
+//           })
+//           .catch(console.error)
+//       } else {
+//         $('#user-message').html('You do not own this question')
+//           .fadeIn().fadeOut(1500)
+//       }
+//     })
+// }
+
+// so... the above function works BUT it deletes too many questions
+
+// get one quiz
+// if quiz owner is user id
+// loop through res.questions
+// call delete question on each
+// then delete quiz
 const onDeleteQuiz = event => {
   event.preventDefault()
 
   const quizId = $(event.target).data('id')
-  console.log('hi')
-
-  api.deleteQuiz(quizId)
-    .then(console.log)
-    .catch(console.error)
+  api.getOneQuiz(quizId)
+    .then(res => {
+      if (res.quiz.owner === store.user._id) {
+        const questions = res.quiz.questions
+        console.log('questions: ', questions)
+        for (let i = 0; i < questions.length; i++) {
+          console.log('questions[i]: ', questions[i])
+          if (!questions[i].questionOwner) {
+            questionApi.deleteQuestion(questions[i])
+          }
+        }
+      } else {
+        console.log('you dont own this')
+        // $('#user-message').html('You do not own this question')
+        //   .fadeIn().fadeOut(1500)
+      }
+    })
+  api.getOneQuiz(quizId)
+    .then(res => {
+      if (res.quiz.owner === store.user._id) {
+        api.deleteQuiz(quizId)
+          .then(data => {
+            onGetAllQuizzes(event)
+          })
+      }
+    })
 }
+
+// const onMyQuizzes = events => {
+//   const userId = store.user._id
+//   api.getMyQuiz(userId)
+//     .then(ui.getMyQuizzesSuccess)
+//     .catch(ui.getMyQuizzesFailure)
+// }
 
 const onGetAllQuizzes = event => {
 //  event.preventDefault()
+  // const userId = store.user._id
 
   api.getAllQuizzes()
     .then(ui.onGetAllQuizzesSuccess)

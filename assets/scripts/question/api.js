@@ -28,7 +28,7 @@ const editQuestion = (questionId, formData) => {
     url: config.apiUrl + '/questions/' + questionId,
     method: 'PATCH',
     headers: {
-      Authorization: `Token token = ${store.user.token}`
+      Authorization: `Token token=${store.user.token}`
     },
     data: formData
   })
@@ -39,7 +39,7 @@ const deleteQuestion = questionId => {
     url: config.apiUrl + '/questions/' + questionId,
     method: 'DELETE',
     headers: {
-      Authorization: `Token token = ${store.user.token}`
+      Authorization: `Token token=${store.user.token}`
     }
   })
 }
@@ -49,7 +49,7 @@ const getOneQuestion = questionId => {
     url: config.apiUrl + '/questions/' + questionId,
     method: 'GET',
     headers: {
-      Authorization: `Token token = ${store.user.token}`
+      Authorization: `Token token=${store.user.token}`
     }
   })
 }
@@ -59,7 +59,7 @@ const getAllQuestions = () => {
     url: config.apiUrl + '/questions',
     method: 'GET',
     headers: {
-      Authorization: `Token token = ${store.user.token}`
+      Authorization: `Token token=${store.user.token}`
     }
   })
 }
