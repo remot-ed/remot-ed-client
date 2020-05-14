@@ -13,6 +13,18 @@ const getClasses = () => {
   })
 }
 
+const createClass = formData => {
+  return $.ajax({
+    url: config.apiUrl + '/classrooms',
+    method: 'POST',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: formData
+  })
+}
+
 module.exports = {
+  createClass,
   getClasses
 }
