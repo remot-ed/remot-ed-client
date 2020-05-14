@@ -31,7 +31,7 @@ const onCreateQuiz = event => {
 
 const onFinishQuiz = event => {
   event.preventDefault()
-
+  console.log('store is: ', store.questions)
   api.finishQuiz()
     .then(ui.onFinishQuizSuccess)
     .then(onGetAllQuizzes(event))
@@ -106,9 +106,10 @@ const onGetOneQuiz = event => {
   event.preventDefault()
 
   const quizId = $(event.target).data('id')
+  console.log(quizId)
 
   api.getOneQuiz(quizId)
-    .then(console.log)
+    .then(ui.onGetOneQuizSuccess)
     .catch(console.error)
 }
 
@@ -124,7 +125,7 @@ const addHandlers = event => {
   // need to edit once handlebars is integrated
   // $('.get-quizzes').on('submit', onGetAllQuizzes)
   // need to edit once handlebars is integrated
-  $('.get-quiz').on('submit', onGetOneQuiz)
+  $('.quiz-listing').on('click', '.single-quiz-link', onGetOneQuiz)
   $('.create-quiz-button').on('click', onShowCreateQuiz)
 }
 
