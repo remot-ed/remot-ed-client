@@ -2,7 +2,7 @@
 
 const store = {
   user: [],
-  questionId: [],
+  questions: [],
   quizData: [],
   questionNumber: 1
 }
