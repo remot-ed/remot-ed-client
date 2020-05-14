@@ -15,10 +15,8 @@ const getFormFields = require('../../../lib/get-form-fields')
 
 const addQuestionCount = () => {
   if (store.questionNumber <= store.quizData[0].numOfQuestions) {
-    console.log('hiyo')
     $('.question-count').html('Question ' + store.questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
   } else {
-    console.log('heyo')
     $('.next-question').prop('disabled', true)
     $('.finish-quiz').prop('disabled', false)
     $('.question-count').html('')
@@ -33,7 +31,6 @@ const onCreateQuestion = event => {
 
   // we want to increment questionNumber
   store.questionNumber++
-  console.log('question id: ', store.questionId)
   addQuestionCount()
 
   // as we create questions, we push them to empty questionId array in ../store.js
@@ -41,7 +38,7 @@ const onCreateQuestion = event => {
   // once quiz has been updated with array, we want to clear array .. maybe in UI?
   api.createQuestion(formData)
     // .then(res => console.log(res.question._id))
-    .then(res => store.questionId.push(res.question._id))
+    .then(res => store.questions.push(res.question))
     .then(ui.onCreateQuestionSuccess)
     .catch(console.error)
 }

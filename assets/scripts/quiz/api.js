@@ -23,7 +23,7 @@ const finishQuiz = () => {
     },
     data: {
       quiz: {
-        questions: store.questionId
+        questions: store.questions
       }
     }
   })
