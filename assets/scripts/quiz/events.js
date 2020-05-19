@@ -31,7 +31,6 @@ const onCreateQuiz = event => {
 
 const onFinishQuiz = event => {
   event.preventDefault()
-  console.log('store is: ', store.questions)
   api.finishQuiz()
     .then(ui.onFinishQuizSuccess)
     .then(onGetAllQuizzes(event))
@@ -113,6 +112,13 @@ const onGetOneQuiz = event => {
     .catch(console.error)
 }
 
+const onShowScheduleClassrooms = () => {
+  event.preventDefault()
+
+  api.getMyClassrooms()
+    .then(ui.onShowScheduleClassroomsSuccess)
+}
+
 const addHandlers = event => {
   $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
   $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
@@ -127,6 +133,7 @@ const addHandlers = event => {
   // need to edit once handlebars is integrated
   $('.quiz-listing').on('click', '.single-quiz-link', onGetOneQuiz)
   $('.create-quiz-button').on('click', onShowCreateQuiz)
+  $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
 }
 
 module.exports = {
