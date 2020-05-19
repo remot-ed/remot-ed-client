@@ -58,11 +58,67 @@ const onFinishQuizSuccess = () => {
   $('.create-question').hide()
   $('.create-quiz-button').show()
 }
+//
+// $( "div.demo-container" ).html(function() {
+//   var emphasis = "<em>" + $( "p" ).length + " paragraphs!</em>";
+//   return "<p>All new content for " + emphasis + "</p>";
+// })
+
+const onShowScheduleClassroomsSuccess = (data) => {
+  // api.getMyClassrooms()
+  //   .then(res => console.log('myclassroomsres: ', res))
+  // console.log('data: ', data.classrooms)
+
+  // data.classrooms.forEach(function (classroom) {
+  //   return '<p class="dropdown-item">' + classroom.classname + '</p>'
+  //   // console.log('data3: ', classroom.classname)
+  // })
+
+  // Attempt #1
+  // this one displays only the last classroom, aka rewrites over previous classroom
+  const classDropdown = function () {
+    data.classrooms.forEach(function (classroom) {
+      $('.classroom-dropdown').html('<a class="dropdown-item">' + classroom.classname + '</a>')
+    })
+  }
+  classDropdown()
+
+  // Attempt #2
+  // this one doesn't display anything.. it logs each classname, but doesn't display
+  // classname in dropdown.
+  // but the return statement outside of the forEach function ~will~ display the 'hi'
+  // likely doesn't recognize the HTML when it's a function inside a function
+  $('.classroom-dropdown').html(function () {
+    data.classrooms.forEach(function (classroom) {
+      console.log(classroom.classname)
+      return '<a class="dropdown-item">' + classroom.classname + '</a>'
+      // console.log('data3: ', classroom.classname)
+    })
+    // return '<a class="dropdown-item">' + 'hi' + '</a>'
+  })
+
+  // Attempt #3
+  // this one will display classroom names in the dropdown, however, as it is an
+  // array, displays them as one string
+  // aka: "Eng 101, History" in one line
+  const classArray = []
+
+  $('.classroom-dropdown').html(function () {
+    data.classrooms.forEach(function (classroom) {
+      classArray.push(classroom.classname)
+      console.log(classroom.classname)
+      // return '<a class="dropdown-item">' + classroom.classname + '</a>'
+      // console.log('data3: ', classroom.classname)
+    })
+    return '<a class="dropdown-item">' + classArray + '</a>'
+  })
+}
 
 module.exports = {
   onCreateQuizSuccess,
   onFinishQuizSuccess,
   onShowCreateQuizSuccess,
   onGetAllQuizzesSuccess,
-  onGetOneQuizSuccess
+  onGetOneQuizSuccess,
+  onShowScheduleClassroomsSuccess
 }
