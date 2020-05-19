@@ -70,11 +70,22 @@ const getAllQuizzes = () => {
   })
 }
 
+const getMyClassrooms = () => {
+  return $.ajax({
+    url: config.apiUrl + '/myclassrooms/' + store.user._id,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   createQuiz,
   finishQuiz,
   editQuiz,
   deleteQuiz,
   getOneQuiz,
-  getAllQuizzes
+  getAllQuizzes,
+  getMyClassrooms
 }
