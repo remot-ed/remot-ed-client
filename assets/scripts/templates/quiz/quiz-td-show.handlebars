@@ -1,6 +1,17 @@
   <section data-id="{{quiz._id}}">
     <p>{{quiz.title}}</p>
     <!-- section for scheduling quizzes for classrooms should go here -->
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-secondary dropdown-toggle classroom-list-schedule" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Classroom
+      </button>
+      <div class="dropdown-menu">
+        <div class="classroom-dropdown"></div>
+        <!-- <a class="dropdown-item" href="#">Action</a> -->
+      </div>
+    </div>
+
     <table class="table table-striped table-bordered survey-list" cellspacing="0" width="100%">
       <thead>
         <tr>
