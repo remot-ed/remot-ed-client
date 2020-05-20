@@ -40,7 +40,7 @@ const onGetAllQuizzesSuccess = (data) => {
 
 const onGetOneQuizSuccess = (data) => {
   const showQuizHtml = showQuizTemplate({ quiz: data.quiz })
-  console.log('hellooooooo')
+  store.quizData = data
   $('#single-quiz-listing').html(showQuizHtml)
 }
 
@@ -78,7 +78,8 @@ const onShowScheduleClassroomsSuccess = (data) => {
   // this one displays only the last classroom, aka rewrites over previous classroom
   const classDropdown = function () {
     data.classrooms.forEach(function (classroom) {
-      $('.classroom-dropdown').html('<a class="dropdown-item">' + classroom.classname + '</a>')
+      $('.classroom-dropdown').append('<a class="dropdown-item classname-schedule">' + classroom.classname + '</a>')
+      $('.classname-schedule').attr('data-id', classroom._id)
     })
   }
   classDropdown()
@@ -88,30 +89,30 @@ const onShowScheduleClassroomsSuccess = (data) => {
   // classname in dropdown.
   // but the return statement outside of the forEach function ~will~ display the 'hi'
   // likely doesn't recognize the HTML when it's a function inside a function
-  $('.classroom-dropdown').html(function () {
-    data.classrooms.forEach(function (classroom) {
-      console.log(classroom.classname)
-      return '<a class="dropdown-item">' + classroom.classname + '</a>'
-      // console.log('data3: ', classroom.classname)
-    })
-    // return '<a class="dropdown-item">' + 'hi' + '</a>'
-  })
+  // $('.classroom-dropdown').append(function () {
+  //   data.classrooms.forEach(function (classroom) {
+  //     console.log(classroom.classname)
+  //     return '<a class="dropdown-item">' + classroom.classname + '</a>'
+  //     // console.log('data3: ', classroom.classname)
+  //   })
+  //   // return '<a class="dropdown-item">' + 'hi' + '</a>'
+  // })
 
   // Attempt #3
   // this one will display classroom names in the dropdown, however, as it is an
   // array, displays them as one string
   // aka: "Eng 101, History" in one line
-  const classArray = []
-
-  $('.classroom-dropdown').html(function () {
-    data.classrooms.forEach(function (classroom) {
-      classArray.push(classroom.classname)
-      console.log(classroom.classname)
-      // return '<a class="dropdown-item">' + classroom.classname + '</a>'
-      // console.log('data3: ', classroom.classname)
-    })
-    return '<a class="dropdown-item">' + classArray + '</a>'
-  })
+  // const classArray = []
+  //
+  // $('.classroom-dropdown').html(function () {
+  //   data.classrooms.forEach(function (classroom) {
+  //     classArray.push(classroom.classname)
+  //     console.log(classroom.classname)
+  //     // return '<a class="dropdown-item">' + classroom.classname + '</a>'
+  //     // console.log('data3: ', classroom.classname)
+  //   })
+  //   return '<a class="dropdown-item">' + classArray + '</a>'
+  // })
 }
 
 module.exports = {
