@@ -29,6 +29,36 @@ const finishQuiz = () => {
   })
 }
 
+const addClassroomToQuiz = (quizId, classroomId) => {
+  return $.ajax({
+    url: config.apiUrl + '/quizzes/' + quizId,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: {
+      quiz: {
+        classroom: classroomId
+      }
+    }
+  })
+}
+
+const addQuizToClassroom = (quizId, classroomId) => {
+  return $.ajax({
+    url: config.apiUrl + '/classrooms/' + classroomId,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: {
+      classroom: {
+        quizzes: quizId
+      }
+    }
+  })
+}
+
 const editQuiz = (quizId, formData) => {
   return $.ajax({
     url: config.apiUrl + '/quizzes/' + quizId,
@@ -87,5 +117,7 @@ module.exports = {
   deleteQuiz,
   getOneQuiz,
   getAllQuizzes,
-  getMyClassrooms
+  getMyClassrooms,
+  addClassroomToQuiz,
+  addQuizToClassroom
 }
