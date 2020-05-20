@@ -119,6 +119,22 @@ const onShowScheduleClassrooms = () => {
     .then(ui.onShowScheduleClassroomsSuccess)
 }
 
+const onScheduleQuizToClassroom = () => {
+  event.preventDefault()
+  const classId = $(event.target).data('id')
+  const quizId = store.quizData.quiz._id
+  // console.log('class ', classId)
+  // console.log('quiz ', quizId)
+
+  api.addClassroomToQuiz(quizId, classId)
+    .then(console.log)
+    .catch(console.error)
+
+  api.addQuizToClassroom(quizId, classId)
+    .then(console.log)
+    .catch(console.error)
+}
+
 const addHandlers = event => {
   $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
   $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
@@ -134,6 +150,7 @@ const addHandlers = event => {
   $('.quiz-listing').on('click', '.single-quiz-link', onGetOneQuiz)
   $('.create-quiz-button').on('click', onShowCreateQuiz)
   $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
+  $('#single-quiz-listing').on('click', '.classname-schedule', onScheduleQuizToClassroom)
 }
 
 module.exports = {
