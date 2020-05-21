@@ -6,7 +6,7 @@ const authEvents = require('./auth/events')
 const questionEvents = require('./question/events')
 const quizEvents = require('./quiz/events')
 const quizTeach = require('./teacher-dash/events')
-
+const classEvents = require('./classroom/events')
 // use require without a reference to ensure a file is bundled
 // require('./example')
 
@@ -15,4 +15,5 @@ $(() => {
   questionEvents.addHandlers()
   quizEvents.addHandlers()
   quizTeach.addHandlers()
+  classEvents.addHandlers()
 })

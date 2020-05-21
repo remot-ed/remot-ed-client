@@ -115,6 +115,8 @@ const onGetOneQuiz = event => {
 const addHandlers = event => {
   $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
   $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
+  $('.create-quiz-button').on('click', onShowCreateQuiz)
+
   // need to edit once handlebars is integrated
   $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
   $('.edit-quiz').on('submit', onEditQuiz)
