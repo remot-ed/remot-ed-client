@@ -2,6 +2,7 @@
 
 // const store = require('../store')
 const showClassroomsTemplate = require('../templates/classrooms/class-listing.handlebars')
+const showCreateClassTemplate = require('../templates/classrooms/class-create.handlebars')
 
 const onGetClassesSuccess = (data) => {
   const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
@@ -9,24 +10,29 @@ const onGetClassesSuccess = (data) => {
   $('#classroom_table').show()
 }
 
+const onShowCreateClassSuccess = () => {
+  const showCreateClassHtml = showCreateClassTemplate()
+  $('.create-class-button').hide()
+  $('.create-class').show()
+  $('.create-class').html(showCreateClassHtml)
+}
+
 const onGetClassesFail = () => {
   $('#classroom_table').html('Cannot Find Any Classes')
 }
 
 const onCreateClassSuccess = () => {
-  $('form').trigger('reset')
-  $('.question-count').html('Question ' + store.questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
-  const showCreateQuestionHtml = showCreateQuestionTemplate()
-  $('.create-quiz').hide()
-  $('.create-question').show()
-  $('.create-question').html(showCreateQuestionHtml)
-  // show create question class
-  // hide create quiz class
-  // $('.question-count').html('Question ' + questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
+  console.log('u did it')
+}
+
+const onCreateClassFail = () => {
+  console.log('somthings wrong!')
 }
 
 module.exports = {
   onGetClassesSuccess,
   onGetClassesFail,
+  onShowCreateClassSuccess,
   onCreateClassSuccess,
+  onCreateClassFail
 }

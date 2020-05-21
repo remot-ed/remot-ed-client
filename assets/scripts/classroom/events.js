@@ -1,5 +1,6 @@
 'use strict'
 
+const store = require('../store')
 const ui = require('./ui')
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
@@ -11,21 +12,46 @@ const getClasses = (event) => {
     .catch(ui.onGetClassesFailure)
 }
 
-// create a new classroom from sub form
-const onCreateClass = event => {
+// shows the create class form
+const onShowCreateClass = event => {
   event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
+  ui.onShowCreateClassSuccess()
+}
 
-  // onCreateQuiz stores the quiz data in empty quizData in ../store.js
-  console.log('formData is ', formData)
+// create a new classroom from sub form
+const onCreateNewClass = event => {
+  event.preventDefault()
+
+  const form = event.target // form that was submited
+  const formData = getFormFields(form) // get that form and run it
+
   api.createClass(formData)
     .then(ui.onCreateClassSuccess)
-    .catch(console.error)
+    // .then(getClasses(event))
+    .catch(ui.onCreateClassFail)
+}
+
+// Add a student to a class
+const onAddStudent = event => {
+  event.preventDefault()
+
+  const form = event.target // form that was submited
+  const formData = getFormFields(form) // get that form and run it
+
+  /// if FIND email/name Priorety: last
+
+  /// email = _ID
+  /// selected name _ID saved to store
+  const studentsID = api.getStudentId(formData)
+  store.studentArray.push(studentsID)
+  /// else
+  /// user send an email?
 }
 
 const addHandlers = event => {
-  $('.create-class').on('submit', '#create-quiz', onCreateClass)
+  $('.create-class-button').on('click', onShowCreateClass)
+  $('.create-class').on('submit', '#add-student-form', onAddStudent)
+  $('.create-class').on('submit', '#create-class-form', onCreateNewClass)
 }
 
 module.exports = {
