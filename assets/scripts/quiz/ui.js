@@ -26,6 +26,7 @@ const onCreateQuizSuccess = () => {
   $('.question-count').html('Question ' + store.questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
   const showCreateQuestionHtml = showCreateQuestionTemplate()
   $('.create-quiz').hide()
+  $('.TeacherDash').hide()
   $('.create-question').show()
   $('.create-question').html(showCreateQuestionHtml)
   // show create question class
@@ -42,6 +43,8 @@ const onGetOneQuizSuccess = (data) => {
   const showQuizHtml = showQuizTemplate({ quiz: data.quiz })
   store.quizData = data
   $('#single-quiz-listing').html(showQuizHtml)
+  $('#single-quiz-listing').show()
+  $('.TeacherDash').hide()
 }
 
 // on the last question, user will be unable to click 'next question', and
@@ -57,6 +60,7 @@ const onFinishQuizSuccess = () => {
   store.questions = []
   $('.create-question').hide()
   $('.create-quiz-button').show()
+  $('.TeacherDash').show()
 }
 //
 // $( "div.demo-container" ).html(function() {
@@ -115,11 +119,17 @@ const onShowScheduleClassroomsSuccess = (data) => {
   // })
 }
 
+const onSingleQuizToTeacherDashSuccess = () => {
+  $('#single-quiz-listing').hide()
+  $('.TeacherDash').show()
+}
+
 module.exports = {
   onCreateQuizSuccess,
   onFinishQuizSuccess,
   onShowCreateQuizSuccess,
   onGetAllQuizzesSuccess,
   onGetOneQuizSuccess,
-  onShowScheduleClassroomsSuccess
+  onShowScheduleClassroomsSuccess,
+  onSingleQuizToTeacherDashSuccess
 }
