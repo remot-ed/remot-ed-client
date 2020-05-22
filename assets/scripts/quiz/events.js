@@ -31,7 +31,6 @@ const onCreateQuiz = event => {
 
 const onFinishQuiz = event => {
   event.preventDefault()
-
   api.finishQuiz()
     .then(ui.onFinishQuizSuccess)
     .then(onGetAllQuizzes(event))
@@ -73,9 +72,10 @@ const onDeleteQuiz = event => {
     .then(res => {
       if (res.quiz.owner === store.user._id) {
         const questions = res.quiz.questions
+        console.log('questions: ', questions)
         for (let i = 0; i < questions.length; i++) {
           if (!questions[i].questionOwner) {
-            questionApi.deleteQuestion(questions[i])
+            questionApi.deleteQuestion(questions[i]._id)
           }
         }
       } else {
@@ -106,8 +106,38 @@ const onGetOneQuiz = event => {
   event.preventDefault()
 
   const quizId = $(event.target).data('id')
+  console.log(quizId)
 
   api.getOneQuiz(quizId)
+    .then(ui.onGetOneQuizSuccess)
+    .catch(console.error)
+}
+
+const onSingleQuizToTeacherDash = () => {
+  event.preventDefault()
+
+  ui.onSingleQuizToTeacherDashSuccess()
+}
+
+const onShowScheduleClassrooms = () => {
+  event.preventDefault()
+
+  api.getMyClassrooms()
+    .then(ui.onShowScheduleClassroomsSuccess)
+}
+
+const onScheduleQuizToClassroom = () => {
+  event.preventDefault()
+  const classId = $(event.target).data('id')
+  const quizId = store.quizData.quiz._id
+  // console.log('class ', classId)
+  // console.log('quiz ', quizId)
+
+  api.addClassroomToQuiz(quizId, classId)
+    .then(console.log)
+    .catch(console.error)
+
+  api.addQuizToClassroom(quizId, classId)
     .then(console.log)
     .catch(console.error)
 }
@@ -124,8 +154,11 @@ const addHandlers = event => {
   // need to edit once handlebars is integrated
   // $('.get-quizzes').on('submit', onGetAllQuizzes)
   // need to edit once handlebars is integrated
-  $('.get-quiz').on('submit', onGetOneQuiz)
+  $('.quiz-listing').on('click', '.single-quiz-link', onGetOneQuiz)
   $('.create-quiz-button').on('click', onShowCreateQuiz)
+  $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
+  $('#single-quiz-listing').on('click', '.classname-schedule', onScheduleQuizToClassroom)
+  $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
 }
 
 module.exports = {
