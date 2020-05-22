@@ -113,6 +113,12 @@ const onGetOneQuiz = event => {
     .catch(console.error)
 }
 
+const onSingleQuizToTeacherDash = () => {
+  event.preventDefault()
+
+  ui.onSingleQuizToTeacherDashSuccess()
+}
+
 const onShowScheduleClassrooms = () => {
   event.preventDefault()
 
@@ -152,6 +158,7 @@ const addHandlers = event => {
   $('.create-quiz-button').on('click', onShowCreateQuiz)
   $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
   $('#single-quiz-listing').on('click', '.classname-schedule', onScheduleQuizToClassroom)
+  $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
 }
 
 module.exports = {
