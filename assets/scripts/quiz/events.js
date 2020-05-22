@@ -72,9 +72,10 @@ const onDeleteQuiz = event => {
     .then(res => {
       if (res.quiz.owner === store.user._id) {
         const questions = res.quiz.questions
+        console.log('questions: ', questions)
         for (let i = 0; i < questions.length; i++) {
           if (!questions[i].questionOwner) {
-            questionApi.deleteQuestion(questions[i])
+            questionApi.deleteQuestion(questions[i]._id)
           }
         }
       } else {
