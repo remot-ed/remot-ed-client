@@ -29,16 +29,14 @@ const onCreateQuestion = event => {
   const formData = getFormFields(form)
   // console.log(store.quizData[0])
 
-  // we want to increment questionNumber
-  store.questionNumber++
-  addQuestionCount()
-
   // as we create questions, we push them to empty questionId array in ../store.js
   // when we finish quiz, we update quiz with array of questionIds
   // once quiz has been updated with array, we want to clear array .. maybe in UI?
   api.createQuestion(formData)
     // .then(res => console.log(res.question._id))
     .then(res => store.questions.push(res.question))
+    .then(store.questionNumber++)
+    .then(addQuestionCount())
     .then(ui.onCreateQuestionSuccess)
     .catch(console.error)
 }
