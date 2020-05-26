@@ -47,7 +47,8 @@ const onShowEditQuiz = event => {
 const onEditQuiz = event => {
   event.preventDefault()
 
-  const quizId = $(event.target).data('id')
+  const quizId = $('.single-quiz').data('id')
+  console.log('quizId: ', quizId)
 
   const form = event.target
   const formData = getFormFields(form)
@@ -149,7 +150,7 @@ const addHandlers = event => {
 
   // need to edit once handlebars is integrated
   $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
-  $('.edit-quiz').on('submit', onEditQuiz)
+  // $('.edit-quiz').on('submit', onEditQuiz)
   $('.quiz-listing').on('click', '.delete-quiz', onDeleteQuiz)
   // need to edit once handlebars is integrated
   // $('.get-quizzes').on('submit', onGetAllQuizzes)
@@ -159,6 +160,7 @@ const addHandlers = event => {
   $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
   $('#single-quiz-listing').on('click', '.classname-schedule', onScheduleQuizToClassroom)
   $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
+  $('#single-quiz-listing').on('submit', '.edit-quiz', onEditQuiz)
 }
 
 module.exports = {

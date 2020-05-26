@@ -1,4 +1,4 @@
-  <section data-id="{{quiz._id}}">
+  <section data-id="{{quiz._id}}" class="single-quiz">
     <p>{{quiz.title}}</p>
     <!-- section for scheduling quizzes for classrooms should go here -->
 
@@ -9,6 +9,15 @@
       <div class="dropdown-menu classroom-dropdown" data-quizId={{quiz._id}}>
         <!-- <a class="dropdown-item" href="#">Action</a> -->
       </div>
+      <form class="edit-quiz">
+        <input type="datetime-local" class="form-control inputs" name="quiz[startTime]" required>
+        <p>Make quiz active?</p>
+        <input type="radio" id="true" name="quiz[isActive]" value="true">
+        <label for="true">Yes</label>
+        <input type="radio" id="false" name="quiz[isActive]" value="false">
+        <label for="false">No</label>
+        <button type="submit" class="btn btn-secondary">Schedule Quiz</button>
+      </form>
     </div>
 
     <table class="table table-striped table-bordered survey-list" cellspacing="0" width="100%">
