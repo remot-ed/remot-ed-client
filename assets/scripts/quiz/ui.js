@@ -7,6 +7,8 @@ const showCreateQuizTemplate = require('../templates/quiz/quiz-create.handlebars
 const showCreateQuestionTemplate = require('../templates/quiz/question-create.handlebars')
 const showQuizzesTemplate = require('../templates/quiz/quiz-td-index.handlebars')
 const showQuizTemplate = require('../templates/quiz/quiz-td-show.handlebars')
+const showQuizEditTemplate = require('../templates/quiz/quiz-td-edit.handlebars')
+const showEditQuestionTemplate = require('../templates/quiz/question-edit.handlebars')
 
 // let questionNumber = 1
 
@@ -45,6 +47,24 @@ const onGetOneQuizSuccess = (data) => {
   $('#single-quiz-listing').html(showQuizHtml)
   $('#single-quiz-listing').show()
   $('.TeacherDash').hide()
+}
+const onGetOneQuizEditSuccess = (data) => {
+  const showQuizEditHtml = showQuizEditTemplate({ quiz: data.quiz })
+  store.quizData = data
+  $('#single-quiz-listing').html(showQuizEditHtml)
+  $('#single-quiz-listing').show()
+  $('.TeacherDash').hide()
+}
+
+const onEditQuizSuccess = (data) => {
+  const showQuestionEditHtml = showEditQuestionTemplate({ quiz: data.quiz })
+  $('#single-quiz-listing').hide()
+  $('#edit-single-question').html(showQuestionEditHtml)
+  // show edit question for first question in array
+  // on save question, show edit question for next question in array
+  // if question is last question in array
+  //   then disable save question, and enable finish
+  // on finish edits, save question & call get one quiz
 }
 
 // on the last question, user will be unable to click 'next question', and
@@ -131,5 +151,7 @@ module.exports = {
   onGetAllQuizzesSuccess,
   onGetOneQuizSuccess,
   onShowScheduleClassroomsSuccess,
-  onSingleQuizToTeacherDashSuccess
+  onSingleQuizToTeacherDashSuccess,
+  onGetOneQuizEditSuccess,
+  onEditQuizSuccess
 }
