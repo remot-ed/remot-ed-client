@@ -1,0 +1,11 @@
+<section data-id="{{quiz._id}}" class="single-quiz">
+  <p>{{quiz.title}}</p>
+
+  <form id="edit-quiz">
+    <input type="text" class="form-control inputs" name="quiz[title]" placeholder="{{quiz.title}}">
+    <br>
+    <!-- <input type="text" class="form-control inputs" name=quiz[isActive] required> -->
+    <button type="submit" class="btn btn-dark">Save Quiz & Edit Questions</button>
+  </form>
+  <button class="btn btn-secondary quiz-to-teacher-dash">Back to Teacher Dash</button>
+</section>

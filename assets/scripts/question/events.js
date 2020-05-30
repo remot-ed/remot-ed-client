@@ -4,6 +4,7 @@ const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields')
+// const quizApi = require('../quiz/api')
 // const quizEvents = require('../quiz/events')
 
 // let questionNumber = 1
@@ -48,13 +49,23 @@ const onEditQuestion = event => {
   event.preventDefault()
 
   const questionId = $(event.target).data('id')
+  console.log('questionId: ', questionId)
 
   const form = event.target
   const formData = getFormFields(form)
+  // console.log('formData: ', formData)
+  // store.questions.push(formData)
 
   api.editQuestion(questionId, formData)
+  //  .then(formData => store.questions.push(formData))
+  //  .then(quizApi.editQuiz(formData))
     .then(console.log)
     .catch(console.error)
+
+  api.getOneQuestion(questionId)
+    .then(res => store.questions.push(res))
+    .catch(console.error)
+
 }
 
 const onDeleteQuestion = event => {
@@ -87,7 +98,7 @@ const onGetOneQuestion = event => {
 
 const addHandlers = event => {
   $('.create-question').on('submit', '#create-question', onCreateQuestion)
-  $('.edit-question').on('submit', onEditQuestion)
+  $('#edit-single-question').on('submit', '#edit-question', onEditQuestion)
   $('.delete-question').on('submit', onDeleteQuestion)
   $('.get-questions').on('submit', onGetAllQuestions)
   $('.get-question').on('submit', onGetOneQuestion)
