@@ -20,11 +20,18 @@ const createClass = formData => {
     headers: {
       Authorization: `Token token=${store.user.token}`
     },
-    data: formData,
-    students: store.studentArray
+    data: {
+      classroom: {
+        classname: formData.classroom.classname,
+        subject: formData.classroom.subject,
+        owner: store.user._id,
+        students: store.studentArray
+      }
+    }
   })
 }
 
+// currently unused (for getting id via email)
 const getStudentId = formData => {
   return $.ajax({
     url: config.apiUrl + '/userId',
