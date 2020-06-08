@@ -39,11 +39,26 @@ const onAddStudent = event => {
   const formData = getFormFields(form) // get that form and run it
 
   /// if FIND email/name Priorety: last
+  // if api.getStudentId
+  console.log('the form data is' + JSON.stringify(formData.student))
+  api.getStudentId(JSON.stringify(formData))
+    .then(formData => console.log('formData is' + JSON.stringify(formData)))
+    .catch(console.log('you tried!'))
+
+// emmas best attmept
+//     api.getStudentId(formData => {
+//  console.log(formdata)
+//   return formdata
+// }).then(id => return id)
+//   .catch(console.log('you tried!'))
 
   /// email = _ID
   /// selected name _ID saved to store
-  const studentsID = api.getStudentId(formData)
-  store.studentArray.push(studentsID)
+
+  // const studentsID = api.getStudentId(formData)
+
+  // store.studentArray.push(formData)
+
   /// else
   /// user send an email?
 }
