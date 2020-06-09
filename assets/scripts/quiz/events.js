@@ -31,7 +31,18 @@ const onCreateQuiz = event => {
 
 const onFinishQuiz = event => {
   event.preventDefault()
+  console.log('quizData: ', store.quizData)
   api.finishQuiz()
+    .then(ui.onFinishQuizSuccess)
+    .then(onGetAllQuizzes(event))
+    .catch(console.error)
+}
+
+const onFinishQuizEdit = event => {
+  event.preventDefault()
+  console.log('quizData: ', store.quizData.quiz._id)
+  console.log('store.questions: ', store.questions)
+  api.updateQuestionsInQuiz()
     .then(ui.onFinishQuizSuccess)
     .then(onGetAllQuizzes(event))
     .catch(console.error)
@@ -41,10 +52,30 @@ const onShowEditQuiz = event => {
   event.preventDefault()
   // calls editQuiz ui
   // ui will hide teacher dash and show edit quiz form
+  const quizId = $(event.target).data('id')
+
+  api.getOneQuiz(quizId)
+    .then(ui.onGetOneQuizEditSuccess)
+    .catch(console.error)
+}
+
+const onEditQuiz = event => {
+  event.preventDefault()
+
+  const quizId = store.quizData.quiz._id
+
+  const form = event.target
+  const formData = getFormFields(form)
+  // as part of this API call, when editQuiz is successful, we want to call
+  // getOneQuiz, and store the response in store.quizData
+  api.editQuiz(quizId, formData)
+    .then(api.getOneQuiz(quizId)
+      .then(ui.onEditQuizSuccess))
+    .catch(console.error)
 }
 
 // onEditQuizSuccess will have to lead directly into editQuestion
-const onEditQuiz = event => {
+const onEditQuizSchedule = event => {
   event.preventDefault()
 
   const quizId = $('.single-quiz').data('id')
@@ -160,7 +191,9 @@ const addHandlers = event => {
   $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
   $('#single-quiz-listing').on('click', '.classname-schedule', onScheduleQuizToClassroom)
   $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
-  $('#single-quiz-listing').on('submit', '.edit-quiz', onEditQuiz)
+  $('#single-quiz-listing').on('submit', '.schedule-quiz', onEditQuizSchedule)
+  $('#single-quiz-listing').on('submit', '#edit-quiz', onEditQuiz)
+  $('#edit-single-question').on('click', '.finish-quiz-edits', onFinishQuizEdit)
 }
 
 module.exports = {
