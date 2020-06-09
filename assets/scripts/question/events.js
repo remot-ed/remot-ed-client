@@ -35,7 +35,7 @@ const onCreateQuestion = event => {
   // once quiz has been updated with array, we want to clear array .. maybe in UI?
   api.createQuestion(formData)
     // .then(res => console.log(res.question._id))
-    .then(res => store.questions.push(res.question))
+    .then(res => store.questions.push(res.question._id))
     .then(store.questionNumber++)
     .then(addQuestionCount())
     .then(ui.onCreateQuestionSuccess)
@@ -59,13 +59,10 @@ const onEditQuestion = event => {
   api.editQuestion(questionId, formData)
   //  .then(formData => store.questions.push(formData))
   //  .then(quizApi.editQuiz(formData))
-    .then(console.log)
+    .then(api.getOneQuestion(questionId)
+      .then(res => store.questions.push(res))
+      .catch(console.error))
     .catch(console.error)
-
-  api.getOneQuestion(questionId)
-    .then(res => store.questions.push(res))
-    .catch(console.error)
-
 }
 
 const onDeleteQuestion = event => {
