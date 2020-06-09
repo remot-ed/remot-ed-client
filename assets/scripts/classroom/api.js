@@ -32,14 +32,14 @@ const createClass = formData => {
 }
 
 // currently unused (for getting id via email)
-const getStudentId = formData => {
+const getStudentId = data => {
   return $.ajax({
     url: config.apiUrl + '/userId',
     method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`
     },
-    data: formData
+    data: data
   })
 }
 
