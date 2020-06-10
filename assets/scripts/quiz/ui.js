@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store')
-// const questionEvents = require('../question/events')
+const quizApi = require('./api')
 
 const showCreateQuizTemplate = require('../templates/quiz/quiz-create.handlebars')
 const showCreateQuestionTemplate = require('../templates/quiz/question-create.handlebars')
@@ -60,6 +60,7 @@ const onEditQuizSuccess = (data) => {
   const showQuestionEditHtml = showEditQuestionTemplate({ quiz: data.quiz })
   $('#single-quiz-listing').hide()
   $('#edit-single-question').html(showQuestionEditHtml)
+  $('#edit-single-question').show()
   // show edit question for first question in array
   // on save question, show edit question for next question in array
   // if question is last question in array
@@ -80,6 +81,16 @@ const onFinishQuizSuccess = () => {
   store.questions = []
   $('.create-question').hide()
   $('.create-quiz-button').show()
+  $('.TeacherDash').show()
+}
+
+const onFinishQuizEditSuccess = () => {
+  store.quizData = []
+  store.questions = []
+  $('#edit-single-question').hide()
+  quizApi.getAllQuizzes()
+    .then(onGetAllQuizzesSuccess)
+    .catch(console.error)
   $('.TeacherDash').show()
 }
 //
@@ -153,5 +164,6 @@ module.exports = {
   onShowScheduleClassroomsSuccess,
   onSingleQuizToTeacherDashSuccess,
   onGetOneQuizEditSuccess,
-  onEditQuizSuccess
+  onEditQuizSuccess,
+  onFinishQuizEditSuccess
 }

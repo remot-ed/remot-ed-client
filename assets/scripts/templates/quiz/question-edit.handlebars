@@ -2,8 +2,6 @@
   <p>{{quiz.title}}</p>
 
 {{#each quiz.questions as |question| }}
-{{log question}}
-{{log quiz}}
 <p>Question {{question.questionNumber}} of {{quiz.numOfQuestions}}.</p>
   <form id="edit-question" data-id="{{question._id}}">
     <div class="form-group">
