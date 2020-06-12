@@ -31,7 +31,7 @@ const createClass = formData => {
   })
 }
 
-// currently unused (for getting id via email)
+// getting user id via email
 const getStudentId = data => {
   return $.ajax({
     url: config.apiUrl + '/userId',
@@ -43,8 +43,19 @@ const getStudentId = data => {
   })
 }
 
+const getClassroom = classId => {
+  return $.ajax({
+    url: config.apiUrl + '/classrooms/' + classId,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   createClass,
   getClasses,
-  getStudentId
+  getStudentId,
+  getClassroom
 }
