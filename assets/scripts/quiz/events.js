@@ -64,7 +64,7 @@ const onShowEditQuiz = event => {
 const onEditQuiz = event => {
   event.preventDefault()
 
-  const quizId = store.quizData.quiz._id
+  const quizId = store.quizData._id
 
   const form = event.target
   const formData = getFormFields(form)

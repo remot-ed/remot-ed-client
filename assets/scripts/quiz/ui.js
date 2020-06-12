@@ -50,7 +50,7 @@ const onGetOneQuizSuccess = (data) => {
 }
 const onGetOneQuizEditSuccess = (data) => {
   const showQuizEditHtml = showQuizEditTemplate({ quiz: data.quiz })
-  store.quizData = data
+  store.quizData = data.quiz
   $('#single-quiz-listing').html(showQuizEditHtml)
   $('#single-quiz-listing').show()
   $('.TeacherDash').hide()
