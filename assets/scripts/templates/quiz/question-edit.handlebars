@@ -2,9 +2,7 @@
   <p>{{quiz.title}}</p>
 
 {{#each quiz.questions as |question| }}
-{{log question}}
-{{log quiz}}
-<p>Question {{question.questionNumber}} of {{quiz.numOfQuestions}}.</p>
+<p>Question #{{question.questionNumber}}.</p>
   <form id="edit-question" data-id="{{question._id}}">
     <div class="form-group">
       <input type="text" class="form-control inputs" name="question[title]" placeholder="{{question.title}}">
@@ -18,7 +16,9 @@
       <button type="submit" class="btn btn-dark next-question-edits">Save Question</button>
     </div>
   </form>
+  <button class="btn btn-dark delete-question" data-id="{{question._id}}">Delete Question</button>
   {{/each}}
   <!-- <button type="submit" class="btn btn-dark next-question">Next Question</button> -->
+  <button class="btn btn-dark add-question">Add New Question</button>
   <button type="submit" class="btn btn-dark finish-quiz-edits">Finish</button>
 </section>

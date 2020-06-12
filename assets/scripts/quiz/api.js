@@ -29,20 +29,20 @@ const finishQuiz = () => {
   })
 }
 
-const updateQuestionsInQuiz = () => {
-  return $.ajax({
-    url: config.apiUrl + '/quizzes/' + store.quizData.quiz._id,
-    method: 'PATCH',
-    headers: {
-      Authorization: `Token token=${store.user.token}`
-    },
-    data: {
-      quiz: {
-        questions: store.questions
-      }
-    }
-  })
-}
+// const updateQuestionsInQuiz = () => {
+//   return $.ajax({
+//     url: config.apiUrl + '/quizzes/' + store.quizData.quiz._id,
+//     method: 'PATCH',
+//     headers: {
+//       Authorization: `Token token=${store.user.token}`
+//     },
+//     data: {
+//       quiz: {
+//         questions: store.questions
+//       }
+//     }
+//   })
+// }
 
 const addClassroomToQuiz = (quizId, classroomId) => {
   return $.ajax({
@@ -134,6 +134,5 @@ module.exports = {
   getAllQuizzes,
   getMyClassrooms,
   addClassroomToQuiz,
-  addQuizToClassroom,
-  updateQuestionsInQuiz
+  addQuizToClassroom
 }
