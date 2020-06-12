@@ -40,12 +40,14 @@ const onFinishQuiz = event => {
 
 const onFinishQuizEdit = event => {
   event.preventDefault()
-  console.log('quizData: ', store.quizData.quiz._id)
-  console.log('store.questions: ', store.questions)
-  api.updateQuestionsInQuiz()
-    .then(ui.onFinishQuizSuccess)
-    .then(onGetAllQuizzes(event))
-    .catch(console.error)
+  ui.onFinishQuizEditSuccess()
+  // event.preventDefault()
+  // console.log('quizData: ', store.quizData.quiz._id)
+  // console.log('store.questions: ', store.questions)
+  // api.updateQuestionsInQuiz()
+  //   .then(ui.onFinishQuizSuccess)
+  //   .then(onGetAllQuizzes(event))
+  //   .catch(console.error)
 }
 
 const onShowEditQuiz = event => {
@@ -62,7 +64,7 @@ const onShowEditQuiz = event => {
 const onEditQuiz = event => {
   event.preventDefault()
 
-  const quizId = store.quizData.quiz._id
+  const quizId = store.quizData._id
 
   const form = event.target
   const formData = getFormFields(form)
