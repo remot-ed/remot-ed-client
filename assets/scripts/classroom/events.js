@@ -12,6 +12,15 @@ const getClasses = (event) => {
     .catch(ui.onGetClassesFailure)
 }
 
+// View Specific Class
+const onGetClassroom = (event) => {
+  event.preventDefault()
+
+  api.getClassroom()
+    .then(ui.onGetClassroomSuccess)
+    .catch(ui.onGetClassroomFailure)
+}
+
 // shows the create class form
 const onShowCreateClass = event => {
   event.preventDefault()
@@ -43,6 +52,7 @@ const onAddStudent = event => {
   console.log('the form data is' + formData)
   api.getStudentId(formData)
     .then(res => console.log('res', res))
+    // .then(res => store.studentArray.push(res.user._id))
     .catch(console.log('you tried!'))
 
   /// selected name _ID saved to store
@@ -59,6 +69,7 @@ const addHandlers = event => {
   $('.create-class-button').on('click', onShowCreateClass)
   $('.create-class').on('submit', '#add-student-form', onAddStudent)
   $('.create-class').on('submit', '#create-class-form', onCreateNewClass)
+  $('#classroom_table').on('click', '.get-classroom', onGetClassroom)
 }
 
 module.exports = {
