@@ -65,13 +65,35 @@ const onEditQuestion = event => {
     .catch(console.error)
 }
 
+const onShowAddQuestion = event => {
+  event.preventDefault()
+
+  ui.onShowAddQuestionSuccess()
+}
+
+const onAddQuestion = event => {
+  event.preventDefault()
+
+  const form = event.target
+  const formData = getFormFields(form)
+
+  api.addQuestion(formData)
+    .then(res => api.getOneQuestion(res.question._id)
+      .then(res => store.quizData.questions.push(res.question)))
+    .then(store.quizData.numOfQuestions++)
+    .then(api.addQuestionToQuiz()
+      .then(console.log))
+    .catch(console.error)
+}
+
 const onDeleteQuestion = event => {
   event.preventDefault()
 
   const questionId = $(event.target).data('id')
 
   api.deleteQuestion(questionId)
-    .then(console.log)
+    .then(store.quizData.numOfQuestion--)
+    .then()
     .catch(console.error)
 }
 
@@ -99,6 +121,9 @@ const addHandlers = event => {
   $('.delete-question').on('submit', onDeleteQuestion)
   $('.get-questions').on('submit', onGetAllQuestions)
   $('.get-question').on('submit', onGetOneQuestion)
+  $('#edit-single-question').on('click', '.add-question', onShowAddQuestion)
+  $('#edit-single-question').on('submit', '#add-new-question', onAddQuestion)
+  $('#edit-single-question').on('click', '.delete-question', onDeleteQuestion)
 }
 
 module.exports = {
