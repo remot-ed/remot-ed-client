@@ -57,6 +57,7 @@ const onGetOneQuizEditSuccess = (data) => {
 }
 
 const onEditQuizSuccess = (data) => {
+  console.log('did this work')
   const showQuestionEditHtml = showEditQuestionTemplate({ quiz: data.quiz })
   $('#single-quiz-listing').hide()
   $('#edit-single-question').html(showQuestionEditHtml)
@@ -66,6 +67,13 @@ const onEditQuizSuccess = (data) => {
   // if question is last question in array
   //   then disable save question, and enable finish
   // on finish edits, save question & call get one quiz
+}
+
+const editQuizAfterDeleteQuestion = (data) => {
+  console.log('quizId: ', store.quizData._id)
+  const showQuestionEditHtml = showEditQuestionTemplate({ quiz: data.quiz })
+  $('#edit-single-question').html('')
+  $('#edit-single-question').html(showQuestionEditHtml)
 }
 
 // on the last question, user will be unable to click 'next question', and
@@ -165,5 +173,6 @@ module.exports = {
   onSingleQuizToTeacherDashSuccess,
   onGetOneQuizEditSuccess,
   onEditQuizSuccess,
-  onFinishQuizEditSuccess
+  onFinishQuizEditSuccess,
+  editQuizAfterDeleteQuestion
 }
