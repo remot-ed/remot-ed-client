@@ -22,7 +22,7 @@ const onCreateQuiz = event => {
   const formData = getFormFields(form)
 
   // onCreateQuiz stores the quiz data in empty quizData in ../store.js
-  console.log('formData is ', formData)
+  // console.log('formData is ', formData)
   api.createQuiz(formData)
     .then(res => store.quizData.push(res.quiz))
     .then(ui.onCreateQuizSuccess)
@@ -31,7 +31,7 @@ const onCreateQuiz = event => {
 
 const onFinishQuiz = event => {
   event.preventDefault()
-  console.log('quizData: ', store.quizData)
+  // console.log('quizData: ', store.quizData)
   api.finishQuiz()
     .then(ui.onFinishQuizSuccess)
     .then(onGetAllQuizzes(event))
@@ -81,7 +81,7 @@ const onEditQuizSchedule = event => {
   event.preventDefault()
 
   const quizId = $('.single-quiz').data('id')
-  console.log('quizId: ', quizId)
+  // console.log('quizId: ', quizId)
 
   const form = event.target
   const formData = getFormFields(form)
@@ -106,7 +106,7 @@ const onDeleteQuiz = event => {
     .then(res => {
       if (res.quiz.owner === store.user._id) {
         const questions = res.quiz.questions
-        console.log('questions: ', questions)
+        // console.log('questions: ', questions)
         for (let i = 0; i < questions.length; i++) {
           if (!questions[i].questionOwner) {
             questionApi.deleteQuestion(questions[i]._id)
@@ -140,7 +140,7 @@ const onGetOneQuiz = event => {
   event.preventDefault()
 
   const quizId = $(event.target).data('id')
-  console.log(quizId)
+  // console.log(quizId)
 
   api.getOneQuiz(quizId)
     .then(ui.onGetOneQuizSuccess)

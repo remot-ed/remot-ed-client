@@ -49,7 +49,7 @@ const onEditQuestion = event => {
   event.preventDefault()
 
   const questionId = $(event.target).data('id')
-  console.log('questionId: ', questionId)
+  // console.log('questionId: ', questionId)
 
   const form = event.target
   const formData = getFormFields(form)
@@ -90,9 +90,10 @@ const onAddQuestion = event => {
   api.addQuestion(formData)
     .then(res => api.getOneQuestion(res.question._id)
       .then(res => store.questions.push(res.question._id)))
-    .then(store.quizData.numOfQuestions++)
-    .then(api.addQuestionToQuiz()
+    .then(res => api.addQuestionToQuiz()
       .then(console.log))
+    .then(res => quizApi.getOneQuiz(store.quizData._id)
+      .then(res => quizUi.editQuizAfterUpdateQuestions(res)))
     .catch(console.error)
 }
 
@@ -105,7 +106,7 @@ const onDeleteQuestion = event => {
     .then(store.quizData.numOfQuestions--)
     .then(api.reduceNumOfQuestions())
     .then(quizApi.getOneQuiz(store.quizData._id)
-      .then(res => quizUi.editQuizAfterDeleteQuestion(res)))
+      .then(res => quizUi.editQuizAfterUpdateQuestions(res)))
     .catch(console.error)
 }
 
