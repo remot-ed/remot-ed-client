@@ -45,6 +45,10 @@ const deleteClassroomSuccess = () => {
   $('.TeacherDash').show()
 }
 
+const onAddStudentSuccess = () => {
+  $('form').trigger('reset')
+}
+
 module.exports = {
   onGetClassroomSuccess,
   onGetClassesSuccess,
@@ -52,5 +56,6 @@ module.exports = {
   onShowCreateClassSuccess,
   onCreateClassSuccess,
   onCreateClassFail,
-  deleteClassroomSuccess
+  deleteClassroomSuccess,
+  onAddStudentSuccess
 }
