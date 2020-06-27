@@ -49,12 +49,12 @@ const onAddStudent = event => {
 
   /// if FIND email/name Priorety: last
   // if api.getStudentId
-  console.log('the form data is' + formData)
   api.getStudentId(formData)
-    .then(res => console.log('The res is', res))
-    .then(res => store.studentArray.push(res.user))
+    .then(res => console.log('the res is ', res))
+    .then(res => store.studentArray.push(res))
     .then(console.log('the studentArray is' + store.studentArray))
     // .then(res => store.studentArray.push(res.xlASSROOM))
+    .then(ui.onAddStudentSuccess())
     .catch(console.log('you tried!'))
 
   /// selected name _ID saved to store
