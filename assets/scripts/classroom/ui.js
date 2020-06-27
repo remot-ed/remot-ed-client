@@ -1,6 +1,8 @@
 'use strict'
 
 const store = require('../store')
+const events = require('./events')
+
 const showClassroomsTemplate = require('../templates/classrooms/class-listing.handlebars')
 const showCreateClassTemplate = require('../templates/classrooms/class-create.handlebars')
 const showClassTemplate = require('../templates/classrooms/classroom-show.handlebars')
@@ -11,6 +13,10 @@ const onGetClassesSuccess = (data) => {
   $('#classroom_table').show()
 }
 
+const onGetClassesFailure = () => {
+  console.log('classes not got')
+}
+
 const onShowCreateClassSuccess = () => {
   const showCreateClassHtml = showCreateClassTemplate()
   $('.create-class-button').hide()
@@ -18,19 +24,15 @@ const onShowCreateClassSuccess = () => {
   $('.create-class').html(showCreateClassHtml)
 }
 
-const onGetClassesFail = () => {
-  $('#classroom_table').html('Cannot Find Any Classes')
-}
-
 const onCreateClassSuccess = () => {
-  console.log('u did it')
 }
 
 const onGetClassroomSuccess = (data) => {
-  const showClassroomHtml = showClassTemplate({ quiz: data.classroom })
+  const showClassroomHtml = showClassTemplate({ classroom: data.classroom })
   store.classroomData = data
-  $('#single-quiz-listing').html(showClassroomHtml)
-  $('#single-quiz-listing').show()
+  $('#single-class-listing').html(showClassroomHtml)
+  $('#single-class-listing').show()
+  $('#classroom_table').html()
   $('.TeacherDash').hide()
 }
 
@@ -38,11 +40,17 @@ const onCreateClassFail = () => {
   console.log('somthings wrong!')
 }
 
+const deleteClassroomSuccess = () => {
+  $('#single-class-listing').hide()
+  $('.TeacherDash').show()
+}
+
 module.exports = {
   onGetClassroomSuccess,
   onGetClassesSuccess,
-  onGetClassesFail,
+  onGetClassesFailure,
   onShowCreateClassSuccess,
   onCreateClassSuccess,
-  onCreateClassFail
+  onCreateClassFail,
+  deleteClassroomSuccess
 }
