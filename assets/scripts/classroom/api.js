@@ -53,9 +53,21 @@ const getClassroom = classId => {
   })
 }
 
+// delete specific dream
+const deleteClassroom = classId => {
+  return $.ajax({
+    url: config.apiUrl + '/classrooms/' + classId,
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 module.exports = {
   createClass,
   getClasses,
   getStudentId,
-  getClassroom
+  getClassroom,
+  deleteClassroom
 }
