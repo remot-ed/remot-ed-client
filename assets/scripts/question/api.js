@@ -57,7 +57,7 @@ const addQuestion = formData => {
 }
 
 const addQuestionToQuiz = () => {
-  console.log('store.quizData.questions: ', store.quizData.questions)
+  // console.log('store.questions: ', store.questions)
   return $.ajax({
     url: config.apiUrl + '/quizzes/' + store.quizData._id,
     method: 'PATCH',
@@ -66,8 +66,8 @@ const addQuestionToQuiz = () => {
     },
     data: {
       quiz: {
-        questions: store.quizData.questions,
-        numOfQuestions: store.quizData.numOfQuestions
+        questions: store.questions,
+        numOfQuestions: store.quizData.numOfQuestions + 1
       }
     }
   })

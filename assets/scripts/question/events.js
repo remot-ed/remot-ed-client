@@ -4,8 +4,8 @@ const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields')
-// const quizApi = require('../quiz/api')
-// const quizEvents = require('../quiz/events')
+const quizApi = require('../quiz/api')
+const quizUi = require('../quiz/ui')
 
 // let questionNumber = 1
 //
@@ -49,7 +49,7 @@ const onEditQuestion = event => {
   event.preventDefault()
 
   const questionId = $(event.target).data('id')
-  console.log('questionId: ', questionId)
+  // console.log('questionId: ', questionId)
 
   const form = event.target
   const formData = getFormFields(form)
@@ -71,18 +71,29 @@ const onShowAddQuestion = event => {
   ui.onShowAddQuestionSuccess()
 }
 
+const reAddQuestionIds = () => {
+  const quiz = store.quizData.questions
+
+  quiz.forEach(function (arrayItem) {
+    store.questions.push(arrayItem._id)
+  })
+}
+
 const onAddQuestion = event => {
   event.preventDefault()
 
   const form = event.target
   const formData = getFormFields(form)
 
+  reAddQuestionIds()
+
   api.addQuestion(formData)
     .then(res => api.getOneQuestion(res.question._id)
-      .then(res => store.quizData.questions.push(res.question)))
-    .then(store.quizData.numOfQuestions++)
-    .then(api.addQuestionToQuiz()
+      .then(res => store.questions.push(res.question._id)))
+    .then(res => api.addQuestionToQuiz()
       .then(console.log))
+    .then(res => quizApi.getOneQuiz(store.quizData._id)
+      .then(res => quizUi.editQuizAfterUpdateQuestions(res)))
     .catch(console.error)
 }
 
@@ -92,8 +103,10 @@ const onDeleteQuestion = event => {
   const questionId = $(event.target).data('id')
 
   api.deleteQuestion(questionId)
-    .then(store.quizData.numOfQuestion--)
-    .then()
+    .then(store.quizData.numOfQuestions--)
+    .then(api.reduceNumOfQuestions())
+    .then(quizApi.getOneQuiz(store.quizData._id)
+      .then(res => quizUi.editQuizAfterUpdateQuestions(res)))
     .catch(console.error)
 }
 
