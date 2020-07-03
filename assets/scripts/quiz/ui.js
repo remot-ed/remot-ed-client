@@ -115,6 +115,10 @@ const onSingleQuizToTeacherDashSuccess = () => {
   $('.TeacherDash').show()
 }
 
+const onEditQuizScheduleSuccess = () => {
+  $('form').trigger('reset')
+}
+
 module.exports = {
   onCreateQuizSuccess,
   onFinishQuizSuccess,
@@ -126,5 +130,6 @@ module.exports = {
   onGetOneQuizEditSuccess,
   onEditQuizSuccess,
   onFinishQuizEditSuccess,
-  editQuizAfterUpdateQuestions
+  editQuizAfterUpdateQuestions,
+  onEditQuizScheduleSuccess
 }
