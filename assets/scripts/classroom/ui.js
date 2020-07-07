@@ -34,6 +34,7 @@ const onGetClassroomSuccess = (data) => {
   $('#single-class-listing').show()
   $('#classroom_table').html()
   $('.TeacherDash').hide()
+  $('.switch-view').hide()
 }
 
 const onCreateClassFail = () => {
@@ -43,6 +44,7 @@ const onCreateClassFail = () => {
 const deleteClassroomSuccess = () => {
   $('#single-class-listing').hide()
   $('.TeacherDash').show()
+  $('.switch-view').show()
 }
 
 const onAddStudentSuccess = () => {

@@ -13,6 +13,7 @@ const showMe = (event) => {
 const onToggleView = event => {
   $('.StudentDash').toggle()
   $('.TeacherDash').toggle()
+  $('.teacher').toggle()
 }
 
 const addHandlers = event => {
