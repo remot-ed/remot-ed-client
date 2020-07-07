@@ -29,6 +29,7 @@ const onCreateQuizSuccess = () => {
   const showCreateQuestionHtml = showCreateQuestionTemplate()
   $('.create-quiz').hide()
   $('.TeacherDash').hide()
+  $('.switch-view').hide()
   $('.create-question').show()
   $('.create-question').html(showCreateQuestionHtml)
   // show create question class
@@ -47,6 +48,7 @@ const onGetOneQuizSuccess = (data) => {
   $('#single-quiz-listing').html(showQuizHtml)
   $('#single-quiz-listing').show()
   $('.TeacherDash').hide()
+  $('.switch-view').hide()
 }
 const onGetOneQuizEditSuccess = (data) => {
   const showQuizEditHtml = showQuizEditTemplate({ quiz: data.quiz })
@@ -54,6 +56,7 @@ const onGetOneQuizEditSuccess = (data) => {
   $('#single-quiz-listing').html(showQuizEditHtml)
   $('#single-quiz-listing').show()
   $('.TeacherDash').hide()
+  $('.switch-view').hide()
 }
 
 const onEditQuizSuccess = (data) => {
@@ -88,6 +91,7 @@ const onFinishQuizSuccess = () => {
   $('.create-question').hide()
   $('.create-quiz-button').show()
   $('.TeacherDash').show()
+  $('.switch-view').show()
 }
 
 const onFinishQuizEditSuccess = () => {
@@ -98,6 +102,7 @@ const onFinishQuizEditSuccess = () => {
     .then(onGetAllQuizzesSuccess)
     .catch(console.error)
   $('.TeacherDash').show()
+  $('.switch-view').show()
 }
 
 const onShowScheduleClassroomsSuccess = (data) => {
@@ -113,6 +118,7 @@ const onShowScheduleClassroomsSuccess = (data) => {
 const onSingleQuizToTeacherDashSuccess = () => {
   $('#single-quiz-listing').hide()
   $('.TeacherDash').show()
+  $('.switch-view').show()
 }
 
 const onEditQuizScheduleSuccess = () => {
