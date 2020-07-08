@@ -10,8 +10,15 @@ const showMe = (event) => {
   console.log(store.classroom)
 }
 
+const onToggleView = event => {
+  $('.StudentDash').toggle()
+  $('.TeacherDash').toggle()
+  $('.teacher').toggle()
+}
+
 const addHandlers = event => {
   $('#show_me_plz').on('click', showMe)
+  $('.switch-view').on('click', onToggleView)
 }
 
 module.exports = {

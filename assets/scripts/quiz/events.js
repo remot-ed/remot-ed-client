@@ -89,7 +89,7 @@ const onEditQuizSchedule = event => {
   // as part of this API call, when editQuiz is successful, we want to call
   // getOneQuiz, and store the response in store.quizData
   api.editQuiz(quizId, formData)
-    .then(console.log)
+    .then(ui.onEditQuizScheduleSuccess)
     .catch(console.error)
 }
 
