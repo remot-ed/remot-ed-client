@@ -46,11 +46,18 @@ const onSignOut = event => {
     .catch(ui.onSignOutFailure)
 }
 
+const onShowChangePassword = event => {
+  event.preventDefault()
+
+  $('.after-settings').toggle()
+}
+
 const addHandlers = event => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
+  $('#settings').on('click', onShowChangePassword)
 }
 
 module.exports = {
