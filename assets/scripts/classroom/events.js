@@ -50,12 +50,14 @@ const onAddStudent = event => {
   /// if FIND email/name Priorety: last
   // if api.getStudentId
   api.getStudentId(formData)
-    .then(res => console.log('the res is ', res))
-    .then(res => store.studentArray.push(res))
-    .then(console.log('the studentArray is' + store.studentArray))
+    // turn the res into just the _ID
+    .then(res => store.studentArray.push(res.user._id))
+    .then(res => console.log('student array is', store.studentArray))
+    // .then(res => fixArray(store.studentArray))
+    .then(res => console.log('the res post fix is ', res))
     // .then(res => store.studentArray.push(res.xlASSROOM))
     .then(ui.onAddStudentSuccess())
-    .catch(console.log('you tried!'))
+    .catch(console.error)
 
   /// selected name _ID saved to store
 
@@ -77,6 +79,10 @@ const onDeleteClassroom = (event) => {
     })
     .then(ui.deleteClassroomSuccess)
     .catch(ui.deleteClassroomFail)
+}
+
+const toggleStudent = (event) => {
+
 }
 
 // const quizId = $(event.target).data('id')
@@ -110,7 +116,8 @@ const addHandlers = event => {
   $('.create-class').on('submit', '#add-student-form', onAddStudent)
   $('.create-class').on('submit', '#create-class-form', onCreateNewClass)
   $('#classroom_table').on('click', '.get-classroom', onGetClassroom)
-  $('#single-class-listing').on('click', '.delete', onDeleteClassroom) // delete dream
+  $('#single-class-listing').on('click', '.delete', onDeleteClassroom)
+  $('#student-dash-toggle').on('click', toggleStudent)
 }
 
 module.exports = {

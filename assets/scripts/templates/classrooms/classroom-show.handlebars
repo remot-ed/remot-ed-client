@@ -5,16 +5,21 @@
       <thead>
         <tr>
           <th class="th th-title">"Name"</th>
-          <th class="th"></th>
-          <th class="th"></th>
+          <th class="th">email</th>
+          <th class="th">placeholder</th>
         </tr>
       </thead>
       <tbody>
     {{#each classroom.students as |student|}}
         <tr>
-          <td class="td-title col-6 single-question-link" data-id="{{student._id}}" >{{student._id}}</td>
+          <td class="td-title col-6 single-question-link" data-id="{{student._id}}"> {{student._id}} </td>
+          <td class="td-title col-6 single-question-link" data-id="{{student._id}}"> {{student.email}} </td>
+          <td class="td-title col-6 single-question-link" data-id="{{student._id}}"> {{student._id}} </td>
         </tr>
     {{/each}}
+    </tbody>
+  </table>
+
     <button class="btn btn-secondary quiz-to-teacher-dash">Back to Teacher Dash</button>
     <button data-id="{{classroom._id}}" class="btn btn-info edit"> Edit </button>
     <button data-id="{{classroom._id}}" class="btn btn-danger delete"> DELETE </button>
