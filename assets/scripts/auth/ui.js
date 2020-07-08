@@ -35,6 +35,7 @@ const onSignInSuccess = responseData => {
   onSuccess('You successfully signed in.')
   $('.before-auth').hide()
   $('.after-auth').show()
+  $('.StudentDash').hide()
   $(classroom.getClasses)
   $(quiz.onGetAllQuizzes)
 }

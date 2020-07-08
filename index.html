@@ -6,6 +6,7 @@
 
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
@@ -13,8 +14,10 @@
     </head>
     <body>
 
-      <header> Remot.ed </header>
-      <div class="container">
+      <header>
+        <h3>Remot.ed</h3>
+      </header>
+      <div class="container-fluid">
       <!-- Global Landing Page -->
       <!-- New User? Click Here. -->
       <!-- Existing User? Click Here. -->
@@ -53,17 +56,15 @@
       <!-- Teacher Dash : instead of After-Auth detect if T or S and show proper dash-->
       <!-- if this.user.role === Teacher, -->
 
-<div class='after-auth TeacherDash container'>
+<button class="btn btn-primary switch-view after-auth">Switch View</button>
+
+<div class='after-auth TeacherDash'>
   <div class="row">
-    <div class="col-6 box container">
-      <div class="row">
+    <div class="col-6 box">
         <div id="classroom_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar"></div>
-      </div>
     </div>
-    <div class="col-6 box container">
-      <div class="row">
+    <div class="col-6 box">
         <div id="quiz_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar quiz-listing"></div>
-      </div>
     </div>
   </div>
         <!-- Classroom CRUD -->
@@ -116,7 +117,7 @@
           <! <button type="submit" class="btn btn-dark next-question">Next Question</button>
           <button type="submit" class="btn btn-dark finish-quiz" disabled>Finish</button>
         </section> -->
-        <div class="after-auth">
+        <div class="after-auth teacher">
           <div class="create-question-view">
             <div class="question-count"></div>
             <br>
@@ -131,6 +132,9 @@
 
 
       <!-- Student Dash -->
+      <div class="StudentDash after-auth container">
+        <p>Welcome to the student dash!</p>
+      </div>
 
         <!-- Quizzes -->
 
@@ -141,10 +145,11 @@
       <!-- Student Account Settings -->
       <div class="settingsView">
       <form id="change-password" class="after-settings">
+        <h4>Change Password</h4>
         <input type="password" name="passwords[old]" placeholder="Old Password" required>
-        <br>
+        <br />
         <input type="password" name="passwords[new]" placeholder="New Password" required>
-        <br>
+        <br />
         <button class="btn btn-info">Change Password</button>
       </form>
       <button class="btn btn-danger after-auth" id="sign-out">Sign Out</button>
