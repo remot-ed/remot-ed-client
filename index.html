@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Remot.ed</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+<head>
+  <title>Remot.ed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito" rel="stylesheet">
 
-      <header>
-        <h3>Remot.ed</h3>
-      </header>
-      <div class="container-fluid">
-      <!-- Global Landing Page -->
-      <!-- New User? Click Here. -->
-      <!-- Existing User? Click Here. -->
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
 
-      <!-- Sign Up -->
-      <div class="before-auth h-90 row align-items-center">
+<body>
+  <header>
+    <h3>Remot.ed</h3>
+  </header>
+  <div class="container-fluid">
+    <!-- Global Landing Page -->
+    <!-- New User? Click Here. -->
+    <!-- Existing User? Click Here. -->
+    <!-- Sign Up -->
+    <div class="before-auth h-90 row align-items-center">
       <form id="sign-up" class="col-6">
         <div class="form-group">
           <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
@@ -32,14 +32,13 @@
           <br>
           <input type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Password confirmation" required>
           <!-- radio button for student vs. teacher roles -->
-          <input type="radio" id="teacher" name="role" value="teacher">
+          <!-- <input type="radio" id="teacher" name="role" value="teacher">
           <label for="teacher">Teacher</label><br>
           <input type="radio" id="student" name="role" value="student">
-          <label for="student">Student</label><br>
+          <label for="student">Student</label><br> -->
           <button type="submit" class="btn btn-dark">Sign Up</button>
         </div>
       </form>
-
 
       <!-- Sign In -->
       <form id="sign-in" class="col-6">
@@ -52,98 +51,62 @@
       </form>
 
       <div id="user-message"></div>
-</div>
-      <!-- Teacher Dash : instead of After-Auth detect if T or S and show proper dash-->
-      <!-- if this.user.role === Teacher, -->
-
-<button class="btn btn-primary switch-view after-auth">Switch View</button>
-
-<div class='after-auth TeacherDash'>
-  <div class="row">
-    <div class="col-6 box">
-        <div id="classroom_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar"></div>
     </div>
-    <div class="col-6 box">
-        <div id="quiz_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar quiz-listing"></div>
-    </div>
-  </div>
-        <!-- Classroom CRUD -->
-  <div class="row">
-    <div class="col-6 box">
-      <button class="btn btn-info after-auth create-class-button">Create A Classroom</button>
-      <div class="after-auth create-class"></div>
-    </div>
-    <!-- Quiz CRUD -->
-    <div class="col-6 box">
-      <button class="btn btn-info after-auth create-quiz-button">Create A Quiz</button>
-      <div class="after-auth create-quiz"></div>
-    </div>
-  </div>
-    <button id="settings" class="btn btn-info">Settings</button>
-</div>
+    <!-- Teacher Dash : instead of After-Auth detect if T or S and show proper dash-->
+    <!-- if this.user.role === Teacher, -->
 
-        <!-- Quiz CRUD -->
-        <!-- <section class="after-auth create-quiz">
-          <form id="create-quiz">
-            <input type="text" class="form-control inputs" name="quiz[title]" placeholder="Quiz Title" required>
-            <input type="number" class="form-control inputs" name="quiz[numOfQuestions]" placeholder="Number of Questions" required>
-            <input type="datetime-local" class="form-control inputs" name="quiz[startTime]" required>
-            <p>Make quiz active?
-            <input type="radio" id="true" name="quiz[isActive]" value="true">
-            <label for="true">Yes</label>
-            <input type="radio" id="false" name="quiz[isActive]" value="false">
-            <label for="false">No</label>
-            <br>
-            <input type="text" class="form-control inputs" name=quiz[isActive] required>
-            <button type="submit" class="btn btn-dark">Create Quiz</button>
-          </form>
-        </section> -->
+    <button class="btn btn-primary switch-view after-auth">Switch View</button>
 
-        <!-- Create Question -->
-        <!--<section class="after-auth create-question">
-          <form id="create-question">
-            <div class="form-group">
-              <input type="text" class="form-control inputs" name="question[title]" placeholder="Question Text" required>
-              <br>
-              <input type="text" class="form-control inputs" name="question[correctAnswer]" placeholder="Correct Answer" required>
-              <input type="text" class="form-control inputs" name="question[answerTwo]" placeholder="Answer Two" required>
-              <input type="text" class="form-control inputs" name="question[answerThree]" placeholder="Answer Three" required>
-              <input type="text" class="form-control inputs" name="question[answerFour]" placeholder="Answer Four" required>
-              <br>
-              <! <input type="text" class="form-control inputs" name="question[quizOwner]" placeholder="Quiz ID" required>
-              <button type="submit" class="btn btn-dark next-question">Next Question</button>
-            </div>
-          </form>
-          <! <button type="submit" class="btn btn-dark next-question">Next Question</button>
-          <button type="submit" class="btn btn-dark finish-quiz" disabled>Finish</button>
-        </section> -->
-        <div class="after-auth teacher">
-          <div class="create-question-view">
-            <div class="question-count"></div>
-            <br>
-            <div class="create-question"></div>
-            <br>
-          </div>
-          <div id="single-class-listing"></div>
-          <div id="single-quiz-listing"></div>
-          <div id="edit-single-question"></div>
+    <div class='after-auth TeacherDash'>
+      <div class="row">
+        <div class="col-6 box">
+          <div id="classroom_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar"></div>
         </div>
-
-
-
-      <!-- Student Dash -->
-      <div class="StudentDash after-auth container">
-        <p>Welcome to the student dash!</p>
+        <div class="col-6 box">
+          <div id="quiz_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar quiz-listing"></div>
+        </div>
       </div>
+      <!-- Classroom CRUD -->
+      <div class="row">
+        <div class="col-6 box">
+          <button class="btn btn-info after-auth create-class-button">Create A Classroom</button>
+          <div class="after-auth create-class"></div>
+        </div>
+        <!-- Quiz CRUD -->
+        <div class="col-6 box">
+          <button class="btn btn-info after-auth create-quiz-button">Create A Quiz</button>
+          <div class="after-auth create-quiz"></div>
+        </div>
+      </div>
+      <button id="settings" class="btn btn-info">Settings</button>
+    </div>
 
-        <!-- Quizzes -->
+    <!-- divs for quiz/question handlebars fiels -->
+    <div class="after-auth teacher">
+      <div class="create-question-view">
+        <div class="question-count"></div>
+        <br>
+        <div class="create-question"></div>
+        <br>
+      </div>
+      <div id="single-class-listing"></div>
+      <div id="single-quiz-listing"></div>
+      <div id="edit-single-question"></div>
+    </div>
 
-      <!-- Classroom View-->
+    <!-- Student Dash -->
+    <div class="StudentDash after-auth container">
+      <p>Welcome to the student dashboard! ---work in progress---</p>
+    </div>
 
-      <!-- Teacher Account Settings -->
+    <!-- Quizzes -->
 
-      <!-- Student Account Settings -->
-      <div class="settingsView">
+    <!-- Classroom View-->
+
+    <!-- Teacher Account Settings -->
+
+    <!-- Student Account Settings -->
+    <div class="settingsView">
       <form id="change-password" class="after-settings">
         <h4>Change Password</h4>
         <input type="password" name="passwords[old]" placeholder="Old Password" required>
@@ -153,8 +116,8 @@
         <button class="btn btn-info">Change Password</button>
       </form>
       <button class="btn btn-danger after-auth" id="sign-out">Sign Out</button>
-
     </div>
   </div>
-    </body>
+</body>
+
 </html>
