@@ -2,6 +2,8 @@
 
 $green: rgba(0, 153, 51, .9);
 $header-font: #f2f2f2;
+$primary-btn-color: #f2f2f2;
+$primary-btn-bkgd-color: #595959;
 
 body {
   display: grid;
@@ -15,6 +17,24 @@ body {
   min-height: 40vh;
   max-width: 400px;
   margin: 15px;
+}
+
+.primary-btn {
+  background-color: $primary-btn-bkgd-color;
+  border: 2px solid $primary-btn-bkgd-color;
+  border-radius: 10px;
+  color: $primary-btn-color;
+}
+
+.primary-btn:hover, {
+  background-color: $primary-btn-color;
+  border: 2px solid $primary-btn-bkgd-color;
+  border-radius: 10px;
+  color: $primary-btn-bkgd-color;
+}
+
+.primary-btn:focus {
+  box-shadow: none;
 }
 
 header {
