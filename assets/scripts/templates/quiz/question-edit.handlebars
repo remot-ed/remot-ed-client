@@ -2,7 +2,7 @@
   <p>{{quiz.title}}</p>
 
 {{#each quiz.questions as |question| }}
-<p>Question #{{question.questionNumber}}.</p>
+<p>Question #{{question.questionNumber}}</p>
   <form id="edit-question" data-id="{{question._id}}">
     <div class="form-group">
       <input type="text" class="form-control inputs" name="question[title]" placeholder="{{question.title}}">

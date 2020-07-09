@@ -71,7 +71,9 @@ header {
   color: $primary-btn-bkgd-color;
 }
 
-.single-quiz-link:hover {
+.single-quiz-link:hover,
+.edit-quiz-link:hover {
+  cursor: pointer;
   text-decoration: underline;
 }
 
@@ -81,4 +83,8 @@ header {
 
 .table-wrapper-scroll-y {
   display: block;
+}
+
+#sign-out {
+  margin-top: 30px;
 }
