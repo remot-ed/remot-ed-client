@@ -47,6 +47,10 @@ header {
   opacity: .5;
 }
 
+.classroom-list-schedule {
+  opacity: .75;
+}
+
 .container-fluid {
   margin-bottom: 15px;
 }
@@ -79,10 +83,45 @@ header {
   color: $primary-btn-bkgd-color;
 }
 
+.quiz-date-time {
+  width: 250px;
+}
+
+.quiz-to-teacher-dash {
+  margin: 10px;
+}
+
 .single-quiz-link:hover,
 .edit-quiz-link:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.schedule-quiz-bar {
+  border: 1px solid #404040;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.schedule-quiz-item {
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.sq {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+// .schedule-quiz-bar > .schedule-quiz-item {
+//   padding: 30px;
+// }
+
+.single-quiz > h4 {
+  text-align: center;
 }
 
 .StudentDash {
