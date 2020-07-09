@@ -36,7 +36,8 @@
           <label for="teacher">Teacher</label><br>
           <input type="radio" id="student" name="role" value="student">
           <label for="student">Student</label><br> -->
-          <button type="submit" class="btn btn-dark">Sign Up</button>
+          <br>
+          <button type="submit" class="btn primary-btn">Sign Up</button>
         </div>
       </form>
 
@@ -46,7 +47,8 @@
           <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
           <br>
           <input type="password" class="form-control inputs" name="credentials[password]" placeholder="Password" required>
-          <button type="submit" class="btn btn-dark">Sign In</button>
+          <br>
+          <button type="submit" class="btn primary-btn">Sign In</button>
         </div>
       </form>
 
@@ -55,7 +57,7 @@
     <!-- Teacher Dash : instead of After-Auth detect if T or S and show proper dash-->
     <!-- if this.user.role === Teacher, -->
 
-    <button class="btn btn-primary switch-view after-auth">Switch View</button>
+    <button class="btn primary-btn switch-view after-auth">Switch View</button>
 
     <div class='after-auth TeacherDash'>
       <div class="row">
@@ -69,16 +71,16 @@
       <!-- Classroom CRUD -->
       <div class="row">
         <div class="col-6 box">
-          <button class="btn btn-info after-auth create-class-button">Create A Classroom</button>
+          <button class="btn primary-btn after-auth create-class-button">Create A Classroom</button>
           <div class="after-auth create-class"></div>
         </div>
         <!-- Quiz CRUD -->
         <div class="col-6 box">
-          <button class="btn btn-info after-auth create-quiz-button">Create A Quiz</button>
+          <button class="btn primary-btn after-auth create-quiz-button">Create A Quiz</button>
           <div class="after-auth create-quiz"></div>
         </div>
       </div>
-      <button id="settings" class="btn btn-info">Settings</button>
+      <button id="settings" class="btn primary-btn">Settings</button>
     </div>
 
     <!-- divs for quiz/question handlebars fiels -->
@@ -113,7 +115,7 @@
         <br />
         <input type="password" name="passwords[new]" placeholder="New Password" required>
         <br />
-        <button class="btn btn-info">Change Password</button>
+        <button class="btn primary-btn">Change Password</button>
       </form>
       <button class="btn btn-danger after-auth" id="sign-out">Sign Out</button>
     </div>
