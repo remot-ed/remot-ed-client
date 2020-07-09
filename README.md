@@ -1,4 +1,4 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+<!-- [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
 # browser-template
 
@@ -126,4 +126,43 @@ Developers should run these often!
 
 1. All content is licensed under a CC­BY­NC­SA 4.0 license.
 1. All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+    alternative licensing, please contact legal@ga.co. -->
+
+##### *Remot.ed is a work in progress*
+
+# Remot.ed
+Remot.ed is an application designed with the current climate in mind. As learning has become virtual, we designed to create an
+application for teachers to take their classrooms virtual. Teachers can create virtual classrooms, adding their students to
+each classroom. They can also create multiple-choice quizzes, and schedule them in individual classrooms. Teachers will have
+additional capabilities, such as adding new questions to an existing quiz, updating/deleting quizzes/questions on quizzes, and classrooms.
+
+Students will be able to take their quizzes when the time they are scheduled for arrives, and teachers will be able to see the grades for each student on each quiz.
+
+[Try Remot.ed Out!](https://remot-ed.github.io/remot-ed-client/)
+
+#### Links
+[Back End Repo](https://github.com/remot-ed/remot-ed-backend)
+
+[Deployed API](https://blooming-gorge-31188.herokuapp.com)
+
+[Wireframes](https://xd.adobe.com/view/cada4ca8-c39d-425a-7444-cc7632faea8f-bceb/grid)
+
+#### Technologies Used
+
+1. Javascript
+2. HTML
+3. CSS
+4. Bootstrap
+5. jQuery
+6. Handlebars
+7. Node.js
+8. Express.js
+9. MongoDB
+10. Mongoose
+
+
+<!-- ### The Process and Problem Solving
+
+We split into teams of two, and would tackle the tasks for the day. This could be as technically complex as building the backend in mongoDB or as creative as styling modals. Depending on the scope of the task, we would often peer program, with one person typing code on their laptop while the other would find and scan useful resources like documentation. When hit with a particularly hard problem, we were able to talk it out together and individually research and test different solutions.
+
+Some of the more challenging aspects were writing the structure needed to get a unique users surveys and connecting user questions to responses. Using regularly planned scrums (usually one before moring, one after lunch) we were able to see where we were at and readjust our goals accordingly. While we faced regular challenges, we had a diverse knowlage of skills that allowed us to share our stregnths. -->
