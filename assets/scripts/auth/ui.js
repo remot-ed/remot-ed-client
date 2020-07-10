@@ -55,6 +55,10 @@ const onChangePasswordFailure = () => {
 const onSignOutSuccess = () => {
   onSuccess('You successfully signed out.')
   store.user = {}
+  store.quizData = []
+  store.questions = []
+  store.classroomData = []
+  store.studentArray = []
   $('.before-auth').show()
   $('.after-auth').hide()
 }
