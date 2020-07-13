@@ -16,6 +16,12 @@ const onShowCreateQuiz = event => {
   ui.onShowCreateQuizSuccess()
 }
 
+const onCreateQuizBack = event => {
+  event.preventDefault()
+
+  ui.onCreateQuizBackSuccess()
+}
+
 const onCreateQuiz = event => {
   event.preventDefault()
   const form = event.target
@@ -180,6 +186,7 @@ const addHandlers = event => {
   $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
   $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
   $('.create-quiz-button').on('click', onShowCreateQuiz)
+  $('.create-quiz').on('click', '.back-to-td', onCreateQuizBack)
 
   // need to edit once handlebars is integrated
   $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
