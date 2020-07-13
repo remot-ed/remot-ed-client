@@ -22,6 +22,11 @@ const onShowCreateQuizSuccess = (data) => {
   // $('.question-count').html('Question ' + questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
 }
 
+const onCreateQuizBackSuccess = () => {
+  $('.create-quiz-button').show()
+  $('.create-quiz').hide()
+}
+
 const onCreateQuizSuccess = () => {
   $('form').trigger('reset')
   store.questionNumber = 1
@@ -127,6 +132,7 @@ const onEditQuizScheduleSuccess = () => {
 
 module.exports = {
   onCreateQuizSuccess,
+  onCreateQuizBackSuccess,
   onFinishQuizSuccess,
   onShowCreateQuizSuccess,
   onGetAllQuizzesSuccess,
