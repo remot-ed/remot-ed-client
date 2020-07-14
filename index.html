@@ -16,7 +16,26 @@
 
 <body>
   <header>
-    <h3>Remot.ed</h3>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <h4 class="align-self-center">Remot.ed</h4>
+        <div class="navbar after-auth">
+          <section class="after-auth TeacherDash">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle settings-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Settings
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item show-change-password">Change Password</a>
+                  <a class="dropdown-item" id="sign-out">Sign Out</a>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </nav>
   </header>
   <div class="container-fluid">
     <!-- Global Landing Page -->
@@ -80,7 +99,6 @@
           <div class="after-auth create-quiz mt-3"></div>
         </div>
       </div>
-      <button id="settings" class="btn primary-btn">Settings</button>
     </div>
 
     <!-- divs for quiz/question handlebars fiels -->
@@ -108,8 +126,8 @@
     <!-- Teacher Account Settings -->
 
     <!-- Student Account Settings -->
-    <div class="settingsView">
-      <form id="change-password" class="after-settings form-group">
+    <div class="col-8 change-password-view mx-auto">
+      <form id="change-password" class="form-group">
         <h4>Change Password</h4>
         <br />
         <input type="password" name="passwords[old]" placeholder="Old Password" required>
@@ -120,7 +138,6 @@
         <br />
         <button class="btn primary-btn">Change Password</button>
       </form>
-      <button class="btn btn-danger after-auth" id="sign-out">Sign Out</button>
     </div>
   </div>
 </body>

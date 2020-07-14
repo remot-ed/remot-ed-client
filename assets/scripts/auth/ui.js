@@ -46,6 +46,9 @@ const onSignInFailure = () => {
 
 const onChangePasswordSuccess = () => {
   onSuccess('You successfully changed your password.')
+  $('.TeacherDash').show()
+  $('.switch-view').show()
+  $('.change-password-view').hide()
 }
 
 const onChangePasswordFailure = () => {
@@ -67,6 +70,12 @@ const onSignOutFailure = () => {
   onFailure('Uh oh... something went wrong! Try again.')
 }
 
+const onShowChangePasswordSuccess = () => {
+  $('.TeacherDash').hide()
+  $('.switch-view').hide()
+  $('.change-password-view').show()
+}
+
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
@@ -75,5 +84,6 @@ module.exports = {
   onChangePasswordSuccess,
   onChangePasswordFailure,
   onSignOutSuccess,
-  onSignOutFailure
+  onSignOutFailure,
+  onShowChangePasswordSuccess
 }
