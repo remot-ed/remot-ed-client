@@ -22,11 +22,11 @@ nav {
   // text-align: center;
 }
 
-.after-auth {
-  display: none;
+.auth-form {
+  text-align: center;
 }
 
-.after-settings {
+.after-auth {
   display: none;
 }
 
@@ -60,9 +60,9 @@ nav {
   margin-bottom: 15px;
 }
 
-// .form-group {
-//   max-width: 50vw;
-// }
+.form-control {
+  width: 300px;
+}
 
 .my-custom-scrollbar {
   max-height: 40vh;
@@ -96,12 +96,6 @@ nav {
   margin: 10px;
 }
 
-.single-quiz-link:hover,
-.edit-quiz-link:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 .schedule-quiz-bar {
   border: 1px solid #404040;
   border-radius: 20px;
@@ -125,17 +119,20 @@ nav {
   opacity: .75;
 }
 
-.sq {
-  margin-left: 15px;
-  margin-right: 15px;
+.single-quiz-link:hover,
+.edit-quiz-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-// .schedule-quiz-bar > .schedule-quiz-item {
-//   padding: 30px;
-// }
 
 .single-quiz > h4 {
   text-align: center;
+}
+
+.sq {
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .StudentDash {

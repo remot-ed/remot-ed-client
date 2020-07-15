@@ -46,12 +46,6 @@ const onSignOut = event => {
     .catch(ui.onSignOutFailure)
 }
 
-// const onShowChangePassword = event => {
-//   event.preventDefault()
-//
-//   $('.after-settings').toggle()
-// }
-
 const onShowChangePassword = event => {
   event.preventDefault()
 
