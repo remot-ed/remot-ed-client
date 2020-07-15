@@ -58,7 +58,6 @@ const addHandlers = event => {
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
   $('.show-change-password').on('click', onShowChangePassword)
-  // $('#settings').on('click', onShowChangePassword)
 }
 
 module.exports = {
