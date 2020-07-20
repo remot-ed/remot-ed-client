@@ -39,10 +39,23 @@ const onFinishQuiz = event => {
   event.preventDefault()
   // console.log('quizData: ', store.quizData)
   api.finishQuiz()
-    .then(ui.onFinishQuizSuccess)
-    .then(onGetAllQuizzes(event))
+    .then(api.getOneQuiz(store.quizData[0]._id)
+      .then(ui.onFinishQuizSuccess))
+    // .then(ui.onFinishQuizSuccess)
+    // .then(onGetAllQuizzes(event))
     .catch(console.error)
 }
+
+// Old finish quiz event:
+
+// const onFinishQuiz = event => {
+//   event.preventDefault()
+//   // console.log('quizData: ', store.quizData)
+//   api.finishQuiz()
+//     .then(ui.onFinishQuizSuccess)
+//     .then(onGetAllQuizzes(event))
+//     .catch(console.error)
+// }
 
 const onFinishQuizEdit = event => {
   event.preventDefault()
@@ -159,6 +172,12 @@ const onSingleQuizToTeacherDash = () => {
   ui.onSingleQuizToTeacherDashSuccess()
 }
 
+const onFinishQuizToTeacherDash = () => {
+  event.preventDefault()
+
+  ui.onFinishQuizToTeacherDashSuccess()
+}
+
 const onShowScheduleClassrooms = () => {
   event.preventDefault()
 
@@ -168,6 +187,7 @@ const onShowScheduleClassrooms = () => {
 
 const onScheduleQuizToClassroom = () => {
   event.preventDefault()
+  console.log('quizdata: ', store.quizData)
   const classId = $(event.target).data('id')
   const quizId = store.quizData.quiz._id
   // console.log('class ', classId)
@@ -198,9 +218,13 @@ const addHandlers = event => {
   $('.quiz-listing').on('click', '.single-quiz-link', onGetOneQuiz)
   $('.create-quiz-button').on('click', onShowCreateQuiz)
   $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
+  $('#finish-quiz-view').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
   $('#single-quiz-listing').on('click', '.classname-schedule', onScheduleQuizToClassroom)
+  $('#finish-quiz-view').on('click', '.classname-schedule', onScheduleQuizToClassroom)
   $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
+  $('#finish-quiz-view').on('click', '.finish-quiz-to-teacher-dash', onFinishQuizToTeacherDash)
   $('#single-quiz-listing').on('submit', '.schedule-quiz', onEditQuizSchedule)
+  $('#finish-quiz-view').on('submit', '.schedule-quiz', onEditQuizSchedule)
   $('#single-quiz-listing').on('submit', '#edit-quiz', onEditQuiz)
   $('#edit-single-question').on('click', '.finish-quiz-edits', onFinishQuizEdit)
 }
