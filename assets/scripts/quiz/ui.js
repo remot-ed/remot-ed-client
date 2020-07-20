@@ -9,6 +9,7 @@ const showQuizzesTemplate = require('../templates/quiz/quiz-td-index.handlebars'
 const showQuizTemplate = require('../templates/quiz/quiz-td-show.handlebars')
 const showQuizEditTemplate = require('../templates/quiz/quiz-td-edit.handlebars')
 const showEditQuestionTemplate = require('../templates/quiz/question-edit.handlebars')
+const showFinishQuizTemplate = require('../templates/quiz/finish-quiz-screen.handlebars')
 
 // let questionNumber = 1
 
@@ -90,14 +91,23 @@ const editQuizAfterUpdateQuestions = (data) => {
 // make next question inactive, and finish quiz active
 // }
 
-const onFinishQuizSuccess = () => {
-  store.quizData = []
-  store.questions = []
+const onFinishQuizSuccess = (data) => {
+  store.quizData = data
+  const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
   $('.create-question').hide()
-  $('.create-quiz-button').show()
-  $('.TeacherDash').show()
-  $('.switch-view').show()
+  $('#finish-quiz-view').html(showFinishQuizHtml)
 }
+
+// Old finish quiz succes ui:
+
+// const onFinishQuizSuccess = () => {
+//   store.quizData = []
+//   store.questions = []
+//   $('.create-question').hide()
+//   $('.create-quiz-button').show()
+//   $('.TeacherDash').show()
+//   $('.switch-view').show()
+// }
 
 const onFinishQuizEditSuccess = () => {
   store.quizData = []
@@ -126,6 +136,18 @@ const onSingleQuizToTeacherDashSuccess = () => {
   $('.switch-view').show()
 }
 
+const onFinishQuizToTeacherDashSuccess = () => {
+  store.quizData = []
+  store.questions = []
+  $('#finish-quiz-view').hide()
+  quizApi.getAllQuizzes()
+    .then(onGetAllQuizzesSuccess)
+    .catch(console.error)
+  $('.create-quiz-button').show()
+  $('.TeacherDash').show()
+  $('.switch-view').show()
+}
+
 const onEditQuizScheduleSuccess = () => {
   $('form').trigger('reset')
 }
@@ -143,5 +165,6 @@ module.exports = {
   onEditQuizSuccess,
   onFinishQuizEditSuccess,
   editQuizAfterUpdateQuestions,
-  onEditQuizScheduleSuccess
+  onEditQuizScheduleSuccess,
+  onFinishQuizToTeacherDashSuccess
 }
