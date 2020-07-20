@@ -187,7 +187,6 @@ const onShowScheduleClassrooms = () => {
 
 const onScheduleQuizToClassroom = () => {
   event.preventDefault()
-  console.log('quizdata: ', store.quizData)
   const classId = $(event.target).data('id')
   const quizId = store.quizData.quiz._id
   // console.log('class ', classId)
