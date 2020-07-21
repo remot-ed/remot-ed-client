@@ -5,6 +5,7 @@ const store = {
   studentArray: [],
   questions: [],
   quizData: [],
+  classData: null,
   classroomData: [],
   questionNumber: 1
 }

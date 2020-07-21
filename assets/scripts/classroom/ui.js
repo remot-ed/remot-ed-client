@@ -53,6 +53,14 @@ const onGetClassEditSuccess = (data) => {
   $('.switch-view').hide()
 }
 
+const onSubmitPatchSuccess = (data) => {
+  const showClassroomHtml = showClassTemplate({ classroom: data.classroom })
+  store.classroomData = data
+  $('#single-class-listing').html(showClassroomHtml)
+  $('#single-class-listing').show()
+  $('#classroom_table').html()
+}
+
 const deleteClassroomSuccess = () => {
   $('#single-class-listing').hide()
   $('.TeacherDash').show()
@@ -61,6 +69,9 @@ const deleteClassroomSuccess = () => {
 
 const onAddStudentSuccess = () => {
   $('form').trigger('reset')
+}
+
+const removeStudentSuccess = (target) => {
 }
 
 const onSingleClassToTeacherDashSuccess = () => {
@@ -79,5 +90,7 @@ module.exports = {
   deleteClassroomSuccess,
   onAddStudentSuccess,
   onSingleClassToTeacherDashSuccess,
-  onGetClassEditSuccess
+  onGetClassEditSuccess,
+  onSubmitPatchSuccess,
+  removeStudentSuccess
 }

@@ -46,43 +46,34 @@ const onGetClassroom = (event) => {
 
 // Update
 
-// UNDER CONSTRUCTION , Update a Class
+// Shows Class you are editing, to Update a Class
 const onShowEditClass = event => {
   event.preventDefault()
 
   const classId = $(event.target).data('id')
+  store.classData = classId
 
   api.getClassroom(classId)
     .then(ui.onGetClassEditSuccess)
     .catch(console.error)
 }
 
-const onEditQuiz = event => {
+// Submit Updates
+const onFinishClassEdit = event => {
   event.preventDefault()
+  console.log('save button clicks!')
+  // ui.onFinishQuizEditSuccess()
+  // event.preventDefault()
 
-  const quizId = store.quizData._id
+  const classId = store.classData
 
   const form = event.target
   const formData = getFormFields(form)
-  // as part of this API call, when editQuiz is successful, we want to call
-  // getOneQuiz, and store the response in store.quizData
-  api.editQuiz(quizId, formData)
-    .then(api.getOneQuiz(quizId)
-      .then(ui.onEditQuizSuccess))
-    .catch(console.error)
-}
 
-// Submit Updates
-const onFinishQuizEdit = event => {
-  event.preventDefault()
-  ui.onFinishQuizEditSuccess()
-  // event.preventDefault()
-  // console.log('quizData: ', store.quizData.quiz._id)
-  // console.log('store.questions: ', store.questions)
-  // api.updateQuestionsInQuiz()
-  //   .then(ui.onFinishQuizSuccess)
-  //   .then(onGetAllQuizzes(event))
-  //   .catch(console.error)
+  api.patchClass(classId, formData)
+    .then(api.getClassroom(store.classData))
+    // .then(ui.onSubmitPatchSuccess())
+    .catch(console.error)
 }
 
 // Delete
@@ -132,20 +123,33 @@ const onAddStudent = event => {
 
 const onRemoveOneStudent = event => {
   event.preventDefault()
-  console.log('click works!')
 
-  const student = event.target._id // form that was submited
+  const dataID = $(event.target).data('id') // form that was submited
+  const index = store.studentArray.indexOf(dataID.toString())
 
-  /// if FIND email/name Priorety: last
-  // if api.getStudentId
-  api.getStudentId(student)
-    // turn the res into just the _ID
-    .then(res => store.studentArray.pop(res.user._id))
-    .then(res => console.log('student array is', store.studentArray))
-    // .then(res => fixArray(store.studentArray))
-    // .then(res => store.studentArray.push(res.xlASSROOM))
-    // .then(ui.onAddStudentSuccess())
-    .catch(console.error)
+  if (index !== -1) {
+    store.studentArray.splice(index, 1)
+    $(event.target).css('background', 'red')
+    // change to indicate slated for removal
+  } else {
+    store.studentArray.push(dataID)
+    // change back to checkmark?
+    $(event.target).css('background', 'green')
+  }
+  console.log('student array is', store.studentArray)
+
+  // Dynamically Remove Row/Resource (for now turn red)
+  // ui.removeStudentSuccess(target)
+
+  // Code for dynamic form change to reflect store.studentArray
+  // api.getStudentId(student)
+  //   // turn the res into just the _ID
+  //   .then(res => store.studentArray.pop(res.user._id))
+  //   .then(res => console.log('student array is', store.studentArray))
+  //   // .then(res => fixArray(store.studentArray))
+  //   // .then(res => store.studentArray.push(res.xlASSROOM))
+  //   // .then(ui.onAddStudentSuccess())
+  //   .catch(console.error)
 }
 
 // Misc
@@ -170,14 +174,14 @@ const addHandlers = event => {
 
   // Update
   $('#single-class-listing').on('click', '.edit-class', onShowEditClass)
-  $('#single-quiz-listing').on('submit', '#edit-quiz', onEditQuiz)
-  $('#edit-single-question').on('click', '.finish-quiz-edits', onFinishQuizEdit)
+  $('#single-class-listing').on('submit', '#patch-class-form', onFinishClassEdit)
 
   // Delete
   $('#single-class-listing').on('click', '.delete', onDeleteClassroom)
 
   // Student Management
   $('.create-class').on('submit', '#add-student-form', onAddStudent)
+  $('#single-class-listing').on('submit', '#add-student-form', onAddStudent)
   $('#single-class-listing').on('click', '.btn-Remove-Student', onRemoveOneStudent)
 
   // misc
