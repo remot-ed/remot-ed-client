@@ -10,6 +10,8 @@ const getFormFields = require('../../../lib/get-form-fields')
 // create a function that checks if date is in the past or future
 // if in the future, throw an error message
 
+// Create
+
 const onShowCreateQuiz = event => {
   event.preventDefault()
 
@@ -38,17 +40,27 @@ const onFinishQuiz = event => {
     .catch(console.error)
 }
 
-const onFinishQuizEdit = event => {
+// Read
+
+const onGetOneQuiz = event => {
   event.preventDefault()
-  ui.onFinishQuizEditSuccess()
-  // event.preventDefault()
-  // console.log('quizData: ', store.quizData.quiz._id)
-  // console.log('store.questions: ', store.questions)
-  // api.updateQuestionsInQuiz()
-  //   .then(ui.onFinishQuizSuccess)
-  //   .then(onGetAllQuizzes(event))
-  //   .catch(console.error)
+
+  const quizId = $(event.target).data('id')
+  // console.log(quizId)
+
+  api.getOneQuiz(quizId)
+    .then(ui.onGetOneQuizSuccess)
+    .catch(console.error)
 }
+
+const onShowScheduleClassrooms = () => {
+  event.preventDefault()
+
+  api.getMyClassrooms()
+    .then(ui.onShowScheduleClassroomsSuccess)
+}
+
+// Update
 
 const onShowEditQuiz = event => {
   event.preventDefault()
@@ -76,6 +88,18 @@ const onEditQuiz = event => {
     .catch(console.error)
 }
 
+const onFinishQuizEdit = event => {
+  event.preventDefault()
+  ui.onFinishQuizEditSuccess()
+  // event.preventDefault()
+  // console.log('quizData: ', store.quizData.quiz._id)
+  // console.log('store.questions: ', store.questions)
+  // api.updateQuestionsInQuiz()
+  //   .then(ui.onFinishQuizSuccess)
+  //   .then(onGetAllQuizzes(event))
+  //   .catch(console.error)
+}
+
 // onEditQuizSuccess will have to lead directly into editQuestion
 const onEditQuizSchedule = event => {
   event.preventDefault()
@@ -92,6 +116,8 @@ const onEditQuizSchedule = event => {
     .then(ui.onEditQuizScheduleSuccess)
     .catch(console.error)
 }
+
+// Destroy
 
 // get one quiz
 // if quiz owner is user id
@@ -127,38 +153,7 @@ const onDeleteQuiz = event => {
     })
 }
 
-const onGetAllQuizzes = event => {
-//  event.preventDefault()
-  // const userId = store.user._id
-
-  api.getAllQuizzes()
-    .then(ui.onGetAllQuizzesSuccess)
-    .catch(console.error)
-}
-
-const onGetOneQuiz = event => {
-  event.preventDefault()
-
-  const quizId = $(event.target).data('id')
-  // console.log(quizId)
-
-  api.getOneQuiz(quizId)
-    .then(ui.onGetOneQuizSuccess)
-    .catch(console.error)
-}
-
-const onSingleQuizToTeacherDash = () => {
-  event.preventDefault()
-
-  ui.onSingleQuizToTeacherDashSuccess()
-}
-
-const onShowScheduleClassrooms = () => {
-  event.preventDefault()
-
-  api.getMyClassrooms()
-    .then(ui.onShowScheduleClassroomsSuccess)
-}
+// misc
 
 const onScheduleQuizToClassroom = () => {
   event.preventDefault()
@@ -176,26 +171,47 @@ const onScheduleQuizToClassroom = () => {
     .catch(console.error)
 }
 
+const onSingleQuizToTeacherDash = () => {
+  event.preventDefault()
+
+  ui.onSingleQuizToTeacherDashSuccess()
+}
+
+// Function to get all quizes after deletion / edit
+const onGetAllQuizzes = event => {
+//  event.preventDefault()
+  // const userId = store.user._id
+
+  api.getAllQuizzes()
+    .then(ui.onGetAllQuizzesSuccess)
+    .catch(console.error)
+}
+
 const addHandlers = event => {
+  // Create Req
+  $('.create-quiz-button').on('click', onShowCreateQuiz)
   $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
   $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
-  $('.create-quiz-button').on('click', onShowCreateQuiz)
 
-  // need to edit once handlebars is integrated
-  $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
-  // $('.edit-quiz').on('submit', onEditQuiz)
-  $('.quiz-listing').on('click', '.delete-quiz', onDeleteQuiz)
-  // need to edit once handlebars is integrated
-  // $('.get-quizzes').on('submit', onGetAllQuizzes)
+  // Read Req
   // need to edit once handlebars is integrated
   $('.quiz-listing').on('click', '.single-quiz-link', onGetOneQuiz)
-  $('.create-quiz-button').on('click', onShowCreateQuiz)
   $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
-  $('#single-quiz-listing').on('click', '.classname-schedule', onScheduleQuizToClassroom)
-  $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
-  $('#single-quiz-listing').on('submit', '.schedule-quiz', onEditQuizSchedule)
+
+  // Update Req
+  $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
   $('#single-quiz-listing').on('submit', '#edit-quiz', onEditQuiz)
   $('#edit-single-question').on('click', '.finish-quiz-edits', onFinishQuizEdit)
+  $('#single-quiz-listing').on('submit', '.schedule-quiz', onEditQuizSchedule)
+
+  // $('.edit-quiz').on('submit', onEditQuiz)
+
+  // Destroy Req
+  $('.quiz-listing').on('click', '.delete-quiz', onDeleteQuiz)
+
+  // Misc
+  $('#single-quiz-listing').on('click', '.classname-schedule', onScheduleQuizToClassroom)
+  $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
 }
 
 module.exports = {
