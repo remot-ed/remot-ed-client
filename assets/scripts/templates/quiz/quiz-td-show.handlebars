@@ -1,26 +1,30 @@
   <section data-id="{{quiz._id}}" class="single-quiz">
     <h4>{{quiz.title}}</h4>
     <!-- section for scheduling quizzes for classrooms should go here -->
-    <div class="schedule-quiz-bar">
-      <h6>Schedule Quiz to Individual Classroom:</h6>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle classroom-list-schedule schedule-quiz-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Classroom
-        </button>
-        <div class="dropdown-menu classroom-dropdown" data-quizId={{quiz._id}}>
-          <!-- <a class="dropdown-item" href="#">Action</a> -->
+    {{#if quiz.startTime}}
+      <p>This quiz is scheduled for {{date quiz.startTime}} in: {{#each quiz.classroom as |classroom|}} {{classroom.classname}} {{/each}}</p>
+      {{else}}
+        <div class="schedule-quiz-bar">
+          <h6>Schedule Quiz to Individual Classroom:</h6>
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle classroom-list-schedule schedule-quiz-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Classroom
+            </button>
+            <div class="dropdown-menu classroom-dropdown" data-quizId={{quiz._id}}>
+              <!-- <a class="dropdown-item" href="#">Action</a> -->
+            </div>
+          </div>
+          <form class="schedule-quiz schedule-quiz-item">
+            <input type="datetime-local" class="form-control inputs schedule-quiz-item quiz-date-time" name="quiz[startTime]" required>
+            <p class="schedule-quiz-item">Show quiz in classroom?</p>
+            <input type="radio" id="true" name="quiz[isActive]" value="true">
+            <label for="true">Yes</label>
+            <input type="radio" id="false" name="quiz[isActive]" value="false">
+            <label for="false">No</label>
+            <button type="submit" class="btn primary-btn sq">Schedule Quiz!</button>
+          </form>
         </div>
-      </div>
-      <form class="schedule-quiz schedule-quiz-item">
-        <input type="datetime-local" class="form-control inputs schedule-quiz-item quiz-date-time" name="quiz[startTime]" required>
-        <p class="schedule-quiz-item">Show quiz in classroom?</p>
-        <input type="radio" id="true" name="quiz[isActive]" value="true">
-        <label for="true">Yes</label>
-        <input type="radio" id="false" name="quiz[isActive]" value="false">
-        <label for="false">No</label>
-        <button type="submit" class="btn primary-btn sq">Schedule Quiz!</button>
-      </form>
-    </div>
+      {{/if}}
 
     <table class="table table-striped table-bordered survey-list" cellspacing="0" width="100%">
       <thead>
