@@ -5,21 +5,7 @@ const ui = require('./ui')
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 
-// get all classes
-const getClasses = () => {
-  api.getClasses()
-    .then(ui.onGetClassesSuccess)
-    .catch(ui.onGetClassesFailure)
-}
-
-// View Specific Class
-const onGetClassroom = (event) => {
-  event.preventDefault()
-
-  api.getClassroom($(event.target).data('id'))
-    .then(ui.onGetClassroomSuccess)
-    .catch(ui.onGetClassroomFailure)
-}
+// CREATE
 
 // shows the create class form
 const onShowCreateClass = event => {
@@ -27,7 +13,7 @@ const onShowCreateClass = event => {
   ui.onShowCreateClassSuccess()
 }
 
-// create a new classroom from sub form
+// create a new classroom from form
 const onCreateNewClass = event => {
   event.preventDefault()
 
@@ -39,6 +25,72 @@ const onCreateNewClass = event => {
     // .then(getClasses(event))
     .catch(ui.onCreateClassFail)
 }
+
+// READ
+
+// get all classes (Exported and Triggered on Dash)
+const getClasses = () => {
+  api.getClasses()
+    .then(ui.onGetClassesSuccess)
+    .catch(ui.onGetClassesFailure)
+}
+
+// View one class
+const onGetClassroom = (event) => {
+  event.preventDefault()
+
+  api.getClassroom($(event.target).data('id'))
+    .then(ui.onGetClassroomSuccess)
+    .catch(ui.onGetClassroomFailure)
+}
+
+// Update
+
+// Shows Class you are editing, to Update a Class
+const onShowEditClass = event => {
+  event.preventDefault()
+
+  const classId = $(event.target).data('id')
+  store.classData = classId
+
+  api.getClassroom(classId)
+    .then(ui.onGetClassEditSuccess)
+    .catch(console.error)
+}
+
+// Submit Updates
+const onFinishClassEdit = event => {
+  event.preventDefault()
+  console.log('save button clicks!')
+  // ui.onFinishQuizEditSuccess()
+  // event.preventDefault()
+
+  const classId = store.classData
+
+  const form = event.target
+  const formData = getFormFields(form)
+
+  api.patchClass(classId, formData)
+    .then(api.getClassroom(store.classData))
+    // .then(ui.onSubmitPatchSuccess())
+    .catch(console.error)
+}
+
+// Delete
+
+// Delete a classroom
+const onDeleteClassroom = (event) => {
+  event.preventDefault()
+
+  api.deleteClassroom($(event.target).data('id'))
+    .then(data => {
+      getClasses(event)
+    })
+    .then(ui.deleteClassroomSuccess)
+    .catch(ui.deleteClassroomFail)
+}
+
+// Student Management
 
 // Add a student to a class
 const onAddStudent = event => {
@@ -69,54 +121,71 @@ const onAddStudent = event => {
   /// user send an email?
 }
 
-// Delete a classroom
-const onDeleteClassroom = (event) => {
+const onRemoveOneStudent = event => {
   event.preventDefault()
 
-  api.deleteClassroom($(event.target).data('id'))
-    .then(data => {
-      getClasses(event)
-    })
-    .then(ui.deleteClassroomSuccess)
-    .catch(ui.deleteClassroomFail)
+  const dataID = $(event.target).data('id') // form that was submited
+  const index = store.studentArray.indexOf(dataID.toString())
+
+  if (index !== -1) {
+    store.studentArray.splice(index, 1)
+    $(event.target).css('background', 'red')
+    // change to indicate slated for removal
+  } else {
+    store.studentArray.push(dataID)
+    // change back to checkmark?
+    $(event.target).css('background', 'green')
+  }
+  console.log('student array is', store.studentArray)
+
+  // Dynamically Remove Row/Resource (for now turn red)
+  // ui.removeStudentSuccess(target)
+
+  // Code for dynamic form change to reflect store.studentArray
+  // api.getStudentId(student)
+  //   // turn the res into just the _ID
+  //   .then(res => store.studentArray.pop(res.user._id))
+  //   .then(res => console.log('student array is', store.studentArray))
+  //   // .then(res => fixArray(store.studentArray))
+  //   // .then(res => store.studentArray.push(res.xlASSROOM))
+  //   // .then(ui.onAddStudentSuccess())
+  //   .catch(console.error)
 }
+
+// Misc
 
 const toggleStudent = (event) => {
 
 }
 
-// const quizId = $(event.target).data('id')
-// api.getOneQuiz(quizId)
-//   .then(res => {
-//     if (res.quiz.owner === store.user._id) {
-//       const questions = res.quiz.questions
-//       console.log('questions: ', questions)
-//       for (let i = 0; i < questions.length; i++) {
-//         if (!questions[i].questionOwner) {
-//           questionApi.deleteQuestion(questions[i]._id)
-//         }
-//       }
-//     } else {
-//       console.log('you dont own this')
-//     }
-//   })
-// api.getOneQuiz(quizId)
-//   .then(res => {
-//     if (res.quiz.owner === store.user._id) {
-//       api.deleteQuiz(quizId)
-//         .then(data => {
-//           onGetAllQuizzes(event)
-//         })
-//     }
-//   })
-// }
+const onSingleClassToTeacherDash = () => {
+  event.preventDefault()
+
+  ui.onSingleClassToTeacherDashSuccess()
+}
 
 const addHandlers = event => {
+  // Create
   $('.create-class-button').on('click', onShowCreateClass)
-  $('.create-class').on('submit', '#add-student-form', onAddStudent)
   $('.create-class').on('submit', '#create-class-form', onCreateNewClass)
+
+  // Read Requests
   $('#classroom_table').on('click', '.get-classroom', onGetClassroom)
+
+  // Update
+  $('#single-class-listing').on('click', '.edit-class', onShowEditClass)
+  $('#single-class-listing').on('submit', '#patch-class-form', onFinishClassEdit)
+
+  // Delete
   $('#single-class-listing').on('click', '.delete', onDeleteClassroom)
+
+  // Student Management
+  $('.create-class').on('submit', '#add-student-form', onAddStudent)
+  $('#single-class-listing').on('submit', '#add-student-form', onAddStudent)
+  $('#single-class-listing').on('click', '.btn-Remove-Student', onRemoveOneStudent)
+
+  // misc
+  $('#single-class-listing').on('click', '.class-to-teacher-dash', onSingleClassToTeacherDash)
   $('#student-dash-toggle').on('click', toggleStudent)
 }
 
