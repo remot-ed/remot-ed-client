@@ -1,32 +1,24 @@
 'use strict'
-
 const api = require('./api')
 const questionApi = require('../question/api')
 const ui = require('./ui')
 const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields')
-
 // TODO:
 // create a function that checks if date is in the past or future
 // if in the future, throw an error message
-
 const onShowCreateQuiz = event => {
   event.preventDefault()
-
   ui.onShowCreateQuizSuccess()
 }
-
 const onCreateQuizBack = event => {
   event.preventDefault()
-
   ui.onCreateQuizBackSuccess()
 }
-
 const onCreateQuiz = event => {
   event.preventDefault()
   const form = event.target
   const formData = getFormFields(form)
-
   // onCreateQuiz stores the quiz data in empty quizData in ../store.js
   // console.log('formData is ', formData)
   api.createQuiz(formData)
@@ -34,11 +26,12 @@ const onCreateQuiz = event => {
     .then(ui.onCreateQuizSuccess)
     .catch(console.error)
 }
-
 const onFinishQuiz = event => {
   event.preventDefault()
   // console.log('quizData: ', store.quizData)
   api.finishQuiz()
+    .then(ui.onFinishQuizSuccess)
+    .then(onGetAllQuizzes(event))
     .then(api.getOneQuiz(store.quizData[0]._id)
       .then(ui.onFinishQuizSuccess))
     // .then(ui.onFinishQuizSuccess)
@@ -68,23 +61,18 @@ const onFinishQuizEdit = event => {
   //   .then(onGetAllQuizzes(event))
   //   .catch(console.error)
 }
-
 const onShowEditQuiz = event => {
   event.preventDefault()
   // calls editQuiz ui
   // ui will hide teacher dash and show edit quiz form
   const quizId = $(event.target).data('id')
-
   api.getOneQuiz(quizId)
     .then(ui.onGetOneQuizEditSuccess)
     .catch(console.error)
 }
-
 const onEditQuiz = event => {
   event.preventDefault()
-
   const quizId = store.quizData._id
-
   const form = event.target
   const formData = getFormFields(form)
   // as part of this API call, when editQuiz is successful, we want to call
@@ -94,24 +82,19 @@ const onEditQuiz = event => {
       .then(ui.onEditQuizSuccess))
     .catch(console.error)
 }
-
 // onEditQuizSuccess will have to lead directly into editQuestion
 const onEditQuizSchedule = event => {
   event.preventDefault()
-
   const quizId = $('.single-quiz').data('id')
   // console.log('quizId: ', quizId)
-
   const form = event.target
   const formData = getFormFields(form)
-
   // as part of this API call, when editQuiz is successful, we want to call
   // getOneQuiz, and store the response in store.quizData
   api.editQuiz(quizId, formData)
     .then(ui.onEditQuizScheduleSuccess)
     .catch(console.error)
 }
-
 // get one quiz
 // if quiz owner is user id
 // loop through res.questions
@@ -119,7 +102,6 @@ const onEditQuizSchedule = event => {
 // then delete quiz
 const onDeleteQuiz = event => {
   event.preventDefault()
-
   const quizId = $(event.target).data('id')
   api.getOneQuiz(quizId)
     .then(res => {
@@ -145,30 +127,23 @@ const onDeleteQuiz = event => {
       }
     })
 }
-
 const onGetAllQuizzes = event => {
 //  event.preventDefault()
   // const userId = store.user._id
-
   api.getAllQuizzes()
     .then(ui.onGetAllQuizzesSuccess)
     .catch(console.error)
 }
-
 const onGetOneQuiz = event => {
   event.preventDefault()
-
   const quizId = $(event.target).data('id')
   // console.log(quizId)
-
   api.getOneQuiz(quizId)
     .then(ui.onGetOneQuizSuccess)
     .catch(console.error)
 }
-
 const onSingleQuizToTeacherDash = () => {
   event.preventDefault()
-
   ui.onSingleQuizToTeacherDashSuccess()
 }
 
@@ -187,26 +162,23 @@ const onShowScheduleClassrooms = () => {
 
 const onScheduleQuizToClassroom = () => {
   event.preventDefault()
+  console.log('quizdata: ', store.quizData)
   const classId = $(event.target).data('id')
   const quizId = store.quizData.quiz._id
   // console.log('class ', classId)
   // console.log('quiz ', quizId)
-
   api.addClassroomToQuiz(quizId, classId)
     .then(console.log)
     .catch(console.error)
-
   api.addQuizToClassroom(quizId, classId)
     .then(console.log)
     .catch(console.error)
 }
-
 const addHandlers = event => {
   $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
   $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
   $('.create-quiz-button').on('click', onShowCreateQuiz)
   $('.create-quiz').on('click', '.back-to-td', onCreateQuizBack)
-
   // need to edit once handlebars is integrated
   $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
   // $('.edit-quiz').on('submit', onEditQuiz)

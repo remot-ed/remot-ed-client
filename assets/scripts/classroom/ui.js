@@ -1,11 +1,12 @@
 'use strict'
 
 const store = require('../store')
-const events = require('./events')
+// const events = require('./events')
 
 const showClassroomsTemplate = require('../templates/classrooms/class-listing.handlebars')
 const showCreateClassTemplate = require('../templates/classrooms/class-create.handlebars')
 const showClassTemplate = require('../templates/classrooms/classroom-show.handlebars')
+const editClassTemplate = require('../templates/classrooms/classroom-edit.handlebars')
 
 const onGetClassesSuccess = (data) => {
   const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
@@ -41,6 +42,25 @@ const onCreateClassFail = () => {
   console.log('somthings wrong!')
 }
 
+const onGetClassEditSuccess = (data) => {
+  const editClassroomHtml = editClassTemplate({ classroom: data.classroom })
+  console.log(data)
+  data.classroom.students.forEach(students => store.studentArray.push(students._id))
+  console.log(store.studentArray)
+  $('#single-class-listing').html(editClassroomHtml)
+  $('#classroom_table').html()
+  $('.TeacherDash').hide()
+  $('.switch-view').hide()
+}
+
+const onSubmitPatchSuccess = (data) => {
+  const showClassroomHtml = showClassTemplate({ classroom: data.classroom })
+  store.classroomData = data
+  $('#single-class-listing').html(showClassroomHtml)
+  $('#single-class-listing').show()
+  $('#classroom_table').html()
+}
+
 const deleteClassroomSuccess = () => {
   $('#single-class-listing').hide()
   $('.TeacherDash').show()
@@ -51,6 +71,15 @@ const onAddStudentSuccess = () => {
   $('form').trigger('reset')
 }
 
+const removeStudentSuccess = (target) => {
+}
+
+const onSingleClassToTeacherDashSuccess = () => {
+  $('#single-class-listing').hide()
+  $('.TeacherDash').show()
+  $('.switch-view').show()
+}
+
 module.exports = {
   onGetClassroomSuccess,
   onGetClassesSuccess,
@@ -59,5 +88,9 @@ module.exports = {
   onCreateClassSuccess,
   onCreateClassFail,
   deleteClassroomSuccess,
-  onAddStudentSuccess
+  onAddStudentSuccess,
+  onSingleClassToTeacherDashSuccess,
+  onGetClassEditSuccess,
+  onSubmitPatchSuccess,
+  removeStudentSuccess
 }

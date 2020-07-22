@@ -3,16 +3,6 @@
 const config = require('../config')
 const store = require('../store')
 
-const getClasses = () => {
-  return $.ajax({
-    url: config.apiUrl + `/classrooms`,
-    method: 'GET',
-    headers: {
-      Authorization: `Token token=${store.user.token}`
-    }
-  })
-}
-
 const createClass = formData => {
   return $.ajax({
     url: config.apiUrl + '/classrooms',
@@ -31,15 +21,13 @@ const createClass = formData => {
   })
 }
 
-// getting user id via email
-const getStudentId = data => {
+const getClasses = () => {
   return $.ajax({
-    url: config.apiUrl + '/userId',
+    url: config.apiUrl + `/classrooms`,
     method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`
-    },
-    data: data
+    }
   })
 }
 
@@ -49,6 +37,23 @@ const getClassroom = classId => {
     method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
+const patchClass = (classId, formData) => {
+  return $.ajax({
+    url: config.apiUrl + '/classrooms/' + classId,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: {
+      classroom: {
+        classname: formData.classroom.classname,
+        subject: formData.classroom.subject,
+        students: store.studentArray
+      }
     }
   })
 }
@@ -64,10 +69,23 @@ const deleteClassroom = classId => {
   })
 }
 
+// getting user id via email
+const getStudentId = data => {
+  return $.ajax({
+    url: config.apiUrl + '/userId',
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: data
+  })
+}
+
 module.exports = {
   createClass,
   getClasses,
-  getStudentId,
   getClassroom,
-  deleteClassroom
+  patchClass,
+  deleteClassroom,
+  getStudentId
 }
