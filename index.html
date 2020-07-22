@@ -1,160 +1,215 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Remot.ed</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+<head>
+  <title>Remot.ed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito" rel="stylesheet">
 
-      <header>
-        <h3>Remot.ed</h3>
-      </header>
-      <div class="container-fluid">
-      <!-- Global Landing Page -->
-      <!-- New User? Click Here. -->
-      <!-- Existing User? Click Here. -->
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
 
-      <!-- Sign Up -->
-      <div class="before-auth h-90 row align-items-center">
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <h4 class="align-self-center">Remot.ed</h4>
+        <div class="navbar after-auth">
+          <section class="after-auth TeacherDash">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle settings-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Settings
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item show-change-password">Change Password</a>
+                  <a class="dropdown-item" id="sign-out">Sign Out</a>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container-fluid">
+    <!-- Global Landing Page -->
+    <!-- New User? Click Here. -->
+    <!-- Existing User? Click Here. -->
+    <!-- Sign Up -->
+    <div class="before-auth h-90 row align-items-center">
       <form id="sign-up" class="col-6">
-        <div class="form-group">
-          <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
-          <br>
-          <input type="password" class="form-control inputs" name="credentials[password]" placeholder="Password" required>
-          <br>
-          <input type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Password confirmation" required>
+        <div class="form-group auth-form">
+          <div class="input-group justify-content-center">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend2">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                </svg>
+              </span>
+              <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
+            </div>
+          </div>
+          <br />
+          <div class="input-group justify-content-center">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend2">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </span>
+              <input type="password" class="form-control inputs" name="credentials[password]" placeholder="Password" required>
+            </div>
+          </div>
+          <div class="input-group justify-content-center">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend2">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </span>
+              <input type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Password confirmation" required>
+            </div>
+          </div>
           <!-- radio button for student vs. teacher roles -->
-          <input type="radio" id="teacher" name="role" value="teacher">
+          <!-- <input type="radio" id="teacher" name="role" value="teacher">
           <label for="teacher">Teacher</label><br>
           <input type="radio" id="student" name="role" value="student">
-          <label for="student">Student</label><br>
-          <button type="submit" class="btn btn-dark">Sign Up</button>
+          <label for="student">Student</label><br> -->
+          <br>
+          <button type="submit" class="btn primary-btn">Sign Up</button>
         </div>
       </form>
 
-
       <!-- Sign In -->
       <form id="sign-in" class="col-6">
-        <div class="form-group">
-          <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
+        <div class="form-group auth-form">
+          <div class="input-group justify-content-center">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend2">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                </svg>
+              </span>
+              <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
+            </div>
+          </div>
           <br>
-          <input type="password" class="form-control inputs" name="credentials[password]" placeholder="Password" required>
-          <button type="submit" class="btn btn-dark">Sign In</button>
+          <div class="input-group justify-content-center">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend2">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </span>
+              <input type="password" class="form-control inputs" id="password" name="credentials[password]" placeholder="Password" required>
+            </div>
+          </div>
+          <br>
+          <button type="submit" class="btn primary-btn">Sign In</button>
         </div>
       </form>
 
       <div id="user-message"></div>
-</div>
-      <!-- Teacher Dash : instead of After-Auth detect if T or S and show proper dash-->
-      <!-- if this.user.role === Teacher, -->
-
-<button class="btn btn-primary switch-view after-auth">Switch View</button>
-
-<div class='after-auth TeacherDash'>
-  <div class="row">
-    <div class="col-6 box">
-        <div id="classroom_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar"></div>
     </div>
-    <div class="col-6 box">
-        <div id="quiz_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar quiz-listing"></div>
-    </div>
-  </div>
-        <!-- Classroom CRUD -->
-  <div class="row">
-    <div class="col-6 box">
-      <button class="btn btn-info after-auth create-class-button">Create A Classroom</button>
-      <div class="after-auth create-class"></div>
-    </div>
-    <!-- Quiz CRUD -->
-    <div class="col-6 box">
-      <button class="btn btn-info after-auth create-quiz-button">Create A Quiz</button>
-      <div class="after-auth create-quiz"></div>
-    </div>
-  </div>
-    <button id="settings" class="btn btn-info">Settings</button>
-</div>
+    <!-- Teacher Dash : instead of After-Auth detect if T or S and show proper dash-->
+    <!-- if this.user.role === Teacher, -->
 
-        <!-- Quiz CRUD -->
-        <!-- <section class="after-auth create-quiz">
-          <form id="create-quiz">
-            <input type="text" class="form-control inputs" name="quiz[title]" placeholder="Quiz Title" required>
-            <input type="number" class="form-control inputs" name="quiz[numOfQuestions]" placeholder="Number of Questions" required>
-            <input type="datetime-local" class="form-control inputs" name="quiz[startTime]" required>
-            <p>Make quiz active?
-            <input type="radio" id="true" name="quiz[isActive]" value="true">
-            <label for="true">Yes</label>
-            <input type="radio" id="false" name="quiz[isActive]" value="false">
-            <label for="false">No</label>
-            <br>
-            <input type="text" class="form-control inputs" name=quiz[isActive] required>
-            <button type="submit" class="btn btn-dark">Create Quiz</button>
-          </form>
-        </section> -->
+    <button class="btn primary-btn switch-view after-auth">Switch View</button>
 
-        <!-- Create Question -->
-        <!--<section class="after-auth create-question">
-          <form id="create-question">
-            <div class="form-group">
-              <input type="text" class="form-control inputs" name="question[title]" placeholder="Question Text" required>
-              <br>
-              <input type="text" class="form-control inputs" name="question[correctAnswer]" placeholder="Correct Answer" required>
-              <input type="text" class="form-control inputs" name="question[answerTwo]" placeholder="Answer Two" required>
-              <input type="text" class="form-control inputs" name="question[answerThree]" placeholder="Answer Three" required>
-              <input type="text" class="form-control inputs" name="question[answerFour]" placeholder="Answer Four" required>
-              <br>
-              <! <input type="text" class="form-control inputs" name="question[quizOwner]" placeholder="Quiz ID" required>
-              <button type="submit" class="btn btn-dark next-question">Next Question</button>
-            </div>
-          </form>
-          <! <button type="submit" class="btn btn-dark next-question">Next Question</button>
-          <button type="submit" class="btn btn-dark finish-quiz" disabled>Finish</button>
-        </section> -->
-        <div class="after-auth teacher">
-          <div class="create-question-view">
-            <div class="question-count"></div>
-            <br>
-            <div class="create-question"></div>
-            <br>
-          </div>
-          <div id="single-class-listing"></div>
-          <div id="single-quiz-listing"></div>
-          <div id="edit-single-question"></div>
+    <div class='after-auth TeacherDash'>
+      <div class="row">
+        <div class="col-6 box mx-auto my-4">
+          <div id="classroom_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar"></div>
         </div>
-
-
-
-      <!-- Student Dash -->
-      <div class="StudentDash after-auth container">
-        <p>Welcome to the student dash!</p>
+        <div class="col-6 box mx-auto my-4">
+          <div id="quiz_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar quiz-listing"></div>
+        </div>
       </div>
+      <!-- Classroom CRUD -->
+      <div class="row">
+        <div class="col-6 box mx-auto my-4">
+          <button class="btn primary-btn after-auth create-class-button mx-auto mt-3">Create A Classroom</button>
+          <div class="after-auth create-class mt-3"></div>
+        </div>
+        <!-- Quiz CRUD -->
+        <div class="col-6 box mx-auto my-4">
+          <button class="btn primary-btn after-auth create-quiz-button mx-auto mt-3">Create A Quiz</button>
+          <div class="after-auth create-quiz mt-3"></div>
+        </div>
+      </div>
+    </div>
 
-        <!-- Quizzes -->
+    <!-- divs for quiz/question handlebars fiels -->
+    <div class="after-auth teacher">
+      <div class="create-question-view">
+        <div class="question-count"></div>
+        <br>
+        <div class="create-question"></div>
+        <br>
+      </div>
+      <div id="single-class-listing"></div>
+      <div id="single-quiz-listing"></div>
+      <div id="edit-single-question"></div>
+      <div id="finish-quiz-view"></div>
+    </div>
 
-      <!-- Classroom View-->
+    <!-- Student Dash -->
+    <div class="StudentDash after-auth container">
+      <p>Welcome to the student dashboard! ---work in progress---</p>
+    </div>
 
-      <!-- Teacher Account Settings -->
+    <!-- Quizzes -->
 
-      <!-- Student Account Settings -->
-      <div class="settingsView">
-      <form id="change-password" class="after-settings">
+    <!-- Classroom View-->
+
+    <!-- Teacher Account Settings -->
+
+    <!-- Student Account Settings -->
+    <div class="col-8 change-password-view mx-auto">
+      <form id="change-password" class="form-group">
         <h4>Change Password</h4>
-        <input type="password" name="passwords[old]" placeholder="Old Password" required>
         <br />
-        <input type="password" name="passwords[new]" placeholder="New Password" required>
+        <div class="input-group justify-content-center">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend2">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+              </svg>
+            </span>
+            <input type="password" class="form-control" name="passwords[old]" placeholder="Current Password" required>
+          </div>
+        </div>
         <br />
-        <button class="btn btn-info">Change Password</button>
+          <div class="input-group justify-content-center">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend2">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
+              </span>
+              <input type="password" class="form-control" name="passwords[new]" placeholder="New Password" required>
+            </div>
+          </div>
+        <br />
+        <button class="btn primary-btn">Change Password</button>
       </form>
-      <button class="btn btn-danger after-auth" id="sign-out">Sign Out</button>
-
     </div>
   </div>
-    </body>
+</body>
+
 </html>
