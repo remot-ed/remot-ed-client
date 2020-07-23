@@ -30,8 +30,6 @@ const onFinishQuiz = event => {
   event.preventDefault()
   // console.log('quizData: ', store.quizData)
   api.finishQuiz()
-    .then(ui.onFinishQuizSuccess)
-    .then(onGetAllQuizzes(event))
     .then(api.getOneQuiz(store.quizData[0]._id)
       .then(ui.onFinishQuizSuccess))
     // .then(ui.onFinishQuizSuccess)
@@ -162,7 +160,6 @@ const onShowScheduleClassrooms = () => {
 
 const onScheduleQuizToClassroom = () => {
   event.preventDefault()
-  console.log('quizdata: ', store.quizData)
   const classId = $(event.target).data('id')
   const quizId = store.quizData.quiz._id
   // console.log('class ', classId)
