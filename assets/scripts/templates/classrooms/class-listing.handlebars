@@ -23,7 +23,7 @@
         <section data-id="{{class._id}}">
           <tr>
             <td class="td-title col-6">{{class.classname}}</td>
-            <td class="td-title col-2"> {{#each class.students as |student|}} {{student.email}} {{/each}}</td>
+            <td class="td-title col-2"> {{class.students.length}}</td>
 
             <td>
               <button data-id="{{class._id}}" data-toggle="modal" title="viewclass" class="btn btn-info btn-sm get-classroom">
