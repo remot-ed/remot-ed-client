@@ -123,8 +123,9 @@ const onFinishQuizEditSuccess = () => {
 const onShowScheduleClassroomsSuccess = (data) => {
   const classDropdown = function () {
     data.classrooms.forEach(function (classroom) {
-      $('.classroom-dropdown').append('<a class="dropdown-item classname-schedule">' + classroom.classname + '</a>')
-      $('.classname-schedule').attr('data-id', classroom._id)
+      // $('.classroom-dropdown').append('<a class="dropdown-item classname-schedule">' + classroom.classname + '</a>')
+      $('.classroom-dropdown').append('<a class="dropdown-item classname-schedule"' + ' data-id=' + classroom._id + '>' + classroom.classname + '</a>')
+      // $('.classname-schedule').attr('data-id', classroom._id)
     })
   }
   classDropdown()
