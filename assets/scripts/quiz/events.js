@@ -194,11 +194,13 @@ const addHandlers = event => {
   $('.create-quiz').on('submit', '#create-quiz', onCreateQuiz)
   $('.create-question').on('click', '.finish-quiz', onFinishQuiz)
   $('#single-quiz-listing').on('click', '.classname-schedule', onScheduleQuizToClassroom)
+  $('#finish-quiz-view').on('click', '.classname-schedule', onScheduleQuizToClassroom)
 
   // READ
   $('.quiz-listing').on('click', '.single-quiz-link', onGetOneQuiz)
 
   $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
+  $('#finish-quiz-view').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
 
   // UPDATE
   $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
