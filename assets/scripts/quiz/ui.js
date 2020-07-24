@@ -123,8 +123,9 @@ const onFinishQuizEditSuccess = () => {
 const onShowScheduleClassroomsSuccess = (data) => {
   const classDropdown = function () {
     data.classrooms.forEach(function (classroom) {
-      $('.classroom-dropdown').append('<a class="dropdown-item classname-schedule">' + classroom.classname + '</a>')
-      $('.classname-schedule').attr('data-id', classroom._id)
+      // $('.classroom-dropdown').append('<a class="dropdown-item classname-schedule">' + classroom.classname + '</a>')
+      $('.classroom-dropdown').append('<a class="dropdown-item classname-schedule"' + ' data-id=' + classroom._id + '>' + classroom.classname + '</a>')
+      // $('.classname-schedule').attr('data-id', classroom._id)
     })
   }
   classDropdown()
@@ -148,8 +149,16 @@ const onFinishQuizToTeacherDashSuccess = () => {
   $('.switch-view').show()
 }
 
-const onEditQuizScheduleSuccess = () => {
+const onEditQuizScheduleSuccess = (data) => {
   $('form').trigger('reset')
+  const showQuizHtml = showQuizTemplate({ quiz: data.quiz })
+  $('#single-quiz-listing').html(showQuizHtml)
+}
+
+const onFinishQuizEditQuizScheduleSuccess = (data) => {
+  $('form').trigger('reset')
+  const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
+  $('#finish-quiz-view').html(showFinishQuizHtml)
 }
 
 module.exports = {
@@ -166,5 +175,6 @@ module.exports = {
   onFinishQuizEditSuccess,
   editQuizAfterUpdateQuestions,
   onEditQuizScheduleSuccess,
-  onFinishQuizToTeacherDashSuccess
+  onFinishQuizToTeacherDashSuccess,
+  onFinishQuizEditQuizScheduleSuccess
 }
