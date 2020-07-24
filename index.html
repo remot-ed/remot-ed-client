@@ -16,11 +16,12 @@
 
 <body>
   <header>
+  <!-- NAV BAR-->
     <nav class="navbar navbar-expand-lg">
       <div class="container">
         <h4 class="align-self-center">Remot.ed</h4>
         <div class="navbar after-auth">
-          <section class="after-auth TeacherDash">
+          <section class="after-auth">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle settings-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,10 +38,26 @@
       </div>
     </nav>
   </header>
+  <!-- fluid container of main content -->
   <div class="container-fluid">
+
+    <!-- Temp Button to view alt dashboard -->
+    <button class="btn primary-btn switch-view after-auth">Switch View</button>
+
+    <!-- User Messaging -->
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6" id="user-message"></div>
+      <div class="col-3"></div>
+    </div>
+
     <!-- Global Landing Page -->
+
     <!-- New User? Click Here. -->
+
     <!-- Existing User? Click Here. -->
+
+    <!-- Login Forms -->
     <!-- Sign Up -->
     <div class="before-auth h-90 row align-items-center">
       <form id="sign-up" class="col-6">
@@ -90,7 +107,7 @@
         </div>
       </form>
 
-      <!-- Sign In -->
+    <!-- Sign In -->
       <form id="sign-in" class="col-6">
         <div class="form-group auth-form">
           <div class="input-group justify-content-center">
@@ -121,15 +138,13 @@
           <button type="submit" class="btn primary-btn">Sign In</button>
         </div>
       </form>
+  </div>
 
-      <div id="user-message"></div>
-    </div>
-    <!-- Teacher Dash : instead of After-Auth detect if T or S and show proper dash-->
-    <!-- if this.user.role === Teacher, -->
+  <!-- Teacher View : instead of After-Auth detect if T or S and show proper dash-->
+    <!-- if this.user.role === Teacher? -->
+  <div class="after-auth teacher">
 
-    <button class="btn primary-btn switch-view after-auth">Switch View</button>
-
-    <div class='after-auth TeacherDash'>
+    <div class='TeacherDash'>
       <div class="row">
         <div class="col-6 box mx-auto my-4">
           <div id="classroom_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar"></div>
@@ -153,7 +168,6 @@
     </div>
 
     <!-- divs for quiz/question handlebars fiels -->
-    <div class="after-auth teacher">
       <div class="create-question-view">
         <div class="question-count"></div>
         <br>
@@ -164,20 +178,54 @@
       <div id="single-quiz-listing"></div>
       <div id="edit-single-question"></div>
       <div id="finish-quiz-view"></div>
-    </div>
+  </div>
+
+
+  <!-- Student View : instead of After-Auth detect if T or S and show proper dash-->
+  <!-- if this.user.role !== Teacher? -->
+  <div class="after-auth student">
 
     <!-- Student Dash -->
-    <div class="StudentDash after-auth container">
-      <p>Welcome to the student dashboard! ---work in progress---</p>
+    <div class="after-auth StudentDash container">
+
+      <!-- Upcoming Quiz Notification -->
+      <div class="row">
+        <div class="col-1"></div>
+      <div class="col-10 student-quiz-alert">
+        <!-- "if (user.quizes.datetime )
+                    var OneDay = new Date().getTime() + (1 * 24 * 60 * 60 * 1000)
+                                                 day hour  min  sec  msec
+            if (OneDay > yourDate) {
+                // The yourDate time is less than 1 days from now
+            }
+            else if (OneDay < yourDate) {
+                // The yourDate time is more than 1 days from now
+            } -->
+        "If a quiz is coming up, You have an upcoming quiz! Quiz Info <br> Otherwise its hidden"
+        "
+      </div>
+      <div class="col-1"></div>
     </div>
+      <!-- Student Dash -->
+        <div class="row">
+          <div class="col-6 box mx-auto my-4">
+            <div id="student_classroom_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar"></div>
+          </div>
+          <div class="col-6 box mx-auto my-4">
+            <div id="student_quiz_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar student-quiz-listing"></div>
+          </div>
+        </div>
+
+        <button class="btn primary-btn">Quiz History</button>
 
     <!-- Quizzes -->
 
     <!-- Classroom View-->
+  </div>
+  </div>
 
-    <!-- Teacher Account Settings -->
 
-    <!-- Student Account Settings -->
+    <!-- Account Settings -->
     <div class="col-8 change-password-view mx-auto">
       <form id="change-password" class="form-group">
         <h4>Change Password</h4>
@@ -209,7 +257,8 @@
         <button class="btn primary-btn">Change Password</button>
       </form>
     </div>
-  </div>
+
+</div>
 </body>
 
 </html>
