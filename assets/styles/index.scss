@@ -136,9 +136,19 @@ nav {
 }
 
 .StudentDash {
-  display: none;
+  margin: 10px;
 }
 
 .table-wrapper-scroll-y {
   display: block;
+}
+
+.student-quiz-alert {
+  background-color: $green;
+  border: solid $green 2px;
+  border-radius: 20px;
+  color: #fff;
+  height: 80px;
+  // max-width: 1000vw;
+  min-height: 10vh;
 }
