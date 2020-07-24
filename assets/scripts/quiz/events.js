@@ -135,8 +135,27 @@ const onEditQuizSchedule = event => {
   const formData = getFormFields(form)
   // as part of this API call, when editQuiz is successful, we want to call
   // getOneQuiz, and store the response in store.quizData
+  // api.editQuiz(quizId, formData)
+  //   .then(ui.onEditQuizScheduleSuccess)
+  //   .catch(console.error)
+
   api.editQuiz(quizId, formData)
-    .then(ui.onEditQuizScheduleSuccess)
+    .then(res => api.getOneQuiz(quizId)
+      .then(res => ui.onEditQuizScheduleSuccess(res)))
+    .catch(console.error)
+}
+
+const onFinishQuizEditQuizSchedule = event => {
+  event.preventDefault()
+  const quizId = $('.single-quiz').data('id')
+  // console.log('quizId: ', quizId)
+  const form = event.target
+  const formData = getFormFields(form)
+  // as part of this API call, when editQuiz is successful, we want to call
+  // getOneQuiz, and store the response in store.quizData
+  api.editQuiz(quizId, formData)
+    .then(res => api.getOneQuiz(quizId)
+      .then(res => ui.onFinishQuizEditQuizScheduleSuccess(res)))
     .catch(console.error)
 }
 
@@ -206,7 +225,7 @@ const addHandlers = event => {
   $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
   $('#single-quiz-listing').on('submit', '#edit-quiz', onEditQuiz)
   $('#single-quiz-listing').on('submit', '.schedule-quiz', onEditQuizSchedule)
-  $('#finish-quiz-view').on('submit', '.schedule-quiz', onEditQuizSchedule)
+  $('#finish-quiz-view').on('submit', '.schedule-quiz', onFinishQuizEditQuizSchedule)
   $('#edit-single-question').on('click', '.finish-quiz-edits', onFinishQuizEdit)
 
   // DESTROY

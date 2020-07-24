@@ -149,8 +149,16 @@ const onFinishQuizToTeacherDashSuccess = () => {
   $('.switch-view').show()
 }
 
-const onEditQuizScheduleSuccess = () => {
+const onEditQuizScheduleSuccess = (data) => {
   $('form').trigger('reset')
+  const showQuizHtml = showQuizTemplate({ quiz: data.quiz })
+  $('#single-quiz-listing').html(showQuizHtml)
+}
+
+const onFinishQuizEditQuizScheduleSuccess = (data) => {
+  $('form').trigger('reset')
+  const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
+  $('#finish-quiz-view').html(showFinishQuizHtml)
 }
 
 module.exports = {
@@ -167,5 +175,6 @@ module.exports = {
   onFinishQuizEditSuccess,
   editQuizAfterUpdateQuestions,
   onEditQuizScheduleSuccess,
-  onFinishQuizToTeacherDashSuccess
+  onFinishQuizToTeacherDashSuccess,
+  onFinishQuizEditQuizScheduleSuccess
 }
