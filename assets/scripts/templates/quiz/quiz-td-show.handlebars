@@ -26,6 +26,30 @@
         </div>
       {{/if}}
 
+      <!-- {{#unless quiz.isActive}}
+        <hr>
+        <form class="make-quiz-active" data-id="{{quiz._id}}">
+          <p>Your quiz is currently hidden from your classroom. Show it now?</p>
+          <button type="submit" class="btn primary-btn" name=quiz[isActive] value="true">Show quiz in classroom!</button>
+        </form>
+        <hr>
+      {{/unless}} -->
+
+      {{#if quiz.isActive}}
+        <form class="make-quiz-active" data-id="{{quiz._id}}">
+          <p>Your quiz is showing in your classroom. Hide it?</p>
+          <button type="submit" class="btn primary-btn" name=quiz[isActive] value="false">Hide quiz from classroom!</button>
+        </form>
+        <hr>
+        {{else}}
+        <hr>
+        <form class="make-quiz-active" data-id="{{quiz._id}}">
+          <p>Your quiz is currently hidden from your classroom. Show it now?</p>
+          <button type="submit" class="btn primary-btn" name=quiz[isActive] value="true">Show quiz in classroom!</button>
+        </form>
+        <hr>
+      {{/if}}
+
     <table class="table table-striped table-bordered survey-list" cellspacing="0" width="100%">
       <thead>
         <tr>
