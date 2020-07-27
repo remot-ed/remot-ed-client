@@ -1,8 +1,13 @@
 <section data-id="{{quiz._id}}" class="single-quiz">
-  <p>{{quiz.title}}</p>
-
+  <h3>{{quiz.title}}</h3>
+  <hr>
   <form id="edit-quiz">
+    <h5>Quiz title:</h5>
     <input type="text" class="form-control inputs" name="quiz[title]" placeholder="{{quiz.title}}">
+    <br>
+    <h5>Change date/time?</h5>
+    <input type="datetime-local" class="form-control inputs schedule-quiz-item quiz-date-time" name="quiz[startTime]">
+    <br>
     <br>
     <!-- <input type="text" class="form-control inputs" name=quiz[isActive] required> -->
     <button type="submit" class="btn primary-btn">Save Quiz & Edit Questions</button>
