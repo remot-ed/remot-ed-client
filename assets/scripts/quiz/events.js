@@ -114,6 +114,20 @@ const onEditQuiz = event => {
     .catch(console.error)
 }
 
+const onMakeQuizActive = event => {
+  event.preventDefault()
+  const quizId = $(event.target).data('id')
+  // const formData = !store.quizData.quiz.isActive
+  const form = event.target
+  const formData = getFormFields(form)
+  console.log(formData)
+
+  api.editQuiz(quizId, formData)
+    .then(res => api.getOneQuiz(quizId)
+      .then(res => ui.onGetOneQuizSuccess(res)))
+    .catch(console.error)
+}
+
 const onFinishQuizEdit = event => {
   event.preventDefault()
   ui.onFinishQuizEditSuccess()
@@ -225,6 +239,7 @@ const addHandlers = event => {
   $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
   $('#single-quiz-listing').on('submit', '#edit-quiz', onEditQuiz)
   $('#single-quiz-listing').on('submit', '.schedule-quiz', onEditQuizSchedule)
+  $('#single-quiz-listing').on('submit', '.make-quiz-active', onMakeQuizActive)
   $('#finish-quiz-view').on('submit', '.schedule-quiz', onFinishQuizEditQuizSchedule)
   $('#edit-single-question').on('click', '.finish-quiz-edits', onFinishQuizEdit)
 
