@@ -237,6 +237,7 @@ const addHandlers = event => {
 
   // UPDATE
   $('.quiz-listing').on('click', '.edit-quiz-link', onShowEditQuiz)
+  $('#single-quiz-listing').on('click', '.edit-quiz-btn', onShowEditQuiz)
   $('#single-quiz-listing').on('submit', '#edit-quiz', onEditQuiz)
   $('#single-quiz-listing').on('submit', '.schedule-quiz', onEditQuizSchedule)
   $('#single-quiz-listing').on('submit', '.make-quiz-active', onMakeQuizActive)
