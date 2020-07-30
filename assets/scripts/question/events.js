@@ -46,25 +46,25 @@ const onCreateQuestion = event => {
 // TO DO:
 // after each edit question, move to next question in questions array for quiz
 // note: quiz owner should not be needed, as is already saved to question
-const onEditQuestion = event => {
-  event.preventDefault()
-
-  const questionId = $(event.target).data('id')
-  // console.log('questionId: ', questionId)
-
-  const form = event.target
-  const formData = getFormFields(form)
-  // console.log('formData: ', formData)
-  // store.questions.push(formData)
-
-  api.editQuestion(questionId, formData)
-  //  .then(formData => store.questions.push(formData))
-  //  .then(quizApi.editQuiz(formData))
-    .then(api.getOneQuestion(questionId)
-      .then(res => store.questions.push(res))
-      .catch(console.error))
-    .catch(console.error)
-}
+// const onEditQuestion = event => {
+//   event.preventDefault()
+//
+//   const questionId = $(event.target).data('id')
+//   // console.log('questionId: ', questionId)
+//
+//   const form = event.target
+//   const formData = getFormFields(form)
+//   // console.log('formData: ', formData)
+//   // store.questions.push(formData)
+//
+//   api.editQuestion(questionId, formData)
+//   //  .then(formData => store.questions.push(formData))
+//   //  .then(quizApi.editQuiz(formData))
+//     .then(api.getOneQuestion(questionId)
+//       .then(res => store.questions.push(res))
+//       .catch(console.error))
+//     .catch(console.error)
+// }
 
 const onShowAddQuestion = event => {
   event.preventDefault()
@@ -137,12 +137,30 @@ const onGetOneQuestion = event => {
 
 const onLoopThroughQuestions = event => {
   event.preventDefault()
-  quizUi.onEditQuizSuccess()
+
+  const questionId = $(event.target).data('id')
+  // console.log('questionId: ', questionId)
+
+  const form = event.target
+  const formData = getFormFields(form)
+  // console.log('formData: ', formData)
+  // store.questions.push(formData)
+
+  api.editQuestion(questionId, formData)
+  //  .then(formData => store.questions.push(formData))
+  //  .then(quizApi.editQuiz(formData))
+    .then(api.getOneQuestion(questionId)
+      .then(res => store.questions.push(res))
+      .then(res => quizUi.onEditQuizSuccess(res))
+      .catch(console.error))
+    .catch(console.error)
+
+  // quizUi.onEditQuizSuccess()
 }
 
 const addHandlers = event => {
   $('.create-question').on('submit', '#create-question', onCreateQuestion)
-  $('#edit-single-question').on('submit', '#edit-question', onEditQuestion)
+  // $('#edit-single-question').on('submit', '#edit-question', onEditQuestion)
   $('.delete-question').on('submit', onDeleteQuestion)
   $('.get-questions').on('submit', onGetAllQuestions)
   $('.get-question').on('submit', onGetOneQuestion)
@@ -150,7 +168,7 @@ const addHandlers = event => {
   $('#edit-single-question').on('submit', '#add-new-question', onAddQuestion)
   $('#edit-single-question').on('click', '.delete-question', onDeleteQuestion)
   // $('#edit-single-question').on('click', '.loop-through-qs', onLoopThroughQuestions)
-  $('#edit-single-question').on('click', '.increment-questions', onLoopThroughQuestions)
+  $('#edit-single-question').on('submit', '#edit-question', onLoopThroughQuestions)
 }
 
 module.exports = {

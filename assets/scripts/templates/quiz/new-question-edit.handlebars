@@ -1,26 +1,26 @@
 <section data-id={{question._id}} class="single-quiz">
   <!-- <p>{{quiz.title}}</p> -->
-  {{log question}}
-  <button class="btn primary-btn increment-questions">Next Question</button>
-
+  <!-- <button class="btn primary-btn increment-questions">Next Question</button> -->
+  <section class="edit-single-question-section">
     <p>Question #{{question.questionNumber}}</p>
-    <form id="edit-question" data-id="{{question._id}}">
-      <div class="form-group">
-        <input type="text" class="form-control inputs" name="question[title]" placeholder="{{question.title}}">
-        <br>
-        <input type="text" class="form-control inputs" name="question[correctAnswer]" placeholder="{{question.correctAnswer}}">
-        <input type="text" class="form-control inputs" name="question[answerTwo]" placeholder="{{question.answerTwo}}">
-        <input type="text" class="form-control inputs" name="question[answerThree]" placeholder="{{question.answerThree}}">
-        <input type="text" class="form-control inputs" name="question[answerFour]" placeholder="{{question.answerFour}}">
-        <br>
-        <!-- <input type="text" class="form-control inputs" name="question[quizOwner]" placeholder="Quiz ID" required> -->
-        <button type="submit" class="btn primary-btn next-question-edits">Save Question</button>
-      </div>
-    </form>
-    <button class="btn btn-danger delete-question" data-id="{{question._id}}">Delete Question</button>
-    <br>
-    <br>
-    <br>
+      <form id="edit-question" data-id="{{question._id}}">
+        <div class="form-group">
+          <input type="text" class="form-control inputs" name="question[title]" placeholder="{{question.title}}">
+          <br>
+          <input type="text" class="form-control inputs" name="question[correctAnswer]" placeholder="{{question.correctAnswer}}">
+          <input type="text" class="form-control inputs" name="question[answerTwo]" placeholder="{{question.answerTwo}}">
+          <input type="text" class="form-control inputs" name="question[answerThree]" placeholder="{{question.answerThree}}">
+          <input type="text" class="form-control inputs" name="question[answerFour]" placeholder="{{question.answerFour}}">
+          <br>
+          <!-- <input type="text" class="form-control inputs" name="question[quizOwner]" placeholder="Quiz ID" required> -->
+          <button type="submit" class="btn primary-btn next-question-edits">Save Question</button>
+        </div>
+      </form>
+      <button class="btn btn-danger delete-question" data-id="{{question._id}}">Delete Question</button>
+      <br>
+      <br>
+      <br>
+    </section>
 
   <!-- <button type="submit" class="btn btn-dark next-question">Next Question</button> -->
   <button class="btn primary-btn add-question">Add New Question</button>

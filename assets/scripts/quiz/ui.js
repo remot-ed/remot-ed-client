@@ -76,18 +76,20 @@ const onGetOneQuizEditSuccess = (data) => {
 //   //   then disable save question, and enable finish
 //   // on finish edits, save question & call get one quiz
 // }
-let qi = -1
+let qCounter = -1
 const onEditQuizSuccess = (data) => {
-  qi++
-  console.log('data: ', store.quizData)
-  console.log('qi: ', qi)
-  if (qi > store.quizData.questions[qi]) {
-    console.log('qi: ', qi)
+  qCounter++
+  // console.log('data: ', store.quizData)
+  // console.log('qi: ', qCounter)
+  if (qCounter < store.quizData.questions.length) {
+    const showQuestionEditHtml = showEditQuestionTemplate({ question: store.quizData.questions[qCounter] })
+    $('#single-quiz-listing').hide()
+    $('#edit-single-question').html(showQuestionEditHtml)
+    $('#edit-single-question').show()
+  } else if (qCounter >= store.quizData.questions.length) {
+    console.log('here')
+    $('.edit-single-question-section').hide()
   }
-  const showQuestionEditHtml = showEditQuestionTemplate({ question: store.quizData.questions[qi] })
-  $('#single-quiz-listing').hide()
-  $('#edit-single-question').html(showQuestionEditHtml)
-  $('#edit-single-question').show()
 }
 
 const editQuizAfterUpdateQuestions = (data) => {
@@ -108,6 +110,7 @@ const onFinishQuizSuccess = (data) => {
   store.quizData = data
   const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
   $('.create-question').hide()
+  $('#finish-quiz-view').show()
   $('#finish-quiz-view').html(showFinishQuizHtml)
 }
 
@@ -125,6 +128,7 @@ const onFinishQuizSuccess = (data) => {
 const onFinishQuizEditSuccess = () => {
   store.quizData = []
   store.questions = []
+  qCounter = -1
   $('#edit-single-question').hide()
   quizApi.getAllQuizzes()
     .then(onGetAllQuizzesSuccess)
