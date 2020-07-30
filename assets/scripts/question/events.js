@@ -6,6 +6,7 @@ const store = require('../store')
 const getFormFields = require('../../../lib/get-form-fields')
 const quizApi = require('../quiz/api')
 const quizUi = require('../quiz/ui')
+// const helper = require('../templates/helpers/edit-question')
 
 // let questionNumber = 1
 //
@@ -128,6 +129,17 @@ const onGetOneQuestion = event => {
     .catch(console.error)
 }
 
+// const onLoopThroughQuestions = event => {
+//   event.preventDefault()
+//   console.log('it worked')
+//   helper.loopEditQuestion()
+// }
+
+const onLoopThroughQuestions = event => {
+  event.preventDefault()
+  quizUi.onEditQuizSuccess()
+}
+
 const addHandlers = event => {
   $('.create-question').on('submit', '#create-question', onCreateQuestion)
   $('#edit-single-question').on('submit', '#edit-question', onEditQuestion)
@@ -137,6 +149,8 @@ const addHandlers = event => {
   $('#edit-single-question').on('click', '.add-question', onShowAddQuestion)
   $('#edit-single-question').on('submit', '#add-new-question', onAddQuestion)
   $('#edit-single-question').on('click', '.delete-question', onDeleteQuestion)
+  // $('#edit-single-question').on('click', '.loop-through-qs', onLoopThroughQuestions)
+  $('#edit-single-question').on('click', '.increment-questions', onLoopThroughQuestions)
 }
 
 module.exports = {
