@@ -8,7 +8,7 @@ const showCreateQuestionTemplate = require('../templates/quiz/question-create.ha
 const showQuizzesTemplate = require('../templates/quiz/quiz-td-index.handlebars')
 const showQuizTemplate = require('../templates/quiz/quiz-td-show.handlebars')
 const showQuizEditTemplate = require('../templates/quiz/quiz-td-edit.handlebars')
-const showEditQuestionTemplate = require('../templates/quiz/question-edit.handlebars')
+const showEditQuestionTemplate = require('../templates/quiz/new-question-edit.handlebars')
 const showFinishQuizTemplate = require('../templates/quiz/finish-quiz-screen.handlebars')
 
 // let questionNumber = 1
@@ -65,16 +65,29 @@ const onGetOneQuizEditSuccess = (data) => {
   $('.switch-view').hide()
 }
 
+// const onEditQuizSuccess = (data) => {
+//   const showQuestionEditHtml = showEditQuestionTemplate({ quiz: data.quiz })
+//   $('#single-quiz-listing').hide()
+//   $('#edit-single-question').html(showQuestionEditHtml)
+//   $('#edit-single-question').show()
+//   // show edit question for first question in array
+//   // on save question, show edit question for next question in array
+//   // if question is last question in array
+//   //   then disable save question, and enable finish
+//   // on finish edits, save question & call get one quiz
+// }
+let qi = -1
 const onEditQuizSuccess = (data) => {
-  const showQuestionEditHtml = showEditQuestionTemplate({ quiz: data.quiz })
+  qi++
+  console.log('data: ', store.quizData)
+  console.log('qi: ', qi)
+  if (qi > store.quizData.questions[qi]) {
+    console.log('qi: ', qi)
+  }
+  const showQuestionEditHtml = showEditQuestionTemplate({ question: store.quizData.questions[qi] })
   $('#single-quiz-listing').hide()
   $('#edit-single-question').html(showQuestionEditHtml)
   $('#edit-single-question').show()
-  // show edit question for first question in array
-  // on save question, show edit question for next question in array
-  // if question is last question in array
-  //   then disable save question, and enable finish
-  // on finish edits, save question & call get one quiz
 }
 
 const editQuizAfterUpdateQuestions = (data) => {

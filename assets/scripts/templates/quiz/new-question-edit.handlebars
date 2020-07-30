@@ -1,9 +1,8 @@
-<section data-id="{{quiz._id}}" class="single-quiz">
-  <p>{{quiz.title}}</p>
-  <!-- {{log loopEditQuestion quiz.questions}}
-  <button class="btn primary-btn loop-through-qs">Next Question!</button> -->
+<section data-id={{question._id}} class="single-quiz">
+  <!-- <p>{{quiz.title}}</p> -->
+  {{log question}}
+  <button class="btn primary-btn increment-questions">Next Question</button>
 
-  {{#each quiz.questions as |question| }}
     <p>Question #{{question.questionNumber}}</p>
     <form id="edit-question" data-id="{{question._id}}">
       <div class="form-group">
@@ -22,7 +21,7 @@
     <br>
     <br>
     <br>
-  {{/each}}
+
   <!-- <button type="submit" class="btn btn-dark next-question">Next Question</button> -->
   <button class="btn primary-btn add-question">Add New Question</button>
   <br>
