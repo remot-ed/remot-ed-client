@@ -86,8 +86,10 @@ const onEditQuizSuccess = (data) => {
     $('#single-quiz-listing').hide()
     $('#edit-single-question').html(showQuestionEditHtml)
     $('#edit-single-question').show()
+    $('.add-question').hide()
   } else if (qCounter >= store.quizData.questions.length) {
-    console.log('here')
+    store.questions = []
+    $('.add-question').show()
     $('.edit-single-question-section').hide()
   }
 }
