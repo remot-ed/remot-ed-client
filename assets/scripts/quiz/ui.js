@@ -32,7 +32,6 @@ const onCreateQuizSuccess = (data) => {
   $('form').trigger('reset')
   store.quizData = data.quiz
   store.questionNumber = 1
-  console.log(store.quizData)
   $('.question-count').html('Question ' + store.questionNumber + ' out of ' + store.quizData.numOfQuestions)
   const showCreateQuestionHtml = showCreateQuestionTemplate()
   $('.create-quiz').hide()
@@ -81,11 +80,8 @@ const onGetOneQuizEditSuccess = (data) => {
 let qCounter = -1
 const onEditQuizSuccess = (data) => {
   qCounter++
-  // console.log('data: ', store.quizData)
-  // console.log('qi: ', qCounter)
   if (qCounter < store.quizData.questions.length) {
     const showQuestionEditHtml = showEditQuestionTemplate({ question: store.quizData.questions[qCounter] })
-    console.log('r u running')
     $('#single-quiz-listing').hide()
     $('#edit-single-question').html(showQuestionEditHtml)
     $('#edit-single-question').show()
