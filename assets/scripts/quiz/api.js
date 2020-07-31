@@ -16,7 +16,7 @@ const createQuiz = formData => {
 
 const finishQuiz = () => {
   return $.ajax({
-    url: config.apiUrl + '/quizzes/' + store.quizData[0]._id,
+    url: config.apiUrl + '/quizzes/' + store.quizData._id,
     method: 'PATCH',
     headers: {
       Authorization: `Token token=${store.user.token}`
