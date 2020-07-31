@@ -122,7 +122,6 @@ const onMakeQuizActive = event => {
   // const formData = !store.quizData.quiz.isActive
   const form = event.target
   const formData = getFormFields(form)
-  console.log(formData)
 
   api.editQuiz(quizId, formData)
     .then(res => api.getOneQuiz(quizId)
