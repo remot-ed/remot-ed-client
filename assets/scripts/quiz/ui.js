@@ -88,6 +88,7 @@ const onEditQuizSuccess = (data) => {
     $('.add-question').hide()
   } else if (qCounter >= store.quizData.questions.length) {
     store.questions = []
+    // store.quizData = data.quiz
     const showQuestionEditHtml = showEditQuestionTemplate({ question: store.quizData.questions[qCounter] })
     $('#edit-single-question').html(showQuestionEditHtml)
     $('.add-question').show()

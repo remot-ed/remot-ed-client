@@ -72,8 +72,14 @@ const onShowAddQuestion = event => {
   ui.onShowAddQuestionSuccess()
 }
 
+// problem with reAddQuestionIds:
+// if you run it more than once, the quizData.questions will always have the
+// questions from the quiz as it was BEFORE editing, as we never reassign
+// when new questions have been added
+// SOLUTION: add store.quizData = data.quiz to ui edit quiz success function
 const reAddQuestionIds = () => {
   const quiz = store.quizData.questions
+  console.log('reAddQuestionIds: ', quiz)
 
   quiz.forEach(function (arrayItem) {
     store.questions.push(arrayItem._id)
@@ -94,7 +100,10 @@ const onAddQuestion = event => {
     .then(res => api.addQuestionToQuiz()
       .then(console.log))
     .then(res => quizApi.getOneQuiz(store.quizData._id)
-      .then(res => quizUi.onEditQuizSuccess(res)))
+      .then(res => {
+        store.quizData = res.quiz
+        quizUi.onEditQuizSuccess(res)
+      }))
     .catch(console.error)
 }
 
@@ -151,7 +160,7 @@ const onLoopThroughQuestions = event => {
   //  .then(quizApi.editQuiz(formData))
     .then(api.getOneQuestion(questionId)
       .then(res => store.questions.push(res))
-      .then(res => quizUi.onEditQuizSuccess(res))
+      .then(res => quizUi.onEditQuizSuccess())
       .catch(console.error))
     .catch(console.error)
 
