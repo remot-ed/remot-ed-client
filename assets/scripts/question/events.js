@@ -16,8 +16,8 @@ const quizUi = require('../quiz/ui')
 // }
 
 const addQuestionCount = () => {
-  if (store.questionNumber <= store.quizData[0].numOfQuestions) {
-    $('.question-count').html('Question ' + store.questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
+  if (store.questionNumber <= store.quizData.numOfQuestions) {
+    $('.question-count').html('Question ' + store.questionNumber + ' out of ' + store.quizData.numOfQuestions)
   } else {
     $('.next-question').prop('disabled', true)
     $('.finish-quiz').prop('disabled', false)
@@ -94,7 +94,7 @@ const onAddQuestion = event => {
     .then(res => api.addQuestionToQuiz()
       .then(console.log))
     .then(res => quizApi.getOneQuiz(store.quizData._id)
-      .then(res => quizUi.editQuizAfterUpdateQuestions(res)))
+      .then(res => quizUi.onEditQuizSuccess(res)))
     .catch(console.error)
 }
 
@@ -107,7 +107,7 @@ const onDeleteQuestion = event => {
     .then(store.quizData.numOfQuestions--)
     .then(api.reduceNumOfQuestions())
     .then(quizApi.getOneQuiz(store.quizData._id)
-      .then(res => quizUi.editQuizAfterUpdateQuestions(res)))
+      .then(res => quizUi.onEditQuizSuccess(res)))
     .catch(console.error)
 }
 
