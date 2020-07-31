@@ -26,15 +26,17 @@ const onCreateQuiz = event => {
   // onCreateQuiz stores the quiz data in empty quizData in ../store.js
   // console.log('formData is ', formData)
   api.createQuiz(formData)
-    .then(res => store.quizData.push(res.quiz))
-    .then(ui.onCreateQuizSuccess)
+    // .then(res => console.log('after create quiz, store.quizData is: ', store.quizData, 'and res is: ', res.quiz))
+    // .then(res => store.quizData.push(res.quiz))
+    // .then(ui.onCreateQuizSuccess)
+    .then(res => ui.onCreateQuizSuccess(res))
     .catch(console.error)
 }
 const onFinishQuiz = event => {
   event.preventDefault()
   // console.log('quizData: ', store.quizData)
   api.finishQuiz()
-    .then(api.getOneQuiz(store.quizData[0]._id)
+    .then(api.getOneQuiz(store.quizData._id)
       .then(ui.onFinishQuizSuccess))
     .catch(console.error)
 }

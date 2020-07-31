@@ -28,10 +28,12 @@ const onCreateQuizBackSuccess = () => {
   $('.create-quiz').hide()
 }
 
-const onCreateQuizSuccess = () => {
+const onCreateQuizSuccess = (data) => {
   $('form').trigger('reset')
+  store.quizData = data.quiz
   store.questionNumber = 1
-  $('.question-count').html('Question ' + store.questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
+  console.log(store.quizData)
+  $('.question-count').html('Question ' + store.questionNumber + ' out of ' + store.quizData.numOfQuestions)
   const showCreateQuestionHtml = showCreateQuestionTemplate()
   $('.create-quiz').hide()
   $('.TeacherDash').hide()
@@ -83,12 +85,15 @@ const onEditQuizSuccess = (data) => {
   // console.log('qi: ', qCounter)
   if (qCounter < store.quizData.questions.length) {
     const showQuestionEditHtml = showEditQuestionTemplate({ question: store.quizData.questions[qCounter] })
+    console.log('r u running')
     $('#single-quiz-listing').hide()
     $('#edit-single-question').html(showQuestionEditHtml)
     $('#edit-single-question').show()
     $('.add-question').hide()
   } else if (qCounter >= store.quizData.questions.length) {
     store.questions = []
+    const showQuestionEditHtml = showEditQuestionTemplate({ question: store.quizData.questions[qCounter] })
+    $('#edit-single-question').html(showQuestionEditHtml)
     $('.add-question').show()
     $('.edit-single-question-section').hide()
   }
