@@ -61,9 +61,6 @@ const onShowEditClass = event => {
 // Submit Updates
 const onFinishClassEdit = event => {
   event.preventDefault()
-  console.log('save button clicks!')
-  // ui.onFinishQuizEditSuccess()
-  // event.preventDefault()
 
   const classId = store.classData
 
@@ -71,8 +68,8 @@ const onFinishClassEdit = event => {
   const formData = getFormFields(form)
 
   api.patchClass(classId, formData)
-    .then(api.getClassroom(store.classData))
-    // .then(ui.onSubmitPatchSuccess())
+    .then(res => api.getClassroom(classId))
+    .then(res => ui.onSubmitPatchSuccess(res))
     .catch(console.error)
 }
 
@@ -98,18 +95,14 @@ const onAddStudent = event => {
 
   const form = event.target // form that was submited
   const formData = getFormFields(form) // get that form and run it
-
+  const reqEmail = formData.user.email
   /// if FIND email/name Priorety: last
   // if api.getStudentId
   api.getStudentId(formData)
     // turn the res into just the _ID
     .then(res => store.studentArray.push(res.user._id))
-    .then(res => console.log('student array is', store.studentArray))
-    // .then(res => fixArray(store.studentArray))
-    .then(res => console.log('the res post fix is ', res))
-    // .then(res => store.studentArray.push(res.xlASSROOM))
-    .then(ui.onAddStudentSuccess())
-    .catch(console.error)
+    .then(ui.onAddStudentSuccess(reqEmail))
+    .catch(ui.onAddStudentFailure(reqEmail))
 
   /// selected name _ID saved to store
 
