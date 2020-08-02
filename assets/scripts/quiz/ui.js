@@ -16,14 +16,6 @@ const onShowCreateQuizSuccess = (data) => {
   $('.create-quiz-button').hide()
   $('.create-quiz').show()
   $('.create-quiz').html(showCreateQuizHtml)
-  // show create question class
-  // hide create quiz class
-  // $('.question-count').html('Question ' + questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
-}
-
-const onCreateQuizBackSuccess = () => {
-  $('.create-quiz-button').show()
-  $('.create-quiz').hide()
 }
 
 const onCreateQuizSuccess = (data) => {
@@ -37,9 +29,14 @@ const onCreateQuizSuccess = (data) => {
   $('.switch-view').hide()
   $('.create-question').show()
   $('.create-question').html(showCreateQuestionHtml)
-  // show create question class
-  // hide create quiz class
-  // $('.question-count').html('Question ' + questionNumber + ' out of ' + store.quizData[0].numOfQuestions)
+}
+
+const onFinishQuizSuccess = (data) => {
+  store.quizData = data
+  const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
+  $('.create-question').hide()
+  $('#finish-quiz-view').show()
+  $('#finish-quiz-view').html(showFinishQuizHtml)
 }
 
 const onGetAllQuizzesSuccess = (data) => {
@@ -55,6 +52,7 @@ const onGetOneQuizSuccess = (data) => {
   $('.TeacherDash').hide()
   $('.switch-view').hide()
 }
+
 const onGetOneQuizEditSuccess = (data) => {
   const showQuizEditHtml = showQuizEditTemplate({ quiz: data.quiz })
   store.quizData = data.quiz
@@ -83,50 +81,7 @@ const onEditQuizSuccess = (data) => {
   }
 }
 
-const editQuizAfterUpdateQuestions = (data) => {
-  const showQuestionEditHtml = showEditQuestionTemplate({ quiz: data.quiz })
-  $('#edit-single-question').html('')
-  $('#edit-single-question').html(showQuestionEditHtml)
-}
-
-// on the last question, user will be unable to click 'next question', and
-// will click 'finish quiz', and create the final question
-// difference will be UI => finish quiz will take user to quiz created view
-// ^^^ this should go in question UI
-// if (questionNumber === store.quizData[0].numOfQuestions) {
-// make next question inactive, and finish quiz active
-// }
-
-const onFinishQuizSuccess = (data) => {
-  store.quizData = data
-  const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
-  $('.create-question').hide()
-  $('#finish-quiz-view').show()
-  $('#finish-quiz-view').html(showFinishQuizHtml)
-}
-
-// Old finish quiz succes ui:
-
-// const onFinishQuizSuccess = () => {
-//   store.quizData = []
-//   store.questions = []
-//   $('.create-question').hide()
-//   $('.create-quiz-button').show()
-//   $('.TeacherDash').show()
-//   $('.switch-view').show()
-// }
-
-const onFinishQuizEditSuccess = () => {
-  store.quizData = []
-  store.questions = []
-  qCounter = -1
-  $('#edit-single-question').hide()
-  quizApi.getAllQuizzes()
-    .then(onGetAllQuizzesSuccess)
-    .catch(console.error)
-  $('.TeacherDash').show()
-  $('.switch-view').show()
-}
+// Schedule section
 
 const onShowScheduleClassroomsSuccess = (data) => {
   const classDropdown = function () {
@@ -137,6 +92,25 @@ const onShowScheduleClassroomsSuccess = (data) => {
     })
   }
   classDropdown()
+}
+
+const onEditQuizScheduleSuccess = (data) => {
+  $('form').trigger('reset')
+  const showQuizHtml = showQuizTemplate({ quiz: data.quiz })
+  $('#single-quiz-listing').html(showQuizHtml)
+}
+
+const onFinishQuizEditQuizScheduleSuccess = (data) => {
+  $('form').trigger('reset')
+  const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
+  $('#finish-quiz-view').html(showFinishQuizHtml)
+}
+
+// Nav section
+
+const onCreateQuizBackSuccess = () => {
+  $('.create-quiz-button').show()
+  $('.create-quiz').hide()
 }
 
 const onSingleQuizToTeacherDashSuccess = () => {
@@ -157,16 +131,16 @@ const onFinishQuizToTeacherDashSuccess = () => {
   $('.switch-view').show()
 }
 
-const onEditQuizScheduleSuccess = (data) => {
-  $('form').trigger('reset')
-  const showQuizHtml = showQuizTemplate({ quiz: data.quiz })
-  $('#single-quiz-listing').html(showQuizHtml)
-}
-
-const onFinishQuizEditQuizScheduleSuccess = (data) => {
-  $('form').trigger('reset')
-  const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
-  $('#finish-quiz-view').html(showFinishQuizHtml)
+const onFinishQuizEditSuccess = () => {
+  store.quizData = []
+  store.questions = []
+  qCounter = -1
+  $('#edit-single-question').hide()
+  quizApi.getAllQuizzes()
+    .then(onGetAllQuizzesSuccess)
+    .catch(console.error)
+  $('.TeacherDash').show()
+  $('.switch-view').show()
 }
 
 module.exports = {
@@ -181,7 +155,6 @@ module.exports = {
   onGetOneQuizEditSuccess,
   onEditQuizSuccess,
   onFinishQuizEditSuccess,
-  editQuizAfterUpdateQuestions,
   onEditQuizScheduleSuccess,
   onFinishQuizToTeacherDashSuccess,
   onFinishQuizEditQuizScheduleSuccess
