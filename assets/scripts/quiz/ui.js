@@ -65,6 +65,8 @@ const onGetOneQuizEditSuccess = (data) => {
 let qCounter = -1
 const onEditQuizSuccess = (data) => {
   qCounter++
+  $('.question-count').html('<h3>' + store.quizData.title + '</h3>')
+  $('.question-count').show()
   if (qCounter < store.quizData.questions.length) {
     const showQuestionEditHtml = showEditQuestionTemplate({ question: store.quizData.questions[qCounter] })
     $('#single-quiz-listing').hide()
@@ -136,6 +138,7 @@ const onFinishQuizEditSuccess = () => {
   store.questions = []
   qCounter = -1
   $('#edit-single-question').hide()
+  $('.question-count').hide()
   quizApi.getAllQuizzes()
     .then(onGetAllQuizzesSuccess)
     .catch(console.error)
