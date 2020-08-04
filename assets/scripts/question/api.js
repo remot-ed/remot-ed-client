@@ -17,7 +17,7 @@ const createQuestion = formData => {
         answerTwo: formData.question.answerTwo,
         answerThree: formData.question.answerThree,
         answerFour: formData.question.answerFour,
-        quizOwner: store.quizData[0]._id,
+        quizOwner: store.quizData._id,
         questionNumber: store.questionNumber
       }
     }

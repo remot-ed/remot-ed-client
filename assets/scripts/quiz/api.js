@@ -14,9 +14,39 @@ const createQuiz = formData => {
   })
 }
 
+const getOneQuiz = quizId => {
+  return $.ajax({
+    url: config.apiUrl + '/quizzes/' + quizId,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
+const getAllQuizzes = () => {
+  return $.ajax({
+    url: config.apiUrl + '/quizzes',
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
+const getMyClassrooms = () => {
+  return $.ajax({
+    url: config.apiUrl + '/myclassrooms/' + store.user._id,
+    method: 'GET',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    }
+  })
+}
+
 const finishQuiz = () => {
   return $.ajax({
-    url: config.apiUrl + '/quizzes/' + store.quizData[0]._id,
+    url: config.apiUrl + '/quizzes/' + store.quizData._id,
     method: 'PATCH',
     headers: {
       Authorization: `Token token=${store.user.token}`
@@ -89,36 +119,6 @@ const deleteQuiz = quizId => {
   return $.ajax({
     url: config.apiUrl + '/quizzes/' + quizId,
     method: 'DELETE',
-    headers: {
-      Authorization: `Token token=${store.user.token}`
-    }
-  })
-}
-
-const getOneQuiz = quizId => {
-  return $.ajax({
-    url: config.apiUrl + '/quizzes/' + quizId,
-    method: 'GET',
-    headers: {
-      Authorization: `Token token=${store.user.token}`
-    }
-  })
-}
-
-const getAllQuizzes = () => {
-  return $.ajax({
-    url: config.apiUrl + '/quizzes',
-    method: 'GET',
-    headers: {
-      Authorization: `Token token=${store.user.token}`
-    }
-  })
-}
-
-const getMyClassrooms = () => {
-  return $.ajax({
-    url: config.apiUrl + '/myclassrooms/' + store.user._id,
-    method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`
     }
