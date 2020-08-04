@@ -3,13 +3,13 @@
 const store = require('../store')
 const quizApi = require('./api')
 
-const showCreateQuizTemplate = require('../templates/quiz/quiz-create.handlebars')
-const showCreateQuestionTemplate = require('../templates/quiz/question-create.handlebars')
-const showQuizzesTemplate = require('../templates/quiz/quiz-td-index.handlebars')
-const showQuizTemplate = require('../templates/quiz/quiz-td-show.handlebars')
-const showQuizEditTemplate = require('../templates/quiz/quiz-td-edit.handlebars')
-const showEditQuestionTemplate = require('../templates/quiz/question-edit.handlebars')
-const showFinishQuizTemplate = require('../templates/quiz/finish-quiz-screen.handlebars')
+const showCreateQuizTemplate = require('../templates/teacher/quiz/quiz-create.handlebars')
+const showCreateQuestionTemplate = require('../templates/teacher/quiz/question-create.handlebars')
+const showQuizzesTemplate = require('../templates/teacher/quiz/quiz-td-index.handlebars')
+const showQuizTemplate = require('../templates/teacher/quiz/quiz-td-show.handlebars')
+const showQuizEditTemplate = require('../templates/teacher/quiz/quiz-td-edit.handlebars')
+const showEditQuestionTemplate = require('../templates/teacher/quiz/question-edit.handlebars')
+const showFinishQuizTemplate = require('../templates/teacher/quiz/finish-quiz-screen.handlebars')
 
 const onShowCreateQuizSuccess = (data) => {
   const showCreateQuizHtml = showCreateQuizTemplate()

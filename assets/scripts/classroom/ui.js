@@ -3,10 +3,10 @@
 const store = require('../store')
 // const events = require('./events')
 
-const showClassroomsTemplate = require('../templates/classrooms/class-listing.handlebars')
-const showCreateClassTemplate = require('../templates/classrooms/class-create.handlebars')
-const showClassTemplate = require('../templates/classrooms/classroom-show.handlebars')
-const editClassTemplate = require('../templates/classrooms/classroom-edit.handlebars')
+const showClassroomsTemplate = require('../templates/teacher/classrooms/class-listing.handlebars')
+const showCreateClassTemplate = require('../templates/teacher/classrooms/class-create.handlebars')
+const showClassTemplate = require('../templates/teacher/classrooms/classroom-show.handlebars')
+const editClassTemplate = require('../templates/teacher/classrooms/classroom-edit.handlebars')
 
 const onSuccess = message => {
   $('#user-message')
