@@ -8,7 +8,6 @@ const showCreateClassTemplate = require('../templates/classrooms/class-create.ha
 const showClassTemplate = require('../templates/classrooms/classroom-show.handlebars')
 const editClassTemplate = require('../templates/classrooms/classroom-edit.handlebars')
 
-<<<<<<< HEAD
 const onSuccess = message => {
   $('#user-message')
     .removeClass('failure')
@@ -31,11 +30,6 @@ const onGetClassesSuccess = (data) => {
   const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
   $('#classroom_table').html(showClassesHtml)
   $('#student_classroom_table').html(showClassesHtml)
-=======
-const onGetClassesSuccess = (data) => {
-  const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
-  $('#classroom_table').html(showClassesHtml)
->>>>>>> 9dcfdc4a162441b1a97e8302f2bf604aca5bcca4
   $('#classroom_table').show()
 }
 
@@ -93,7 +87,6 @@ const deleteClassroomSuccess = () => {
   $('.switch-view').show()
 }
 
-<<<<<<< HEAD
 const onAddStudentSuccess = (student) => {
   $('form').trigger('reset')
   onSuccess('The student with email ' + student + ' successfully added')
@@ -102,10 +95,6 @@ const onAddStudentSuccess = (student) => {
 const onAddStudentFailure = (student) => {
   $('form').trigger('reset')
   onFailure('No student with email ' + student + ' found')
-=======
-const onAddStudentSuccess = () => {
-  $('form').trigger('reset')
->>>>>>> 9dcfdc4a162441b1a97e8302f2bf604aca5bcca4
 }
 
 const removeStudentSuccess = (target) => {
@@ -126,10 +115,7 @@ module.exports = {
   onCreateClassFail,
   deleteClassroomSuccess,
   onAddStudentSuccess,
-<<<<<<< HEAD
   onAddStudentFailure,
-=======
->>>>>>> 9dcfdc4a162441b1a97e8302f2bf604aca5bcca4
   onSingleClassToTeacherDashSuccess,
   onGetClassEditSuccess,
   onSubmitPatchSuccess,
