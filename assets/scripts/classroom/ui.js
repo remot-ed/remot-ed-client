@@ -62,11 +62,9 @@ const onCreateClassFail = () => {
 
 const onGetClassEditSuccess = (data) => {
   const editClassroomHtml = editClassTemplate({ classroom: data.classroom })
-  console.log(data)
   data.classroom.students.forEach(students => store.studentArray.push(students._id))
   console.log(store.studentArray)
   $('#single-class-listing').html(editClassroomHtml)
-  $('#classroom_table').html()
   $('.TeacherDash').hide()
   $('.switch-view').hide()
 }
@@ -89,6 +87,7 @@ const deleteClassroomSuccess = () => {
 const onAddStudentSuccess = (student) => {
   $('form').trigger('reset')
   onSuccess('The student with email ' + student + ' successfully added')
+  $('')
 }
 
 const onAddStudentFailure = (student) => {

@@ -3,7 +3,7 @@
       <button class="btn btn-secondary add-student-button"> Add Student </button>
     </form>
 
-    <table class="table table-striped table-bordered survey-list" cellspacing="0" width="100%">
+    <table class="table table-striped table-bordered classroom-list" cellspacing="0" width="100%">
       <thead>
         <tr>
           <th class="th th-title">Name</th>
@@ -29,7 +29,7 @@
     <input type="text" class="form-control inputs" name="classroom[classname]" placeholder="{{classroom.classname}}" required>
     <input type="text" class="form-control inputs" name="classroom[subject]" placeholder="{{classroom.subject}}" required>
   </div>
-  <button type="submit" class="btn btn-dark" data-id="{{classroom._id}}">save Class</button>
+  <button type="submit" class="btn btn-dark" data-id="{{classroom._id}}">Save Class</button>
   <button class="btn btn-secondary class-to-teacher-dash">Back to Teacher Dash</button>
   <button data-id="{{classroom._id}}" class="btn btn-danger delete"> DELETE </button>
 </form>
