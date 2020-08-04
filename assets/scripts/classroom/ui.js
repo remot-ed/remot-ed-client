@@ -8,9 +8,28 @@ const showCreateClassTemplate = require('../templates/classrooms/class-create.ha
 const showClassTemplate = require('../templates/classrooms/classroom-show.handlebars')
 const editClassTemplate = require('../templates/classrooms/classroom-edit.handlebars')
 
+const onSuccess = message => {
+  $('#user-message')
+    .removeClass('failure')
+    .addClass('success')
+    .text(message)
+  $('#user-message').fadeIn().fadeOut(3000)
+  $('form').trigger('reset')
+}
+
+const onFailure = message => {
+  $('#user-message')
+    .removeClass('success')
+    .addClass('failure')
+    .text(message)
+  $('#user-message').fadeIn().fadeOut(3000)
+  $('form').trigger('reset')
+}
+
 const onGetClassesSuccess = (data) => {
   const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
   $('#classroom_table').html(showClassesHtml)
+  $('#student_classroom_table').html(showClassesHtml)
   $('#classroom_table').show()
 }
 
@@ -54,6 +73,7 @@ const onGetClassEditSuccess = (data) => {
 }
 
 const onSubmitPatchSuccess = (data) => {
+  $('form').trigger('reset')
   const showClassroomHtml = showClassTemplate({ classroom: data.classroom })
   store.classroomData = data
   $('#single-class-listing').html(showClassroomHtml)
@@ -67,8 +87,14 @@ const deleteClassroomSuccess = () => {
   $('.switch-view').show()
 }
 
-const onAddStudentSuccess = () => {
+const onAddStudentSuccess = (student) => {
   $('form').trigger('reset')
+  onSuccess('The student with email ' + student + ' successfully added')
+}
+
+const onAddStudentFailure = (student) => {
+  $('form').trigger('reset')
+  onFailure('No student with email ' + student + ' found')
 }
 
 const removeStudentSuccess = (target) => {
@@ -89,6 +115,7 @@ module.exports = {
   onCreateClassFail,
   deleteClassroomSuccess,
   onAddStudentSuccess,
+  onAddStudentFailure,
   onSingleClassToTeacherDashSuccess,
   onGetClassEditSuccess,
   onSubmitPatchSuccess,

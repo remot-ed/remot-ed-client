@@ -11,8 +11,7 @@ const showMe = (event) => {
 }
 
 const onToggleView = event => {
-  $('.StudentDash').toggle()
-  $('.TeacherDash').toggle()
+  $('.student').toggle()
   $('.teacher').toggle()
 }
 
