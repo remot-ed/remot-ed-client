@@ -98,6 +98,21 @@ const reduceNumOfQuestions = () => {
   })
 }
 
+const reduceQuestionNumber = (questionId, questionNumber) => {
+  return $.ajax({
+    url: config.apiUrl + '/questions/' + questionId,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: {
+      question: {
+        questionNumber: questionNumber - 1
+      }
+    }
+  })
+}
+
 const getOneQuestion = questionId => {
   return $.ajax({
     url: config.apiUrl + '/questions/' + questionId,
@@ -126,5 +141,6 @@ module.exports = {
   getAllQuestions,
   addQuestion,
   addQuestionToQuiz,
-  reduceNumOfQuestions
+  reduceNumOfQuestions,
+  reduceQuestionNumber
 }
