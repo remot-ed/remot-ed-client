@@ -3,9 +3,11 @@
 const store = require('../store')
 // const events = require('./events')
 
-const showClassroomsTemplate = require('../templates/teacher/classrooms/class-listing.handlebars')
 const showCreateClassTemplate = require('../templates/teacher/classrooms/class-create.handlebars')
+const showStudentClassroomsTemplate = require('../templates/student/classrooms/class-listing.handlebars')
+const showClassroomsTemplate = require('../templates/teacher/classrooms/class-listing.handlebars')
 const showClassTemplate = require('../templates/teacher/classrooms/classroom-show.handlebars')
+const showStudentClassTemplate = require('../templates/student/classrooms/classroom-show.handlebars')
 const editClassTemplate = require('../templates/teacher/classrooms/classroom-edit.handlebars')
 
 const onSuccess = message => {
@@ -26,17 +28,6 @@ const onFailure = message => {
   $('form').trigger('reset')
 }
 
-const onGetClassesSuccess = (data) => {
-  const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
-  $('#classroom_table').html(showClassesHtml)
-  $('#student_classroom_table').html(showClassesHtml)
-  $('#classroom_table').show()
-}
-
-const onGetClassesFailure = () => {
-  console.log('classes not got')
-}
-
 const onShowCreateClassSuccess = () => {
   const showCreateClassHtml = showCreateClassTemplate()
   $('.create-class-button').hide()
@@ -45,6 +36,19 @@ const onShowCreateClassSuccess = () => {
 }
 
 const onCreateClassSuccess = () => {
+  onSuccess("You've created a new class")
+}
+
+const onGetClassesSuccess = (data) => {
+  const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
+  const showStudentClassroomHTML = showStudentClassroomsTemplate({ classrooms: data.classrooms })
+  $('#classroom_table').html(showClassesHtml)
+  $('#student-classrooms').html(showStudentClassroomHTML)
+  $('#classroom_table').show()
+}
+
+const onGetClassesFailure = () => {
+  onFailure('Could not retreive classrooms.')
 }
 
 const onGetClassroomSuccess = (data) => {
@@ -59,6 +63,16 @@ const onGetClassroomSuccess = (data) => {
 
 const onCreateClassFail = () => {
   console.log('somthings wrong!')
+}
+
+const onGetStudentClassroomSuccess = (data) => {
+  const showClassroomHtml = showStudentClassTemplate({ classroom: data.classroom })
+  store.classroomData = data
+  $('#student-class-listing').html(showClassroomHtml)
+  $('#student-class-listing').show()
+  $('#classroom_table').html()
+  $('.StudentDash').hide()
+  $('.switch-view').hide()
 }
 
 const onGetClassEditSuccess = (data) => {
@@ -107,17 +121,18 @@ const onSingleClassToTeacherDashSuccess = () => {
 }
 
 module.exports = {
-  onGetClassroomSuccess,
-  onGetClassesSuccess,
-  onGetClassesFailure,
   onShowCreateClassSuccess,
   onCreateClassSuccess,
   onCreateClassFail,
+  onGetClassesSuccess,
+  onGetClassesFailure,
+  onGetClassroomSuccess,
+  onGetStudentClassroomSuccess,
+  onGetClassEditSuccess,
+  onSubmitPatchSuccess,
   deleteClassroomSuccess,
   onAddStudentSuccess,
   onAddStudentFailure,
   onSingleClassToTeacherDashSuccess,
-  onGetClassEditSuccess,
-  onSubmitPatchSuccess,
   removeStudentSuccess
 }

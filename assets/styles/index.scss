@@ -143,6 +143,14 @@ nav {
   display: block;
 }
 
+.student-classroom {
+  background-color: $green;
+  color: #fff;
+  text-align: center;
+  min-height: 30vh;
+  height: 200px;
+}
+
 .student-quiz-alert {
   background-color: $green;
   border: solid $green 2px;

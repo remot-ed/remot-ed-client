@@ -44,6 +44,14 @@ const onGetClassroom = (event) => {
     .catch(ui.onGetClassroomFailure)
 }
 
+const onGetStudentClassroom = (event) => {
+  event.preventDefault()
+
+  api.getClassroom($(event.target).data('id'))
+    .then(ui.onGetStudentClassroomSuccess)
+    .catch(ui.onGetStudentClassroomFailure)
+}
+
 // Update
 
 // Shows Class you are editing, to Update a Class
@@ -164,6 +172,7 @@ const addHandlers = event => {
 
   // Read Requests
   $('#classroom_table').on('click', '.get-classroom', onGetClassroom)
+  $('#student-classrooms').on('click', '.student-classroom', onGetStudentClassroom)
 
   // Update
   $('#single-class-listing').on('click', '.edit-class', onShowEditClass)
