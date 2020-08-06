@@ -101,6 +101,14 @@ const onDeleteQuestion = event => {
 
   const questionId = $(event.target).data('id')
 
+  quizApi.getOneQuiz(store.quizData._id)
+    .then(res => {
+      const questionIndex = res.quiz.questions.findIndex(e => e._id === questionId)
+      for (let i = questionIndex + 1; i < res.quiz.questions.length; i++) {
+        api.reduceQuestionNumber(res.quiz.questions[i]._id, res.quiz.questions[i].questionNumber)
+      }
+    })
+
   api.deleteQuestion(questionId)
     .then(store.quizData.numOfQuestions--)
     .then(api.reduceNumOfQuestions())
