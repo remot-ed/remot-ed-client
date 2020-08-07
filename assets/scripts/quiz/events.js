@@ -84,6 +84,15 @@ const onGetOneQuiz = event => {
     .catch(console.error)
 }
 
+const onGetStudentQuiz = event => {
+  event.preventDefault()
+  const quizId = $(event.target).data('id')
+  console.log($(event.target).data('id'))
+  api.getOneQuiz(quizId)
+    .then(ui.onGetStudentOneQuizSuccess)
+    .catch(ui.onGetStudentOneQuizFailure)
+}
+
 const onShowScheduleClassrooms = () => {
   event.preventDefault()
 
@@ -232,7 +241,7 @@ const addHandlers = event => {
 
   // READ
   $('.quiz-listing').on('click', '.single-quiz-link', onGetOneQuiz)
-
+  $('#student-class-listing').on('click', '.single-quiz-link', onGetStudentQuiz)
   $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
   $('#finish-quiz-view').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
 

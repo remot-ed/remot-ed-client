@@ -7,6 +7,7 @@ const showCreateQuizTemplate = require('../templates/teacher/quiz/quiz-create.ha
 const showCreateQuestionTemplate = require('../templates/teacher/quiz/question-create.handlebars')
 const showQuizzesTemplate = require('../templates/teacher/quiz/quiz-td-index.handlebars')
 const showQuizTemplate = require('../templates/teacher/quiz/quiz-td-show.handlebars')
+const showStudentQuizTemplate = require('../templates/student/quiz/quiz-td-show.handlebars')
 const showQuizEditTemplate = require('../templates/teacher/quiz/quiz-td-edit.handlebars')
 const showEditQuestionTemplate = require('../templates/teacher/quiz/question-edit.handlebars')
 const showFinishQuizTemplate = require('../templates/teacher/quiz/finish-quiz-screen.handlebars')
@@ -51,6 +52,20 @@ const onGetOneQuizSuccess = (data) => {
   $('#single-quiz-listing').show()
   $('.TeacherDash').hide()
   $('.switch-view').hide()
+}
+
+const onGetOneStudentQuizSuccess = (data) => {
+  const showQuizHtml = showStudentQuizTemplate({ quiz: data.quiz })
+  store.quizData = data
+  $('#student-quiz-view').html(showQuizHtml)
+  $('#student-quiz-view').show()
+  $('#student-class-listing').hide()
+  $('.switch-view').hide()
+}
+
+const onGetOneStudentQuizFailure = (data) => {
+  // update with messaging shortly
+  console.log('failure')
 }
 
 const onGetOneQuizEditSuccess = (data) => {
@@ -153,6 +168,8 @@ module.exports = {
   onShowCreateQuizSuccess,
   onGetAllQuizzesSuccess,
   onGetOneQuizSuccess,
+  onGetOneStudentQuizSuccess,
+  onGetOneStudentQuizFailure,
   onShowScheduleClassroomsSuccess,
   onSingleQuizToTeacherDashSuccess,
   onGetOneQuizEditSuccess,
