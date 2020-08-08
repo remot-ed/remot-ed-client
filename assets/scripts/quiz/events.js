@@ -55,17 +55,6 @@ const onScheduleQuizToClassroom = () => {
     .catch(console.error)
 }
 
-// Old finish quiz event:
-
-// const onFinishQuiz = event => {
-//   event.preventDefault()
-//   // console.log('quizData: ', store.quizData)
-//   api.finishQuiz()
-//     .then(ui.onFinishQuizSuccess)
-//     .then(onGetAllQuizzes(event))
-//     .catch(console.error)
-// }
-
 // Read
 
 const onGetAllQuizzes = event => {

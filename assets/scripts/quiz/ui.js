@@ -5,12 +5,34 @@ const quizApi = require('./api')
 
 const showCreateQuizTemplate = require('../templates/teacher/quiz/quiz-create.handlebars')
 const showCreateQuestionTemplate = require('../templates/teacher/quiz/question-create.handlebars')
+const showFinishQuizTemplate = require('../templates/teacher/quiz/finish-quiz-screen.handlebars')
+
 const showQuizzesTemplate = require('../templates/teacher/quiz/quiz-td-index.handlebars')
 const showQuizTemplate = require('../templates/teacher/quiz/quiz-td-show.handlebars')
 const showStudentQuizTemplate = require('../templates/student/quiz/quiz-td-show.handlebars')
-const showQuizEditTemplate = require('../templates/teacher/quiz/quiz-td-edit.handlebars')
+
 const showEditQuestionTemplate = require('../templates/teacher/quiz/question-edit.handlebars')
-const showFinishQuizTemplate = require('../templates/teacher/quiz/finish-quiz-screen.handlebars')
+const showQuizEditTemplate = require('../templates/teacher/quiz/quiz-td-edit.handlebars')
+
+const onSuccess = message => {
+  $('#user-message')
+    .removeClass('failure')
+    .addClass('success')
+    .text(message)
+  $('#user-message').fadeIn().fadeOut(3000)
+  $('form').trigger('reset')
+}
+
+const onFailure = message => {
+  $('#user-message')
+    .removeClass('success')
+    .addClass('failure')
+    .text(message)
+  $('#user-message').fadeIn().fadeOut(3000)
+  $('form').trigger('reset')
+}
+
+// Create
 
 const onShowCreateQuizSuccess = (data) => {
   const showCreateQuizHtml = showCreateQuizTemplate()
@@ -30,15 +52,18 @@ const onCreateQuizSuccess = (data) => {
   $('.switch-view').hide()
   $('.create-question').show()
   $('.create-question').html(showCreateQuestionHtml)
+  onSuccess()
 }
 
 const onFinishQuizSuccess = (data) => {
   store.quizData = data
   const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
   $('.create-question').hide()
-  $('#finish-quiz-view').show()
   $('#finish-quiz-view').html(showFinishQuizHtml)
+  $('#finish-quiz-view').show()
 }
+
+// Read
 
 const onGetAllQuizzesSuccess = (data) => {
   const showQuizzesHtml = showQuizzesTemplate({ quizzes: data.quizzes })
@@ -67,6 +92,8 @@ const onGetOneStudentQuizFailure = (data) => {
   // update with messaging shortly
   console.log('failure')
 }
+
+// Update
 
 const onGetOneQuizEditSuccess = (data) => {
   const showQuizEditHtml = showQuizEditTemplate({ quiz: data.quiz })
