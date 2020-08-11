@@ -5,12 +5,12 @@
     <p>Question #{{question.questionNumber}}</p>
       <form id="edit-question" data-id="{{question._id}}">
         <div class="form-group">
-          <input type="text" autocomplete="off" class="form-control inputs" name="question[title]" placeholder="{{question.title}}">
+          <textarea type="text" autocomplete="off" class="form-control inputs question-input" name="question[title]" placeholder="{{question.title}}" rows="5" cols="10"></textarea>
           <br>
-          <input type="text" autocomplete="off" class="form-control inputs" name="question[correctAnswer]" placeholder="{{question.correctAnswer}}">
-          <input type="text" autocomplete="off" class="form-control inputs" name="question[answerTwo]" placeholder="{{question.answerTwo}}">
-          <input type="text" autocomplete="off" class="form-control inputs" name="question[answerThree]" placeholder="{{question.answerThree}}">
-          <input type="text" autocomplete="off" class="form-control inputs" name="question[answerFour]" placeholder="{{question.answerFour}}">
+          <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[correctAnswer]" placeholder="{{question.correctAnswer}}">
+          <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[answerTwo]" placeholder="{{question.answerTwo}}">
+          <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[answerThree]" placeholder="{{question.answerThree}}">
+          <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[answerFour]" placeholder="{{question.answerFour}}">
           <br>
           <!-- <input type="text" class="form-control inputs" name="question[quizOwner]" placeholder="Quiz ID" required> -->
           <button type="submit" class="btn primary-btn next-question-edits">Save Question</button>
