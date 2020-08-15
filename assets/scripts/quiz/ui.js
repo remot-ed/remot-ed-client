@@ -59,8 +59,7 @@ const onFinishQuizSuccess = (data) => {
   store.quizData = data
   const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
   $('.create-question').hide()
-  $('#finish-quiz-view').html(showFinishQuizHtml)
-  $('#finish-quiz-view').show()
+el.setAttribute('attr', value)  $('#finish-quiz-view').show()
 }
 
 // Read
