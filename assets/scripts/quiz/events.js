@@ -78,8 +78,8 @@ const onGetStudentQuiz = event => {
   const quizId = $(event.target).data('id')
   console.log($(event.target).data('id'))
   api.getOneQuiz(quizId)
-    .then(ui.onGetStudentOneQuizSuccess)
-    .catch(ui.onGetStudentOneQuizFailure)
+    .then(ui.onGetOneStudentQuizSuccess)
+    .catch(ui.onGetOneStudentQuizFailure)
 }
 
 const onShowScheduleClassrooms = () => {
