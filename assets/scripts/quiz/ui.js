@@ -23,14 +23,14 @@ const onSuccess = message => {
   $('form').trigger('reset')
 }
 
-const onFailure = message => {
-  $('#user-message')
-    .removeClass('success')
-    .addClass('failure')
-    .text(message)
-  $('#user-message').fadeIn().fadeOut(3000)
-  $('form').trigger('reset')
-}
+// const onFailure = message => {
+//   $('#user-message')
+//     .removeClass('success')
+//     .addClass('failure')
+//     .text(message)
+//   $('#user-message').fadeIn().fadeOut(3000)
+//   $('form').trigger('reset')
+// }
 
 // Create
 
@@ -163,6 +163,19 @@ const onSingleQuizToTeacherDashSuccess = () => {
   $('.switch-view').show()
 }
 
+const onSingleClassToStudentDashSuccess = () => {
+  $('#student-quiz-view').hide()
+  $('#student-class-listing').hide()
+  $('.StudentDash').show()
+  $('.switch-view').show()
+}
+
+const onSingleQuizToClassSuccess = () => {
+  $('#student-quiz-view').hide()
+  $('#student-class-listing').show()
+  $('.switch-view').show()
+}
+
 const onFinishQuizToTeacherDashSuccess = () => {
   store.quizData = []
   store.questions = []
@@ -199,6 +212,8 @@ module.exports = {
   onGetOneStudentQuizFailure,
   onShowScheduleClassroomsSuccess,
   onSingleQuizToTeacherDashSuccess,
+  onSingleClassToStudentDashSuccess,
+  onSingleQuizToClassSuccess,
   onGetOneQuizEditSuccess,
   onEditQuizSuccess,
   onFinishQuizEditSuccess,

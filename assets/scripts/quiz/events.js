@@ -214,6 +214,16 @@ const onSingleQuizToTeacherDash = () => {
   ui.onSingleQuizToTeacherDashSuccess()
 }
 
+const onSingleClassToStudentDash = () => {
+  event.preventDefault()
+  ui.onSingleClassToStudentDashSuccess()
+}
+
+const onSingleQuizToClassroom = () => {
+  event.preventDefault()
+  ui.onSingleQuizToClassSuccess()
+}
+
 const onFinishQuizToTeacherDash = () => {
   event.preventDefault()
 
@@ -248,6 +258,8 @@ const addHandlers = event => {
 
   // MISC
   $('.create-quiz').on('click', '.back-to-td', onCreateQuizBack)
+  $('#student-quiz-view').on('click', '.quiz-to-class', onSingleQuizToClassroom)
+  $('#student-class-listing').on('click', '.class-to-student-dash', onSingleClassToStudentDash)
   $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
   $('#finish-quiz-view').on('click', '.finish-quiz-to-teacher-dash', onFinishQuizToTeacherDash)
 }
