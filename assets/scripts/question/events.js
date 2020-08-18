@@ -96,6 +96,31 @@ const onLoopThroughEditQuestions = event => {
     .catch(console.error)
 }
 
+const onLoopThroughAnswerQuestions = event => {
+  event.preventDefault()
+
+  const questionId = $(event.target).data('id')
+  // console.log('questionId: ', questionId)
+
+  const form = event.target
+  const formData = getFormFields(form)
+  console.log('formData: ', formData)
+  console.log('questionId: ', questionId)
+
+  quizUi.onGetOneStudentQuizSuccess()
+  // console.log('formData: ', formData)
+  // store.questions.push(formData)
+
+  // api.editQuestion(questionId, formData)
+  // //  .then(formData => store.questions.push(formData))
+  // //  .then(quizApi.editQuiz(formData))
+  //   .then(api.getOneQuestion(questionId)
+  //     // .then(res => store.questions.push(res))
+  //     .then(res => quizUi.onEditQuizSuccess())
+  //     .catch(console.error))
+  //   .catch(console.error)
+}
+
 const onDeleteQuestion = event => {
   event.preventDefault()
 
@@ -146,6 +171,7 @@ const addHandlers = event => {
   $('#edit-single-question').on('click', '.delete-question', onDeleteQuestion)
   // $('#edit-single-question').on('click', '.loop-through-qs', onLoopThroughQuestions)
   $('#edit-single-question').on('submit', '#edit-question', onLoopThroughEditQuestions)
+  $('#student-quiz-view').on('submit', '#answer-question', onLoopThroughAnswerQuestions)
 }
 
 module.exports = {

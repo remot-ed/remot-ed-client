@@ -76,7 +76,7 @@ const onGetOneQuiz = event => {
 const onGetStudentQuiz = event => {
   event.preventDefault()
   const quizId = $(event.target).data('id')
-  console.log($(event.target).data('id'))
+  // console.log($(event.target).data('id'))
   api.getOneQuiz(quizId)
     .then(ui.onGetOneStudentQuizSuccess)
     .catch(ui.onGetOneStudentQuizFailure)

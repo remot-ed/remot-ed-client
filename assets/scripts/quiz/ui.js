@@ -9,7 +9,7 @@ const showFinishQuizTemplate = require('../templates/teacher/quiz/finish-quiz-sc
 
 const showQuizzesTemplate = require('../templates/teacher/quiz/quiz-td-index.handlebars')
 const showQuizTemplate = require('../templates/teacher/quiz/quiz-td-show.handlebars')
-const showStudentQuizTemplate = require('../templates/student/quiz/quiz-td-show.handlebars')
+const showStudentQuizTemplate = require('../templates/student/quiz/question-show.handlebars')
 
 const showEditQuestionTemplate = require('../templates/teacher/quiz/question-edit.handlebars')
 const showQuizEditTemplate = require('../templates/teacher/quiz/quiz-td-edit.handlebars')
@@ -79,13 +79,39 @@ const onGetOneQuizSuccess = (data) => {
   $('.switch-view').hide()
 }
 
+// const onGetOneStudentQuizSuccess = (data) => {
+//   const showQuizHtml = showStudentQuizTemplate({ quiz: data.quiz })
+//   store.quizData = data
+//   $('#student-quiz-view').html(showQuizHtml)
+//   $('#student-quiz-view').show()
+//   $('#student-class-listing').hide()
+//   $('.switch-view').hide()
+// }
+
+let aCounter = -1
 const onGetOneStudentQuizSuccess = (data) => {
-  const showQuizHtml = showStudentQuizTemplate({ quiz: data.quiz })
-  store.quizData = data
-  $('#student-quiz-view').html(showQuizHtml)
-  $('#student-quiz-view').show()
-  $('#student-class-listing').hide()
-  $('.switch-view').hide()
+  aCounter++
+  if (aCounter === 0) {
+    store.quizData = data.quiz
+  }
+  // note: title is not showing atm
+  $('.question-count').html('<h3>' + store.quizData.title + '</h3>')
+  $('.question-count').show()
+  if (aCounter < store.quizData.questions.length) {
+    const showStudentQuizHtml = showStudentQuizTemplate({ question: store.quizData.questions[aCounter] })
+    $('#student-quiz-view').html(showStudentQuizHtml)
+    $('#student-quiz-view').show()
+    $('#student-class-listing').hide()
+    $('.switch-view').hide()
+    $('.finish-quiz-student').hide()
+  } else if (aCounter >= store.quizData.questions.length) {
+    store.questions = []
+    // store.quizData = data.quiz
+    const showStudentQuizHtml = showStudentQuizTemplate({ question: store.quizData.questions[aCounter] })
+    $('#student-quiz-view').html(showStudentQuizHtml)
+    $('.finish-quiz-student').show()
+    $('.answer-question-section').hide()
+  }
 }
 
 const onGetOneStudentQuizFailure = (data) => {
