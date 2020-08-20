@@ -8,25 +8,25 @@
       <form id="answer-question" data-id="{{question._id}}">
         <div class="form-group">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="questionAnswer" id="correctAnswer" value="1">
+            <input class="form-check-input" type="radio" name="choice" id="correctAnswer" value="1">
             <label class="form-check-label" for="correctAnswer">
               {{question.correctAnswer}}
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="questionAnswer" id="answerTwo" value="2">
+            <input class="form-check-input" type="radio" name="choice" id="answerTwo" value="2">
             <label class="form-check-label" for="answerTwo">
               {{question.answerTwo}}
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="questionAnswer" id="answerThree" value="3">
+            <input class="form-check-input" type="radio" name="choice" id="answerThree" value="3">
             <label class="form-check-label" for="answerThree">
               {{question.answerThree}}
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="questionAnswer" id="answerFour" value="4">
+            <input class="form-check-input" type="radio" name="choice" id="answerFour" value="4">
             <label class="form-check-label" for="answerFour">
               {{question.answerFour}}
             </label>
@@ -42,7 +42,7 @@
           <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[answerThree]" placeholder="{{question.answerThree}}">
           <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[answerFour]" placeholder="{{question.answerFour}}">
           <br> -->
-          <button type="submit" class="btn primary-btn next-question-edits increment-questions">Submit Answer</button>
+          <button type="submit" class="btn primary-btn">Submit Answer</button>
         </div>
       </form>
       <br>
