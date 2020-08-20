@@ -23,15 +23,6 @@ const onSuccess = message => {
   $('form').trigger('reset')
 }
 
-const onFailure = message => {
-  $('#user-message')
-    .removeClass('success')
-    .addClass('failure')
-    .text(message)
-  $('#user-message').fadeIn().fadeOut(3000)
-  $('form').trigger('reset')
-}
-
 // Create
 
 const onShowCreateQuizSuccess = (data) => {

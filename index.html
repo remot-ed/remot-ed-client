@@ -57,103 +57,130 @@
 
     <!-- Existing User? Click Here. -->
 
-    <!-- Login Forms -->
-    <!-- Sign Up -->
-    <!-- splash page -->
-    <div class="before-auth h-90 row align-items-center">
-      <form id="sign-up" class="col-6">
-        <div class="form-group auth-form">
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend2">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-                  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                </svg>
-              </span>
-              <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
-            </div>
-          </div>
-          <br />
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend2">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
-                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                </svg>
-              </span>
-              <input type="password" class="form-control inputs" name="credentials[password]" placeholder="Password" required>
-            </div>
-          </div>
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend2">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
-                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                </svg>
-              </span>
-              <input type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Password confirmation" required>
-            </div>
-          </div>
-          <!-- radio button for student vs. teacher roles -->
-          <!-- <input type="radio" id="teacher" name="role" value="teacher">
-          <label for="teacher">Teacher</label><br>
-          <input type="radio" id="student" name="role" value="student">
-          <label for="student">Student</label><br> -->
-          <br>
-          <button type="submit" class="btn primary-btn">Sign Up</button>
-        </div>
-      </form>
+    <div class="splashbackgroundimg before-auth">
+      <div class="container">
+        <div class="row">
+            <!-- Navbar -->
 
-    <!-- Sign In -->
-      <form id="sign-in" class="col-6">
-        <div class="form-group auth-form">
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend2">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-                  <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                  <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                </svg>
-              </span>
-              <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
-            </div>
-          </div>
-          <br>
-          <div class="input-group justify-content-center">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend2">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
-                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                </svg>
-              </span>
-              <input type="password" class="form-control inputs" id="password" name="credentials[password]" placeholder="Password" required>
-            </div>
-          </div>
-          <br>
-          <button type="submit" class="btn primary-btn">Sign In</button>
-        </div>
-      </form>
-  </div>
+            <!-- Auth Box -->
+            <div class="col-4"></div>
+          <div class="splash-login align-self-center text-center col-4">
+          <h2 style="color: white"> Welcome, please log in! </h2>
 
-  <!-- Teacher View : instead of After-Auth detect if T or S and show proper dash-->
-    <!-- if this.user.role === Teacher? -->
-  <div class="after-auth teacher">
+            <!-- Sign Up -->
+          <form id="sign-up" class="sign-up-form col-12">
+            <div class="form-group auth-form">
+              <div class="input-group justify-content-center">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend2">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                      <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                      <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                    </svg>
+                  </span>
+                  <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
+                </div>
+              </div>
+              <br />
+              <div class="input-group justify-content-center">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend2">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                      <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                  </span>
+                  <input type="password" class="form-control inputs" name="credentials[password]" placeholder="Password" required>
+                </div>
+              </div>
+              <div class="input-group justify-content-center">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend2">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                      <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                  </span>
+                  <input type="password" class="form-control" name="credentials[password_confirmation]" placeholder="Password confirmation" required>
+                </div>
+              </div>
+              <!-- radio button for student vs. teacher roles -->
+              <!-- <input type="radio" id="teacher" name="role" value="teacher">
+              <label for="teacher">Teacher</label><br>
+              <input type="radio" id="student" name="role" value="student">
+              <label for="student">Student</label><br> -->
+              <br>
+              <button type="submit" class="btn btn-info">Create Account</button>
+              <button type="button" class="btn btn-secondary" id="new-user-back">Back</button>
+            </div>
+          </form>
 
-    <div class='TeacherDash'>
-      <div class="row">
-        <div class="col-6 box mx-auto my-4">
-          <div id="classroom_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar"></div>
+          <!-- SIGN IN -->
+            <form id="sign-in" class="col-12">
+              <div class="form-group auth-form">
+                <div class="input-group justify-content-center">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend2">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                      </svg>
+                    </span>
+                    <input type="email" class="form-control inputs" name="credentials[email]" placeholder="Your email" required>
+                  </div>
+                </div>
+                <br>
+                <div class="input-group justify-content-center">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend2">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                        <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                      </svg>
+                    </span>
+                    <input type="password" class="form-control inputs" id="password" name="credentials[password]" placeholder="Password" required>
+                  </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-info">Sign In</button>
+                <button type="button" class="btn btn-secondary" id="new-user">New Account</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-4"></div>
         </div>
-        <div class="col-6 box mx-auto my-4">
-          <div id="quiz_table" class="col-11 container table-wrapper-scroll-y my-custom-scrollbar quiz-listing"></div>
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6 text-center"><h2 style="color: white">In a World Apart, Education is the New Adventure!</h2></div>
+          <div class="col-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-3"><button type="button" class="btn btn-warning" id="DEMO-LOGIN">DEMO LOGIN</button></div>
+          <div class="col-9"></div>
         </div>
       </div>
+
+          <!-- Mask & flexbox options-->
+          <!--Main Layout-->
+    </div>
+
+    <section class="sales-pitch before-auth">
+
+    <h2>Welcome, What is Remot-ed?</h2>
+      <p>Want to learn more? Lorem ipsum Lorem ipsum dolor sit amet, rebum cetero posidonium ex eum, vim ea graecis mediocrem honestatis. Dicant altera iuvaret et has. Amet dictas sit id, in his quodsi copiosae. Officiis suscipiantur id nam, ne quando molestie mandamus quo, ne nam elitr sadipscing. Eos eu porro salutatus, vis ex omnium sanctus sadipscing, illum concludaturque ad usu. No eum solet evertitur, nibh ubique discere ea nec, tamquam perpetua ei sea.
+
+    Ut pri hendrerit disputationi. Cu usu admodum abhorreant. Est ponderum tacimates antiopam in, an vis nostrum interpretaris, quem nobis dissentiet eos ex. Duo ex munere accumsan, duis aeque electram his ad, illum munere an pro.
+
+    Posse fugit splendide usu in, vis ad tollit numquam adversarium. Ut eripuit delicata eam. Facer nullam appellantur has id, ut qui homero nemore malorum. Eos clita essent appetere te, facilis convenire cu mea. Mutat facer probatus ex his.
+
+    Eum cibo tota eius at, quas cotidieque mel ea. Sumo aperiam per ne, vim lobortis concludaturque et. Graeci omnium contentiones no eum, homero eruditi tincidunt ei eam. Iuvaret sententiae eam ut, justo dicta antiopam no pro. Sonet labores probatus sit ne, te regione assentior per.
+
+    Duo illum habemus scripserit ad. No has fastidii fabellas, vix te tation copiosae epicurei. Quis malorum no vim, justo libris placerat vix an. Pri noster omittantur ea. Mea id ullum vituperata.
+    </p>
+    </section>
+
       <!-- Classroom CRUD -->
       <div class="row">
         <div class="col-6 box mx-auto my-4">

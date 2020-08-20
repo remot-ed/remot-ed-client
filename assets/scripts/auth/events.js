@@ -16,6 +16,10 @@ const onSignUp = event => {
     .catch(ui.onSignUpFailure)
 }
 
+const onToggleSignUp = () => {
+  ui.toggleSignUpSuccess()
+}
+
 const onSignIn = event => {
   event.preventDefault()
 
@@ -52,12 +56,24 @@ const onShowChangePassword = event => {
   ui.onShowChangePasswordSuccess()
 }
 
+const onDemoLogin = () => {
+  event.preventDefault()
+
+  api.demoSignIn()
+    .then(ui.onSignInSuccess)
+    .then(console.log(store.user))
+    .catch(ui.onSignInFailure)
+}
+
 const addHandlers = event => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
+  $('#new-user').on('click', onToggleSignUp)
+  $('#new-user-back').on('click', onToggleSignUp)
   $('.show-change-password').on('click', onShowChangePassword)
+  $('#DEMO-LOGIN').on('click', onDemoLogin)
 }
 
 module.exports = {
