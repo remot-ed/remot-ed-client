@@ -10,6 +10,7 @@ const showFinishQuizTemplate = require('../templates/teacher/quiz/finish-quiz-sc
 const showQuizzesTemplate = require('../templates/teacher/quiz/quiz-td-index.handlebars')
 const showQuizTemplate = require('../templates/teacher/quiz/quiz-td-show.handlebars')
 const showStudentQuizTemplate = require('../templates/student/quiz/question-show.handlebars')
+const showFinishQuizStudentTemplate = require('../templates/student/quiz/finish-quiz-view.handlebars')
 
 const showEditQuestionTemplate = require('../templates/teacher/quiz/question-edit.handlebars')
 const showQuizEditTemplate = require('../templates/teacher/quiz/quiz-td-edit.handlebars')
@@ -227,6 +228,20 @@ const onFinishQuizEditSuccess = () => {
   $('.switch-view').show()
 }
 
+const onFinishQuizStudentViewSuccess = data => {
+  const showFinishQuizStudentHtml = showFinishQuizStudentTemplate({ quiz: data.quiz, responses: store.questionResponses })
+  $('#student-quiz-view').html(showFinishQuizStudentHtml)
+}
+
+const onStudentSubmitQuizSuccess = data => {
+  store.classroomData = []
+  store.quizData = []
+  store.questionResponses = []
+  aCounter = -1
+  $('#student-quiz-view').hide()
+  $('.StudentDash').show()
+}
+
 module.exports = {
   onCreateQuizSuccess,
   onCreateQuizBackSuccess,
@@ -245,5 +260,7 @@ module.exports = {
   onFinishQuizEditSuccess,
   onEditQuizScheduleSuccess,
   onFinishQuizToTeacherDashSuccess,
-  onFinishQuizEditQuizScheduleSuccess
+  onFinishQuizEditQuizScheduleSuccess,
+  onFinishQuizStudentViewSuccess,
+  onStudentSubmitQuizSuccess
 }

@@ -1,0 +1,17 @@
+<section data-id="{{quiz._id}}" class="single-quiz">
+  <h4>Almost done! Double check your answers for: {{quiz.title}}, and make sure they look accurate before submitting.</h4>
+
+  {{#each responses as |response|}}
+    {{log response}}
+    <p>Question:</p>
+    {{response.questionOwner}}
+    <p>Your response:</p>
+    {{response.choice}}
+    <br>
+    <br>
+  {{/each}}
+
+</section>
+<br>
+<br>
+<button class="btn primary-btn submit-quiz">Submit</button>
