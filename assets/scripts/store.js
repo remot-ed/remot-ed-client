@@ -7,7 +7,8 @@ const store = {
   quizData: [],
   classData: null,
   classroomData: [],
-  questionNumber: 1
+  questionNumber: 1,
+  questionResponses: []
 }
 
 module.exports = store

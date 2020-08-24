@@ -230,6 +230,26 @@ const onFinishQuizToTeacherDash = () => {
   ui.onFinishQuizToTeacherDashSuccess()
 }
 
+const onFinishQuizStudentView = event => {
+  event.preventDefault()
+
+  console.log(store)
+
+  api.getOneQuiz(store.quizData._id)
+    .then(res => ui.onFinishQuizStudentViewSuccess(res))
+    .catch(console.error)
+}
+
+// for now, just a UI function
+// in the future, this function will want to have more functionality
+// maybe lock out a student from editing quiz
+// auto-grade?
+const onStudentSubmitQuiz = event => {
+  event.preventDefault()
+
+  ui.onStudentSubmitQuizSuccess()
+}
+
 const addHandlers = event => {
   // CREATE
   $('.create-quiz-button').on('click', onShowCreateQuiz)
@@ -262,6 +282,8 @@ const addHandlers = event => {
   $('#student-class-listing').on('click', '.class-to-student-dash', onSingleClassToStudentDash)
   $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
   $('#finish-quiz-view').on('click', '.finish-quiz-to-teacher-dash', onFinishQuizToTeacherDash)
+  $('#student-quiz-view').on('click', '.finish-quiz-student', onFinishQuizStudentView)
+  $('#student-quiz-view').on('click', '.submit-quiz', onStudentSubmitQuiz)
 }
 
 module.exports = {
