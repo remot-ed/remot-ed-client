@@ -6,6 +6,7 @@ $primary-btn-color: #f2f2f2;
 $primary-btn-bkgd-color: #595959;
 
 body {
+  background-color: #353535;
   display: grid;
   min-height: 80vh;
 }
@@ -87,13 +88,20 @@ nav {
 }
 
 .form-control {
-  width: 300px;
+}
+
+.input-group-prepend{
+  width: 100%;
 }
 
 .my-custom-scrollbar {
   max-height: 40vh;
   overflow: auto;
   position: relative;
+}
+
+.btn {
+  margin-top: 5px;
 }
 
 .primary-btn {
@@ -192,6 +200,8 @@ nav {
   border-radius: 30px;
   margin-top: 20vh;
   min-height: 10vh;
+  width: 400px;
+  min-width: 230px;
   padding: 20px;
 }
 
