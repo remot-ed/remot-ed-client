@@ -1,5 +1,5 @@
     <form id="add-student-form">
-      <input type="text" class="form-control inputs" name="user[email]" placeholder="Student Email" >
+      <input type="text" autocomplete="off" class="form-control inputs" name="user[email]" placeholder="Student Email" >
       <button class="btn btn-secondary add-student-button"> Add Student </button>
     </form>
 
@@ -26,8 +26,8 @@
 
 <form id="patch-class-form">
   <div class="form-group patch-class-form">
-    <input type="text" class="form-control inputs" name="classroom[classname]" placeholder="{{classroom.classname}}" required>
-    <input type="text" class="form-control inputs" name="classroom[subject]" placeholder="{{classroom.subject}}" required>
+    <input type="text" autocomplete="off" class="form-control inputs" name="classroom[classname]" placeholder="{{classroom.classname}}" required>
+    <input type="text" autocomplete="off" class="form-control inputs" name="classroom[subject]" placeholder="{{classroom.subject}}" required>
   </div>
   <button type="submit" class="btn btn-dark" data-id="{{classroom._id}}">Save Class</button>
   <button class="btn btn-secondary class-to-teacher-dash">Back to Teacher Dash</button>

@@ -24,6 +24,24 @@ const createQuestion = formData => {
   })
 }
 
+const createResponse = (questionId, formData) => {
+  return $.ajax({
+    url: config.apiUrl + '/responses',
+    method: 'POST',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: {
+      response: {
+        choice: formData.choice,
+        owner: store.user._id,
+        quizOwner: store.quizData._id,
+        questionOwner: questionId
+      }
+    }
+  })
+}
+
 const editQuestion = (questionId, formData) => {
   return $.ajax({
     url: config.apiUrl + '/questions/' + questionId,
@@ -98,6 +116,21 @@ const reduceNumOfQuestions = () => {
   })
 }
 
+const reduceQuestionNumber = (questionId, questionNumber) => {
+  return $.ajax({
+    url: config.apiUrl + '/questions/' + questionId,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: {
+      question: {
+        questionNumber: questionNumber - 1
+      }
+    }
+  })
+}
+
 const getOneQuestion = questionId => {
   return $.ajax({
     url: config.apiUrl + '/questions/' + questionId,
@@ -126,5 +159,7 @@ module.exports = {
   getAllQuestions,
   addQuestion,
   addQuestionToQuiz,
-  reduceNumOfQuestions
+  reduceNumOfQuestions,
+  reduceQuestionNumber,
+  createResponse
 }

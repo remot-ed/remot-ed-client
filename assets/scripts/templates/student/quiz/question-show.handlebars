@@ -1,0 +1,53 @@
+<section data-id={{question._id}} class="single-quiz">
+  <!-- <p>{{quiz.title}}</p> -->
+  <!-- <button class="btn primary-btn increment-questions">Next Question</button> -->
+  <section class="answer-question-section">
+    <p>Question #{{question.questionNumber}}</p>
+      <p>{{question.title}}</p>
+      <br />
+      <form id="answer-question" data-id="{{question._id}}">
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="choice" id="correctAnswer" value="1">
+            <label class="form-check-label" for="correctAnswer">
+              {{question.correctAnswer}}
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="choice" id="answerTwo" value="2">
+            <label class="form-check-label" for="answerTwo">
+              {{question.answerTwo}}
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="choice" id="answerThree" value="3">
+            <label class="form-check-label" for="answerThree">
+              {{question.answerThree}}
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="choice" id="answerFour" value="4">
+            <label class="form-check-label" for="answerFour">
+              {{question.answerFour}}
+            </label>
+          </div>
+          <br />
+
+
+
+
+          <!-- <br>
+          <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[correctAnswer]" placeholder="{{question.correctAnswer}}">
+          <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[answerTwo]" placeholder="{{question.answerTwo}}">
+          <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[answerThree]" placeholder="{{question.answerThree}}">
+          <input type="text" autocomplete="off" class="form-control inputs answer-input" name="question[answerFour]" placeholder="{{question.answerFour}}">
+          <br> -->
+          <button type="submit" class="btn primary-btn">Submit Answer</button>
+        </div>
+      </form>
+      <br>
+      <br>
+      <br>
+    </section>
+  <button type="submit" class="btn primary-btn finish-quiz-student">Finish</button>
+</section>

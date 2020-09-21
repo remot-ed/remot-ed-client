@@ -1,0 +1,25 @@
+  <section data-id="{{classroom._id}}">
+    <h1>{{classroom.classname}}</h1>
+
+
+    <table class="table table-striped table-bordered survey-list col-8" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th class="th th-title ">Quizzes</th>
+          <th class="th">Time</th>
+          <th class="th">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+    {{#each classroom.quizzes as |quiz|}}
+        <tr>
+          <td class="td-title col-6 single-quiz-link" data-id="{{quiz._id}}"> {{quiz.title}} </td>
+          <td class="td-title col-6" data-id="{{quiz._id}}"> {{quiz.title}} </td>
+          <td class="td-title col-6" data-id="{{quiz._id}}"> {{quiz.title}} </td>
+        </tr>
+    {{/each}}
+    </tbody>
+  </table>
+
+    <button class="btn btn-secondary class-to-student-dash"> Back to Student Dash </button>
+</section>

@@ -1,6 +1,6 @@
 'use strict'
 
-const showAddNewQuestionTemplate = require('../templates/quiz/add-new-question.handlebars')
+const showAddNewQuestionTemplate = require('../templates/teacher/quiz/add-new-question.handlebars')
 
 const onCreateQuestionSuccess = () => {
   $('form').trigger('reset')

@@ -1,0 +1,29 @@
+  <section data-id="{{quiz._id}}" class="single-quiz">
+    <h4>{{quiz.title}}</h4>
+
+    <table class="table table-striped table-bordered survey-list" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th class="th th-title">Questions</th>
+          <th class="th">Correct Answer</th>
+          <th class="th">Answer Two</th>
+          <th class="th">Answer Three</th>
+          <th class="th">Answer Four</th>
+          <!-- <th class="th"></th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {{#each quiz.questions as |question|}}
+          <section data-id="{{question._id}}">
+            <tr>
+              <td class="td-title col-6 single-question-link" data-id="{{question._id}}">{{question.title}}</td>
+              <td class="td-title col-6">{{question.correctAnswer}}</td>
+              <td class="td-title col-6">{{question.answerTwo}}</td>
+              <td class="td-title col-6">{{question.answerThree}}</td>
+              <td class="td-title col-6">{{question.answerFour}}</td>
+            </tr>
+          </section>
+        {{/each}}
+        <button class="btn primary-btn edit-quiz-btn" data-id="{{quiz._id}}">Edit Quiz</button>
+        <button class="btn primary-btn quiz-to-class">Back to Classroom</button>
+  </section>

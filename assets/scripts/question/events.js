@@ -45,10 +45,9 @@ const onShowAddQuestion = event => {
 // if you run it more than once, the quizData.questions will always have the
 // questions from the quiz as it was BEFORE editing, as we never reassign
 // when new questions have been added
-// SOLUTION: add store.quizData = data.quiz to ui edit quiz success function
+// SOLUTION: add store.quizData = data.quiz
 const reAddQuestionIds = () => {
   const quiz = store.quizData.questions
-  console.log('reAddQuestionIds: ', quiz)
 
   quiz.forEach(function (arrayItem) {
     store.questions.push(arrayItem._id)
@@ -91,16 +90,39 @@ const onLoopThroughEditQuestions = event => {
   //  .then(formData => store.questions.push(formData))
   //  .then(quizApi.editQuiz(formData))
     .then(api.getOneQuestion(questionId)
-      .then(res => store.questions.push(res))
+      // .then(res => store.questions.push(res))
       .then(res => quizUi.onEditQuizSuccess())
       .catch(console.error))
     .catch(console.error)
+}
+
+const onLoopThroughAnswerQuestions = event => {
+  event.preventDefault()
+
+  const questionId = $(event.target).data('id')
+  // console.log('questionId: ', questionId)
+
+  const form = event.target
+  const formData = getFormFields(form)
+  console.log('formData: ', formData)
+  console.log('questionId: ', questionId)
+
+  api.createResponse(questionId, formData)
+    .then(quizUi.onGetOneStudentQuizSuccess)
 }
 
 const onDeleteQuestion = event => {
   event.preventDefault()
 
   const questionId = $(event.target).data('id')
+
+  quizApi.getOneQuiz(store.quizData._id)
+    .then(res => {
+      const questionIndex = res.quiz.questions.findIndex(e => e._id === questionId)
+      for (let i = questionIndex + 1; i < res.quiz.questions.length; i++) {
+        api.reduceQuestionNumber(res.quiz.questions[i]._id, res.quiz.questions[i].questionNumber)
+      }
+    })
 
   api.deleteQuestion(questionId)
     .then(store.quizData.numOfQuestions--)
@@ -129,7 +151,10 @@ const onDeleteQuestion = event => {
 // }
 
 const addHandlers = event => {
+  // create
   $('.create-question').on('submit', '#create-question', onCreateQuestion)
+  $('#student-quiz-view').on('submit', '#answer-question', onLoopThroughAnswerQuestions)
+
   // $('#edit-single-question').on('submit', '#edit-question', onEditQuestion)
   $('.delete-question').on('submit', onDeleteQuestion)
   // $('.get-questions').on('submit', onGetAllQuestions)

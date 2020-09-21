@@ -3,13 +3,36 @@
 const store = require('../store')
 const quizApi = require('./api')
 
-const showCreateQuizTemplate = require('../templates/quiz/quiz-create.handlebars')
-const showCreateQuestionTemplate = require('../templates/quiz/question-create.handlebars')
-const showQuizzesTemplate = require('../templates/quiz/quiz-td-index.handlebars')
-const showQuizTemplate = require('../templates/quiz/quiz-td-show.handlebars')
-const showQuizEditTemplate = require('../templates/quiz/quiz-td-edit.handlebars')
-const showEditQuestionTemplate = require('../templates/quiz/question-edit.handlebars')
-const showFinishQuizTemplate = require('../templates/quiz/finish-quiz-screen.handlebars')
+const showCreateQuizTemplate = require('../templates/teacher/quiz/quiz-create.handlebars')
+const showCreateQuestionTemplate = require('../templates/teacher/quiz/question-create.handlebars')
+const showFinishQuizTemplate = require('../templates/teacher/quiz/finish-quiz-screen.handlebars')
+
+const showQuizzesTemplate = require('../templates/teacher/quiz/quiz-td-index.handlebars')
+const showQuizTemplate = require('../templates/teacher/quiz/quiz-td-show.handlebars')
+const showStudentQuizTemplate = require('../templates/student/quiz/question-show.handlebars')
+
+const showEditQuestionTemplate = require('../templates/teacher/quiz/question-edit.handlebars')
+const showQuizEditTemplate = require('../templates/teacher/quiz/quiz-td-edit.handlebars')
+
+const onSuccess = message => {
+  $('#user-message')
+    .removeClass('failure')
+    .addClass('success')
+    .text(message)
+  $('#user-message').fadeIn().fadeOut(3000)
+  $('form').trigger('reset')
+}
+
+// const onFailure = message => {
+//   $('#user-message')
+//     .removeClass('success')
+//     .addClass('failure')
+//     .text(message)
+//   $('#user-message').fadeIn().fadeOut(3000)
+//   $('form').trigger('reset')
+// }
+
+// Create
 
 const onShowCreateQuizSuccess = (data) => {
   const showCreateQuizHtml = showCreateQuizTemplate()
@@ -29,15 +52,18 @@ const onCreateQuizSuccess = (data) => {
   $('.switch-view').hide()
   $('.create-question').show()
   $('.create-question').html(showCreateQuestionHtml)
+  onSuccess()
 }
 
 const onFinishQuizSuccess = (data) => {
   store.quizData = data
   const showFinishQuizHtml = showFinishQuizTemplate({ quiz: data.quiz })
   $('.create-question').hide()
-  $('#finish-quiz-view').show()
   $('#finish-quiz-view').html(showFinishQuizHtml)
+  $('#finish-quiz-view').show()
 }
+
+// Read
 
 const onGetAllQuizzesSuccess = (data) => {
   const showQuizzesHtml = showQuizzesTemplate({ quizzes: data.quizzes })
@@ -53,6 +79,48 @@ const onGetOneQuizSuccess = (data) => {
   $('.switch-view').hide()
 }
 
+// const onGetOneStudentQuizSuccess = (data) => {
+//   const showQuizHtml = showStudentQuizTemplate({ quiz: data.quiz })
+//   store.quizData = data
+//   $('#student-quiz-view').html(showQuizHtml)
+//   $('#student-quiz-view').show()
+//   $('#student-class-listing').hide()
+//   $('.switch-view').hide()
+// }
+
+let aCounter = -1
+const onGetOneStudentQuizSuccess = (data) => {
+  aCounter++
+  if (aCounter === 0) {
+    store.quizData = data.quiz
+  }
+  // note: title is not showing atm
+  $('.question-count').html('<h3>' + store.quizData.title + '</h3>')
+  $('.question-count').show()
+  if (aCounter < store.quizData.questions.length) {
+    const showStudentQuizHtml = showStudentQuizTemplate({ question: store.quizData.questions[aCounter] })
+    $('#student-quiz-view').html(showStudentQuizHtml)
+    $('#student-quiz-view').show()
+    $('#student-class-listing').hide()
+    $('.switch-view').hide()
+    $('.finish-quiz-student').hide()
+  } else if (aCounter >= store.quizData.questions.length) {
+    store.questions = []
+    // store.quizData = data.quiz
+    const showStudentQuizHtml = showStudentQuizTemplate({ question: store.quizData.questions[aCounter] })
+    $('#student-quiz-view').html(showStudentQuizHtml)
+    $('.finish-quiz-student').show()
+    $('.answer-question-section').hide()
+  }
+}
+
+const onGetOneStudentQuizFailure = (data) => {
+  // update with messaging shortly
+  console.log('failure')
+}
+
+// Update
+
 const onGetOneQuizEditSuccess = (data) => {
   const showQuizEditHtml = showQuizEditTemplate({ quiz: data.quiz })
   store.quizData = data.quiz
@@ -65,6 +133,8 @@ const onGetOneQuizEditSuccess = (data) => {
 let qCounter = -1
 const onEditQuizSuccess = (data) => {
   qCounter++
+  $('.question-count').html('<h3>' + store.quizData.title + '</h3>')
+  $('.question-count').show()
   if (qCounter < store.quizData.questions.length) {
     const showQuestionEditHtml = showEditQuestionTemplate({ question: store.quizData.questions[qCounter] })
     $('#single-quiz-listing').hide()
@@ -119,6 +189,19 @@ const onSingleQuizToTeacherDashSuccess = () => {
   $('.switch-view').show()
 }
 
+const onSingleClassToStudentDashSuccess = () => {
+  $('#student-quiz-view').hide()
+  $('#student-class-listing').hide()
+  $('.StudentDash').show()
+  $('.switch-view').show()
+}
+
+const onSingleQuizToClassSuccess = () => {
+  $('#student-quiz-view').hide()
+  $('#student-class-listing').show()
+  $('.switch-view').show()
+}
+
 const onFinishQuizToTeacherDashSuccess = () => {
   store.quizData = []
   store.questions = []
@@ -136,6 +219,7 @@ const onFinishQuizEditSuccess = () => {
   store.questions = []
   qCounter = -1
   $('#edit-single-question').hide()
+  $('.question-count').hide()
   quizApi.getAllQuizzes()
     .then(onGetAllQuizzesSuccess)
     .catch(console.error)
@@ -150,8 +234,12 @@ module.exports = {
   onShowCreateQuizSuccess,
   onGetAllQuizzesSuccess,
   onGetOneQuizSuccess,
+  onGetOneStudentQuizSuccess,
+  onGetOneStudentQuizFailure,
   onShowScheduleClassroomsSuccess,
   onSingleQuizToTeacherDashSuccess,
+  onSingleClassToStudentDashSuccess,
+  onSingleQuizToClassSuccess,
   onGetOneQuizEditSuccess,
   onEditQuizSuccess,
   onFinishQuizEditSuccess,

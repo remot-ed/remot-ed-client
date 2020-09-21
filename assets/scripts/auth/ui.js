@@ -26,6 +26,11 @@ const onSignUpSuccess = () => {
   onSuccess('You successfully signed up. Now, sign in.')
 }
 
+const toggleSignUpSuccess = () => {
+  $('#sign-in').toggle()
+  $('#sign-up').toggle()
+}
+
 const onSignUpFailure = () => {
   onFailure('Uh oh... something went wrong! Try again.')
 }
@@ -85,5 +90,6 @@ module.exports = {
   onChangePasswordFailure,
   onSignOutSuccess,
   onSignOutFailure,
-  onShowChangePasswordSuccess
+  onShowChangePasswordSuccess,
+  toggleSignUpSuccess
 }

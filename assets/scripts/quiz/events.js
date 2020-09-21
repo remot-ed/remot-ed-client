@@ -55,17 +55,6 @@ const onScheduleQuizToClassroom = () => {
     .catch(console.error)
 }
 
-// Old finish quiz event:
-
-// const onFinishQuiz = event => {
-//   event.preventDefault()
-//   // console.log('quizData: ', store.quizData)
-//   api.finishQuiz()
-//     .then(ui.onFinishQuizSuccess)
-//     .then(onGetAllQuizzes(event))
-//     .catch(console.error)
-// }
-
 // Read
 
 const onGetAllQuizzes = event => {
@@ -82,6 +71,15 @@ const onGetOneQuiz = event => {
   api.getOneQuiz(quizId)
     .then(ui.onGetOneQuizSuccess)
     .catch(console.error)
+}
+
+const onGetStudentQuiz = event => {
+  event.preventDefault()
+  const quizId = $(event.target).data('id')
+  // console.log($(event.target).data('id'))
+  api.getOneQuiz(quizId)
+    .then(ui.onGetOneStudentQuizSuccess)
+    .catch(ui.onGetOneStudentQuizFailure)
 }
 
 const onShowScheduleClassrooms = () => {
@@ -216,6 +214,16 @@ const onSingleQuizToTeacherDash = () => {
   ui.onSingleQuizToTeacherDashSuccess()
 }
 
+const onSingleClassToStudentDash = () => {
+  event.preventDefault()
+  ui.onSingleClassToStudentDashSuccess()
+}
+
+const onSingleQuizToClassroom = () => {
+  event.preventDefault()
+  ui.onSingleQuizToClassSuccess()
+}
+
 const onFinishQuizToTeacherDash = () => {
   event.preventDefault()
 
@@ -232,7 +240,7 @@ const addHandlers = event => {
 
   // READ
   $('.quiz-listing').on('click', '.single-quiz-link', onGetOneQuiz)
-
+  $('#student-class-listing').on('click', '.single-quiz-link', onGetStudentQuiz)
   $('#single-quiz-listing').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
   $('#finish-quiz-view').on('click', '.classroom-list-schedule', onShowScheduleClassrooms)
 
@@ -250,6 +258,8 @@ const addHandlers = event => {
 
   // MISC
   $('.create-quiz').on('click', '.back-to-td', onCreateQuizBack)
+  $('#student-quiz-view').on('click', '.quiz-to-class', onSingleQuizToClassroom)
+  $('#student-class-listing').on('click', '.class-to-student-dash', onSingleClassToStudentDash)
   $('#single-quiz-listing').on('click', '.quiz-to-teacher-dash', onSingleQuizToTeacherDash)
   $('#finish-quiz-view').on('click', '.finish-quiz-to-teacher-dash', onFinishQuizToTeacherDash)
 }
