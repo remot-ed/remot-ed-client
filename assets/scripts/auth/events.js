@@ -60,7 +60,6 @@ const onDemoLogin = () => {
 
   api.demoSignIn()
     .then(ui.onSignInSuccess)
-    .then(console.log(store.user))
     .catch(ui.onSignInFailure)
 }
 

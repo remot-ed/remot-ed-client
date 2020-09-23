@@ -22,6 +22,7 @@ const onCreateNewClass = event => {
 
   api.createClass(formData)
     .then(ui.onCreateClassSuccess)
+    .then(getClasses) // Put this in edit too, work on moving it to students
     // .then(getClasses(event))
     .catch(ui.onCreateClassFail)
 }
@@ -78,6 +79,7 @@ const onFinishClassEdit = event => {
   api.patchClass(classId, formData)
     .then(res => api.getClassroom(classId))
     .then(res => ui.onSubmitPatchSuccess(res))
+    .then(getClasses)
     .catch(console.error)
 }
 
@@ -108,6 +110,7 @@ const onAddStudent = event => {
   // if api.getStudentId
   api.getStudentId(formData)
     // turn the res into just the _ID
+    .then(res => console.log(res))
     .then(res => store.studentArray.push(res.user._id))
     .then(ui.onAddStudentSuccess(reqEmail))
     .catch(ui.onAddStudentFailure(reqEmail))

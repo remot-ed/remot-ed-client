@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const events = require('./events')
 // const events = require('./events')
 
 const showCreateClassTemplate = require('../templates/teacher/classrooms/class-create.handlebars')
@@ -40,6 +41,7 @@ const onCreateClassSuccess = () => {
 }
 
 const onGetClassesSuccess = (data) => {
+  console.log(data.classrooms)
   const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
   const showStudentClassroomHTML = showStudentClassroomsTemplate({ classrooms: data.classrooms })
   $('#classroom_table').html(showClassesHtml)
@@ -100,7 +102,6 @@ const deleteClassroomSuccess = () => {
 }
 
 const onAddStudentSuccess = (student) => {
-<<<<<<< HEAD
   $('form').trigger('reset')
   onSuccess('The student with email ' + student + ' successfully added')
   $('')
@@ -108,14 +109,6 @@ const onAddStudentSuccess = (student) => {
 
 const onAddStudentFailure = (student) => {
   $('form').trigger('reset')
-=======
-  $('form').trigger('reset')
-  onSuccess('The student with email ' + student + ' successfully added')
-}
-
-const onAddStudentFailure = (student) => {
-  $('form').trigger('reset')
->>>>>>> master
   onFailure('No student with email ' + student + ' found')
 }
 
