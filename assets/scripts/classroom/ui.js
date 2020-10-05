@@ -56,6 +56,7 @@ const onGetClassesFailure = () => {
 const onGetClassroomSuccess = (data) => {
   const showClassroomHtml = showClassTemplate({ classroom: data.classroom })
   store.classroomData = data
+  store.studentArray = []
   $('#single-class-listing').html(showClassroomHtml)
   $('#single-class-listing').show()
   $('#classroom_table').html()
@@ -78,9 +79,10 @@ const onGetStudentClassroomSuccess = (data) => {
 }
 
 const onGetClassEditSuccess = (data) => {
-  const editClassroomHtml = editClassTemplate({ classroom: data.classroom })
-  data.classroom.students.forEach(students => store.studentArray.push(students._id))
-  console.log(store.studentArray)
+  // data.classroom.students.forEach(students => store.studentArray.push(students))
+  data.classroom = store.classroomData
+  console.log(store.classroomData)
+  const editClassroomHtml = editClassTemplate({ classroom: store.classroomData.classroom })
   $('#single-class-listing').html(editClassroomHtml)
   $('.TeacherDash').hide()
   $('.switch-view').hide()
@@ -104,7 +106,6 @@ const deleteClassroomSuccess = () => {
 const onAddStudentSuccess = (student) => {
   $('form').trigger('reset')
   onSuccess('The student with email ' + student + ' successfully added')
-  $('')
 }
 
 const onAddStudentFailure = (student) => {

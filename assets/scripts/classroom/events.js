@@ -61,6 +61,7 @@ const onShowEditClass = event => {
 
   const classId = $(event.target).data('id')
   store.classData = classId
+  store.studentArray = []
 
   api.getClassroom(classId)
     .then(ui.onGetClassEditSuccess)
@@ -76,7 +77,9 @@ const onFinishClassEdit = event => {
   const form = event.target
   const formData = getFormFields(form)
 
-  api.patchClass(classId, formData)
+  const studentId = store.classroomData.classroom.students.map(user => user._id)
+
+  api.patchClass(classId, formData, studentId)
     .then(res => api.getClassroom(classId))
     .then(res => ui.onSubmitPatchSuccess(res))
     .then(getClasses)
@@ -102,16 +105,28 @@ const onDeleteClassroom = (event) => {
 // Add a student to a class
 const onAddStudent = event => {
   event.preventDefault()
-
   const form = event.target // form that was submited
   const formData = getFormFields(form) // get that form and run it
   const reqEmail = formData.user.email
   /// if FIND email/name Priorety: last
+
+  function containStudent (res) {
+    console.log(res)
+    console.log()
+    if ((store.classroomData.classroom.students).includes(res)) {
+      // store.classroomData.classroom.students.push(res.user)
+      console.log('includes:' + store.classroomData.classroom.students.includes(res))
+    } else {
+      ui.onAddStudentFailure(reqEmail)
+    }
+  }
+
+  console.log(store.classroomData.classroom.students)
   // if api.getStudentId
   api.getStudentId(formData)
     // turn the res into just the _ID
-    .then(res => console.log(res))
-    .then(res => store.studentArray.push(res.user._id))
+    // .then(res => containStudent(res))
+    .then(res => console.log(res, + 'includes:' + store.classroomData.classroom.students.includes(res)))
     .then(ui.onAddStudentSuccess(reqEmail))
     .catch(ui.onAddStudentFailure(reqEmail))
 

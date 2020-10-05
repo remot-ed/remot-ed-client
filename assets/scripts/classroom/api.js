@@ -41,7 +41,7 @@ const getClassroom = classId => {
   })
 }
 
-const patchClass = (classId, formData) => {
+const patchClass = (classId, formData, studentId) => {
   return $.ajax({
     url: config.apiUrl + '/classrooms/' + classId,
     method: 'PATCH',
@@ -52,7 +52,7 @@ const patchClass = (classId, formData) => {
       classroom: {
         classname: formData.classroom.classname,
         subject: formData.classroom.subject,
-        students: store.studentArray
+        students: studentId
       }
     }
   })
@@ -72,7 +72,7 @@ const deleteClassroom = classId => {
 // getting user id via email
 const getStudentId = data => {
   return $.ajax({
-    url: config.apiUrl + '/userId',
+    url: config.apiUrl + '/studentEmail',
     method: 'GET',
     headers: {
       Authorization: `Token token=${store.user.token}`
