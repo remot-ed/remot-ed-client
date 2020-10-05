@@ -111,13 +111,11 @@ const onAddStudent = event => {
   /// if FIND email/name Priorety: last
 
   function containStudent (res) {
-    console.log(res)
-    console.log()
-    if ((store.classroomData.classroom.students).includes(res)) {
-      // store.classroomData.classroom.students.push(res.user)
-      console.log('includes:' + store.classroomData.classroom.students.includes(res))
-    } else {
+    if ((store.classroomData.classroom.students).some(student => student.email === res.user.email)) {
       ui.onAddStudentFailure(reqEmail)
+    } else {
+      store.classroomData.classroom.students.push(res.user)
+      ui.onAddStudentSuccess(reqEmail)
     }
   }
 
@@ -125,8 +123,7 @@ const onAddStudent = event => {
   // if api.getStudentId
   api.getStudentId(formData)
     // turn the res into just the _ID
-    // .then(res => containStudent(res))
-    .then(res => console.log(res, + 'includes:' + store.classroomData.classroom.students.includes(res)))
+    .then(res => containStudent(res))
     .then(ui.onAddStudentSuccess(reqEmail))
     .catch(ui.onAddStudentFailure(reqEmail))
 
