@@ -119,53 +119,28 @@ const onAddStudent = event => {
     }
   }
 
-  console.log(store.classroomData.classroom.students)
-  // if api.getStudentId
   api.getStudentId(formData)
-    // turn the res into just the _ID
     .then(res => containStudent(res))
     .then(ui.onAddStudentSuccess(reqEmail))
     .catch(ui.onAddStudentFailure(reqEmail))
 
-  /// selected name _ID saved to store
-
-  // const studentsID = api.getStudentId(formData)
-
-  // store.studentArray.push(formData)
-
-  /// else
   /// user send an email?
 }
 
 const onRemoveOneStudent = event => {
   event.preventDefault()
 
-  const dataID = $(event.target).data('id') // form that was submited
-  const index = store.studentArray.indexOf(dataID.toString())
+  const dataID = $(event.target).data('id')
+  const students = store.classroomData.classroom.students
 
-  if (index !== -1) {
-    store.studentArray.splice(index, 1)
-    $(event.target).css('background', 'red')
-    // change to indicate slated for removal
-  } else {
-    store.studentArray.push(dataID)
-    // change back to checkmark?
-    $(event.target).css('background', 'green')
+  for (let i = students.length - 1; i >= 0; --i) {
+    if (students[i]._id === (dataID.toString())) {
+      students.splice(i, 1)
+    }
   }
-  console.log('student array is', store.studentArray)
 
-  // Dynamically Remove Row/Resource (for now turn red)
-  // ui.removeStudentSuccess(target)
-
-  // Code for dynamic form change to reflect store.studentArray
-  // api.getStudentId(student)
-  //   // turn the res into just the _ID
-  //   .then(res => store.studentArray.pop(res.user._id))
-  //   .then(res => console.log('student array is', store.studentArray))
-  //   // .then(res => fixArray(store.studentArray))
-  //   // .then(res => store.studentArray.push(res.xlASSROOM))
-  //   // .then(ui.onAddStudentSuccess())
-  //   .catch(console.error)
+  ui.removeStudentSuccess()
+    .catch(ui.removeStudentFailure)
 }
 
 // Misc

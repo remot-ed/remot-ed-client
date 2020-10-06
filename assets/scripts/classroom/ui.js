@@ -106,6 +106,8 @@ const deleteClassroomSuccess = () => {
 const onAddStudentSuccess = (student) => {
   $('form').trigger('reset')
   onSuccess('The student with email ' + student + ' successfully added')
+  const editClassroomHtml = editClassTemplate({ classroom: store.classroomData.classroom })
+  $('#single-class-listing').html(editClassroomHtml)
 }
 
 const onAddStudentFailure = (student) => {
@@ -113,7 +115,14 @@ const onAddStudentFailure = (student) => {
   onFailure('No student with email ' + student + ' found')
 }
 
-const removeStudentSuccess = (target) => {
+const removeStudentSuccess = () => {
+  onSuccess('The student was successfully removed.')
+  const editClassroomHtml = editClassTemplate({ classroom: store.classroomData.classroom })
+  $('#single-class-listing').html(editClassroomHtml)
+}
+
+const removeStudentFailure = () => {
+  onFailure('Something went wrong, the student was not removed.')
 }
 
 const onSingleClassToTeacherDashSuccess = () => {
@@ -136,5 +145,6 @@ module.exports = {
   onAddStudentSuccess,
   onAddStudentFailure,
   onSingleClassToTeacherDashSuccess,
-  removeStudentSuccess
+  removeStudentSuccess,
+  removeStudentFailure
 }
