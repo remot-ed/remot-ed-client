@@ -14,8 +14,7 @@ const createClass = formData => {
       classroom: {
         classname: formData.classroom.classname,
         subject: formData.classroom.subject,
-        owner: store.user._id,
-        students: store.studentArray
+        owner: store.user._id
       }
     }
   })

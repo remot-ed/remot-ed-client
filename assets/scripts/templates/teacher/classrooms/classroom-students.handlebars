@@ -1,0 +1,33 @@
+<h2> {{classroom.classname}} </h2>
+<h3> {{classroom.subject}} </h3>
+
+    <form id="add-student-form">
+      <input type="text" autocomplete="off" class="form-control inputs" name="user[email]" placeholder="Student Email" >
+      <button class="btn btn-secondary add-student-button"> Add Student </button>
+    </form>
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered classroom-list" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th class="th th-title">Name</th>
+          <th class="th">Email</th>
+          <th class="th">Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+    {{#each classroom.students as |student|}}
+        <tr>
+          <td class="td-title col-6 single-question-link" data-id="{{student._id}}"> {{student.email}} </td>
+          <td class="td-title col-6 single-question-link" data-id="{{student._id}}"> {{student.email}} </td>
+          <td class="td-title col-6 single-question-link" data-id="{{student._id}}">
+            <a href="#" data-id="{{student._id}}" class="btn btn-danger btn-lg btn-Remove-Student" > <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm9.854 4.854a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"/> </svg> </a>
+          </td>
+        </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</div>
+
+  <button type="submit" class="btn btn-dark" data-id="{{classroom._id}}">Save Class</button>
+  <button class="btn btn-secondary class-to-teacher-dash"> Skip </button>
+</form>

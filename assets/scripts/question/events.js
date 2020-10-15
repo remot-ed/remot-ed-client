@@ -104,8 +104,6 @@ const onLoopThroughAnswerQuestions = event => {
 
   const form = event.target
   const formData = getFormFields(form)
-  console.log('formData: ', formData)
-  console.log('questionId: ', questionId)
 
   api.createResponse(questionId, formData)
     .then(quizUi.onGetOneStudentQuizSuccess)

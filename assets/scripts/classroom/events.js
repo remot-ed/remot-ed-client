@@ -21,8 +21,8 @@ const onCreateNewClass = event => {
   const formData = getFormFields(form) // get that form and run it
 
   api.createClass(formData)
-    .then(ui.onCreateClassSuccess)
-    .then(getClasses) // Put this in edit too, work on moving it to students
+    .then(res => ui.onCreateClassSuccess(res))
+    // .then(getClasses) // Put this in edit too, work on moving it to students
     // .then(getClasses(event))
     .catch(ui.onCreateClassFail)
 }
@@ -127,6 +127,28 @@ const onAddStudent = event => {
   /// user send an email?
 }
 
+const onAddClassStudents = event => {
+  event.preventDefault()
+  const form = event.target // form that was submited
+  const formData = getFormFields(form) // get that form and run it
+  const reqEmail = formData.user.email
+
+  console.log('store is', store)
+  function containStudent (res) {
+    if ((store.classroomData.classroom.students).some(student => student.email === res.user.email)) {
+      ui.onAddStudentFailure(reqEmail)
+    } else {
+      store.classroomData.classroom.students.push(res.user)
+      ui.onAddStudentSuccess(reqEmail)
+    }
+  }
+
+  api.getStudentId(formData)
+    .then(res => containStudent(res))
+    .then(ui.onAddNewStudentSuccess(reqEmail))
+    .catch(ui.onAddStudentFailure(reqEmail))
+}
+
 const onRemoveOneStudent = event => {
   event.preventDefault()
 
@@ -159,6 +181,7 @@ const addHandlers = event => {
   // Create
   $('.create-class-button').on('click', onShowCreateClass)
   $('.create-class').on('submit', '#create-class-form', onCreateNewClass)
+  $('#create-class-students').on('submit', '#add-student-form', onAddClassStudents)
 
   // Read Requests
   $('#classroom_table').on('click', '.get-classroom', onGetClassroom)
@@ -172,7 +195,6 @@ const addHandlers = event => {
   $('#single-class-listing').on('click', '.delete', onDeleteClassroom)
 
   // Student Management
-  $('.create-class').on('submit', '#add-student-form', onAddStudent)
   $('#single-class-listing').on('submit', '#add-student-form', onAddStudent)
   $('#single-class-listing').on('click', '.btn-Remove-Student', onRemoveOneStudent)
 
@@ -183,5 +205,6 @@ const addHandlers = event => {
 
 module.exports = {
   addHandlers,
-  getClasses
+  getClasses,
+  onAddClassStudents
 }

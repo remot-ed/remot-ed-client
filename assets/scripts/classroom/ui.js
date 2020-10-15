@@ -1,7 +1,6 @@
 'use strict'
 
 const store = require('../store')
-const events = require('./events')
 // const events = require('./events')
 
 const showCreateClassTemplate = require('../templates/teacher/classrooms/class-create.handlebars')
@@ -10,6 +9,7 @@ const showClassroomsTemplate = require('../templates/teacher/classrooms/class-li
 const showClassTemplate = require('../templates/teacher/classrooms/classroom-show.handlebars')
 const showStudentClassTemplate = require('../templates/student/classrooms/classroom-show.handlebars')
 const editClassTemplate = require('../templates/teacher/classrooms/classroom-edit.handlebars')
+const showClassroomStudentsTemplate = require('../templates/teacher/classrooms/classroom-students.handlebars')
 
 const onSuccess = message => {
   $('#user-message')
@@ -34,14 +34,20 @@ const onShowCreateClassSuccess = () => {
   $('.create-class-button').hide()
   $('.create-class').show()
   $('.create-class').html(showCreateClassHtml)
+  $('.switch-view').hide()
 }
 
-const onCreateClassSuccess = () => {
-  onSuccess("You've created a new class")
+const onCreateClassSuccess = (data) => {
+  store.classroomData = data.classroom
+  const showClassStudentsHtml = showClassroomStudentsTemplate({ classroom: store.classroomData })
+  $('.TeacherDash').hide()
+  $('.switch-view').hide()
+  onSuccess(`You've created a new class`)
+  $('#create-class-students').show()
+  $('#create-class-students').html(showClassStudentsHtml)
 }
 
 const onGetClassesSuccess = (data) => {
-  console.log(data.classrooms)
   const showClassesHtml = showClassroomsTemplate({ classrooms: data.classrooms })
   const showStudentClassroomHTML = showStudentClassroomsTemplate({ classrooms: data.classrooms })
   $('#classroom_table').html(showClassesHtml)
@@ -79,9 +85,7 @@ const onGetStudentClassroomSuccess = (data) => {
 }
 
 const onGetClassEditSuccess = (data) => {
-  // data.classroom.students.forEach(students => store.studentArray.push(students))
   data.classroom = store.classroomData
-  console.log(store.classroomData)
   const editClassroomHtml = editClassTemplate({ classroom: store.classroomData.classroom })
   $('#single-class-listing').html(editClassroomHtml)
   $('.TeacherDash').hide()
@@ -108,6 +112,13 @@ const onAddStudentSuccess = (student) => {
   onSuccess('The student with email ' + student + ' successfully added')
   const editClassroomHtml = editClassTemplate({ classroom: store.classroomData.classroom })
   $('#single-class-listing').html(editClassroomHtml)
+}
+
+const onAddNewStudentSuccess = (student) => {
+  $('form').trigger('reset')
+  onSuccess('The student with email ' + student + ' successfully added')
+  const showClassStudentsHtml = showClassroomStudentsTemplate({ classroom: store.classroomData })
+  $('#create-class-students').html(showClassStudentsHtml)
 }
 
 const onAddStudentFailure = (student) => {
@@ -143,6 +154,7 @@ module.exports = {
   onSubmitPatchSuccess,
   deleteClassroomSuccess,
   onAddStudentSuccess,
+  onAddNewStudentSuccess,
   onAddStudentFailure,
   onSingleClassToTeacherDashSuccess,
   removeStudentSuccess,
