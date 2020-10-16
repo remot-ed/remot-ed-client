@@ -21,10 +21,29 @@ const onCreateNewClass = event => {
   const formData = getFormFields(form) // get that form and run it
 
   api.createClass(formData)
-    .then(ui.onCreateClassSuccess)
-    .then(getClasses) // Put this in edit too, work on moving it to students
-    // .then(getClasses(event))
+    .then(res => ui.onCreateClassSuccess(res))
     .catch(ui.onCreateClassFail)
+}
+
+const onNewStudentsAdded = event => {
+  event.preventDefault()
+
+  const classId = store.classroomData._id
+
+  const studentId = store.classroomData.students.map(user => user._id)
+
+  console.log('student Id :' + studentId)
+
+  if (store.classroomData.students.length < 1) {
+    api.getClassroom(classId)
+      .then(res => ui.onSubmitPatchSuccess(res))
+  } else {
+    api.newStudents(classId, studentId)
+      .then(res => api.getClassroom(classId))
+      .then(res => ui.onSubmitPatchSuccess(res))
+      .then(getClasses)
+      .catch(console.error)
+  }
 }
 
 // READ
@@ -121,10 +140,45 @@ const onAddStudent = event => {
 
   api.getStudentId(formData)
     .then(res => containStudent(res))
-    .then(ui.onAddStudentSuccess(reqEmail))
     .catch(ui.onAddStudentFailure(reqEmail))
 
   /// user send an email?
+}
+
+const onAddClassStudents = event => {
+  event.preventDefault()
+  const form = event.target // form that was submited
+  const formData = getFormFields(form) // get that form and run it
+  const reqEmail = formData.user.email
+
+  function containStudent (res) {
+    if ((store.classroomData.students).some(student => student.email === res.user.email)) {
+      ui.onAddStudentFailure(reqEmail)
+    } else {
+      store.classroomData.students.push(res.user)
+      ui.onAddNewStudentSuccess(reqEmail)
+    }
+  }
+
+  api.getStudentId(formData)
+    .then(res => containStudent(res))
+    .catch(ui.onAddStudentFailure(reqEmail))
+}
+
+const removeNewStudentSuccess = event => {
+  event.preventDefault()
+
+  const dataID = $(event.target).data('id')
+  const students = store.classroomData.students
+
+  for (let i = students.length - 1; i >= 0; --i) {
+    if (students[i]._id === (dataID.toString())) {
+      students.splice(i, 1)
+    }
+  }
+
+  ui.removeNewStudentSuccess()
+    .catch(ui.removeStudentFailure)
 }
 
 const onRemoveOneStudent = event => {
@@ -151,7 +205,7 @@ const toggleStudent = (event) => {
 
 const onSingleClassToTeacherDash = () => {
   event.preventDefault()
-
+  getClasses(event)
   ui.onSingleClassToTeacherDashSuccess()
 }
 
@@ -159,6 +213,7 @@ const addHandlers = event => {
   // Create
   $('.create-class-button').on('click', onShowCreateClass)
   $('.create-class').on('submit', '#create-class-form', onCreateNewClass)
+  $('#create-class-students').on('click', '.new-students-added', onNewStudentsAdded)
 
   // Read Requests
   $('#classroom_table').on('click', '.get-classroom', onGetClassroom)
@@ -172,16 +227,19 @@ const addHandlers = event => {
   $('#single-class-listing').on('click', '.delete', onDeleteClassroom)
 
   // Student Management
-  $('.create-class').on('submit', '#add-student-form', onAddStudent)
+  $('#create-class-students').on('submit', '#add-student-form', onAddClassStudents)
   $('#single-class-listing').on('submit', '#add-student-form', onAddStudent)
   $('#single-class-listing').on('click', '.btn-Remove-Student', onRemoveOneStudent)
+  $('#create-class-students').on('click', '.btn-Remove-Student', removeNewStudentSuccess)
 
   // misc
   $('#single-class-listing').on('click', '.class-to-teacher-dash', onSingleClassToTeacherDash)
+  $('#create-class-students').on('click', '.class-to-teacher-dash', onSingleClassToTeacherDash)
   $('#student-dash-toggle').on('click', toggleStudent)
 }
 
 module.exports = {
   addHandlers,
-  getClasses
+  getClasses,
+  onAddClassStudents
 }

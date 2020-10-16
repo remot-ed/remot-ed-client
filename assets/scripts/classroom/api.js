@@ -14,8 +14,22 @@ const createClass = formData => {
       classroom: {
         classname: formData.classroom.classname,
         subject: formData.classroom.subject,
-        owner: store.user._id,
-        students: store.studentArray
+        owner: store.user._id
+      }
+    }
+  })
+}
+
+const newStudents = (classId, studentId) => {
+  return $.ajax({
+    url: config.apiUrl + '/classrooms/' + classId,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    data: {
+      classroom: {
+        students: studentId
       }
     }
   })
@@ -83,6 +97,7 @@ const getStudentId = data => {
 
 module.exports = {
   createClass,
+  newStudents,
   getClasses,
   getClassroom,
   patchClass,
