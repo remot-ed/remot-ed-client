@@ -132,12 +132,19 @@ const removeStudentSuccess = () => {
   $('#single-class-listing').html(editClassroomHtml)
 }
 
+const removeNewStudentSuccess = () => {
+  onSuccess('The student was successfully removed.')
+  const showClassStudentsHtml = showClassroomStudentsTemplate({ classroom: store.classroomData })
+  $('#create-class-students').html(showClassStudentsHtml)
+}
+
 const removeStudentFailure = () => {
   onFailure('Something went wrong, the student was not removed.')
 }
 
 const onSingleClassToTeacherDashSuccess = () => {
   $('#single-class-listing').hide()
+  $('#create-class-students').hide()
   $('.TeacherDash').show()
   $('.switch-view').show()
 }
@@ -158,5 +165,6 @@ module.exports = {
   onAddStudentFailure,
   onSingleClassToTeacherDashSuccess,
   removeStudentSuccess,
+  removeNewStudentSuccess,
   removeStudentFailure
 }
