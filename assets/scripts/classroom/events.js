@@ -32,14 +32,18 @@ const onNewStudentsAdded = event => {
 
   const studentId = store.classroomData.students.map(user => user._id)
 
-  console.log('class Id :' + classId)
   console.log('student Id :' + studentId)
 
-  api.newStudents(classId, studentId)
-    .then(res => api.getClassroom(classId)) //NEXT STEP NEED TO FIX THESE
-    .then(res => ui.onSubmitPatchSuccess(res)) // AND DO STYLING
-    .then(getClasses)
-    .catch(console.error)
+  if (store.classroomData.students.length < 1) {
+    api.getClassroom(classId)
+      .then(res => ui.onSubmitPatchSuccess(res))
+  } else {
+    api.newStudents(classId, studentId)
+      .then(res => api.getClassroom(classId))
+      .then(res => ui.onSubmitPatchSuccess(res))
+      .then(getClasses)
+      .catch(console.error)
+  }
 }
 
 // READ

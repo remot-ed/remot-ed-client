@@ -40,8 +40,10 @@ const onShowCreateClassSuccess = () => {
 const onCreateClassSuccess = (data) => {
   store.classroomData = data.classroom
   const showClassStudentsHtml = showClassroomStudentsTemplate({ classroom: store.classroomData })
+  $('.create-class-button').show()
   $('.TeacherDash').hide()
   $('.switch-view').hide()
+  $('.create-class').hide()
   onSuccess(`You've created a new class`)
   $('#create-class-students').show()
   $('#create-class-students').html(showClassStudentsHtml)
@@ -99,6 +101,7 @@ const onSubmitPatchSuccess = (data) => {
   $('#single-class-listing').html(showClassroomHtml)
   $('#single-class-listing').show()
   $('#classroom_table').html()
+  $('#create-class-students').hide()
 }
 
 const deleteClassroomSuccess = () => {
