@@ -43,6 +43,12 @@ const onSignInSuccess = responseData => {
   $('.student').hide()
   $(classroom.getClasses)
   $(quiz.onGetAllQuizzes)
+
+  console.log(
+    `Name: ${responseData.user.firstName} of }
+    Role: ${responseData.user.role}
+    email: ${responseData.user.email}`
+  )
 }
 
 const onSignInFailure = () => {

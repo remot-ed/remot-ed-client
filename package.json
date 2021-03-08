@@ -7,6 +7,7 @@
     "content": "CC­BY­NC­SA 4.0"
   },
   "dependencies": {
+    "accesscontrol-middleware": "^1.0.3",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.4.1",
     "bootstrap-material-design": "^4.1.1",
